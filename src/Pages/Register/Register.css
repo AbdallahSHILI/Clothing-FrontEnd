@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+.btn {
+  cursor: pointer;
+  padding: 5px 15px;
+  background: var(--light-color);
+  color: var(--dark-color-a);
+  border: 0;
+  font-size: 17px;
+}
+
+.join-header {
+  text-align: center;
+  padding: 20px;
+  background: #666a86;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.join-main {
+  padding: 73px 35px;
+  background: #95b8d1;
+}
+
+.join-main p {
+  margin-bottom: 20px;
+}
+
+.join-main .form-control-input {
+  position: relative;
+  width: 100%;
+  margin: 0px 0px 36px;
+}
+.form-control-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid;
+  background: #fff;
+  border-radius: 5px;
+  outline: none;
+  color: #000;
+  font-size: 1 em;
+  transition: 0.5 s;
+}
+.form-control-input span {
+  position: absolute;
+  left: 0;
+  padding: 15px;
+  pointer-events: none;
+  font-size: 1em;
+  color: #666a86;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.form-control-input input:valid ~ span,
+.form-control-input input:focus ~ span {
+  color: #000;
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.65em;
+  padding: 0 10px;
+  background: #95b8d1;
+  border-left: 1px solid #666a86;
+  border-right: 1px solid #666a86;
+  letter-spacing: 0.2em;
+}
+.form-control-input input:valid,
+.form-control-input input:focus {
+  border: 1px solid #00dfc4;
+}
+
+.join-main label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.join-main input[type="text"] {
+  font-size: 16px;
+  padding: 5px;
+  height: 51px;
+  width: 100%;
+}
+
+.form-control {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  min-width: 250px;
+  height: 50px;
+}
+.select-container .icon-container {
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #023ca9;
+}
+.icon-container {
+  font-size: 30px;
+  color: white;
+}
+
+.select-box {
+  border: none;
+  appearance: none;
+  padding: 0 30px 0 15px;
+  width: 100%;
+  color: #666a86;
+  background-color: #fff;
+  font-size: 20px;
+  height: 51px;
+}
+
+.join-main .btn {
+  margin-top: 18px;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .chat-main {
+    display: block;
+  }
+
+  .chat-sidebar {
+    display: none;
+  }
+}
