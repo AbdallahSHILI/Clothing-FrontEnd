@@ -1,0 +1,12 @@
+.theSideBare {
+  width: 24%;
+  margin: 12% 0 0 -2%;
+  float: left;
+  padding: 1%;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.sideBare-picture {
+  width: 100%;
+}
