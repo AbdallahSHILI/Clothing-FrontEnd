@@ -1,46 +1,74 @@
-/* .main-header {
-  background-color: brown;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 45px;
-}
-
-.main-header nav ul {
-  text-align: center;
-  list-style: none;
-  margin: auto;
-}
-
-.main-header nav ul li {
-  display: inline;
-} */
-
 .header {
-  background-color: #666a86;
-  opacity: 0.6;
-  position: fixed;
-  top: 41px;
-  left: 41px;
-  width: 95%;
-  padding: 20px 100px;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 404px;
+}
+
+.logo-vector {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  z-index: 100;
-  height: 57px;
-  border-radius: 8px;
+  gap: 13px;
 }
 
-.logo {
+.logo-vector img {
+  width: 31.265px;
+  height: 29px;
+}
+
+.logo-vector a {
   color: #000;
-  font-size: 30px;
+  font-family: Poppins;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 1.2px;
   text-decoration: none;
 }
 
-.navbar a {
-  color: #000;
-  font-size: 30px;
+.navbar-element {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.navbar-element .navbar-control a {
+  color: #242323;
+  font-family: Poppins;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.22px;
   text-decoration: none;
-  margin-left: 40px;
+}
+
+.navbar-control {
+  display: flex;
+  align-items: flex-start;
+  gap: 65px;
+}
+
+.LoginSinup {
+  width: 134px;
+  height: 62px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: #000;
+}
+
+.LoginSinup a {
+  width: 90px;
+  height: 32px;
+  flex-shrink: 0;
+  color: #fefefe;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  margin: 11px 0px 0px 39px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }

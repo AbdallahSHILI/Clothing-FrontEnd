@@ -1,0 +1,19 @@
+.join-container img {
+  margin: 0px 0px 0px 550px;
+  width: 500px;
+}
+.LEUC-container {
+  width: 474px;
+  height: 473px;
+  flex-shrink: 0;
+  color: #000;
+  font-family: Poppins;
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 120px; /* 125% */
+  /* display;inline; */
+}
+
+.LEUC-container p {
+}

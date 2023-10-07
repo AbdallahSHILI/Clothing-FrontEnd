@@ -1,1 +1,27 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+.App {
+  overflow-x: hidden;
+  overflow-y: hidden;
+} */
+
+:root {
+  --color-dark: #000;
+  --color-light: #fff;
+  --color-bg-body: #f4f6f5;
+  --color-primary: #ec6090;
+  --color-yellow: #ebd96b;
+  /* --distance-primary: 25px;
+    --margin-primary: var(--distance-primary);
+    --padding-primary: var(--distance-primary);
+    --border-radius-primary: var(--distance-primary);
+    --font-weight-bold: 300;
+    --font-weight-normal: 700; */
+  --font-family-primary: "poppins", sans serif;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Rubik:wght@300&display=swap");
