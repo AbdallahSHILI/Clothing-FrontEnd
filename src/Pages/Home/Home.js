@@ -12,8 +12,7 @@ const Home = () => {
         <div className="unique-container"></div>
         <div className="let's-container"></div>
       </div>
-      <div className="paragraphe-container"></div>
-      {/* <img src={logo} /> */}
+      <img src={logo} />
       <div className="shop">
         <div className="shopNow-button"></div>
       </div>

@@ -70,7 +70,7 @@
 }
 
 .join-main label {
-  display: block;
+  /* display: block; */
   margin-bottom: 5px;
 }
 
@@ -121,7 +121,7 @@
 
 @media (max-width: 700px) {
   .chat-main {
-    display: block;
+    /* display: block; */
   }
 
   .chat-sidebar {
