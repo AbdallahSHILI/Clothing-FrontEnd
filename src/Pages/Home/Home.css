@@ -1,12 +1,28 @@
-.join-container img {
-  margin: 0px 0px 0px 550px;
+.girlLogo {
+  margin: 0px 0px 0px 300px;
   width: 500px;
 }
 .LEUC-container {
   width: 474px;
   height: 473px;
-  /* 125% */
-  /* display;inline; */
+}
+
+.LEUC-container .unique-container {
+  background-color: #ebd96b;
+  width: 300px;
+  height: 75px;
+  transform: rotate(-2deg);
+  flex-shrink: 0;
+  margin: -140px 0px 0px 71px;
+}
+
+.lets-container {
+  background-color: #fff;
+  width: 300px;
+  height: 75px;
+  transform: rotate(-2deg);
+  flex-shrink: 0;
+  margin: -203px 0px 0px 71px;
 }
 
 .LEUC-container p {
@@ -18,4 +34,48 @@
   font-weight: 900;
   line-height: 60px;
   padding: 70px 0px 0px 100px;
+}
+
+.life-container {
+  width: 606px;
+  height: 45px;
+  margin: -143px 0px 0px 71px;
+}
+
+.life-container p {
+  color: #191818;
+  font-family: Poppins;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -1.6px;
+}
+
+.shop-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.shop-container img {
+  width: 190px;
+  height: 31.955px;
+}
+
+.shopNow-button {
+  width: 221px;
+  height: 82px;
+  border-radius: 10px;
+  background: #000;
+}
+
+.shopNow-button p {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -1.5px;
 }
