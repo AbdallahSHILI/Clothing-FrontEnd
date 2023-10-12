@@ -1,5 +1,4 @@
 .girlLogo {
-  margin: 0px 0px 0px 300px;
   width: 500px;
 }
 .LEUC-container {
@@ -56,6 +55,7 @@
   display: inline-flex;
   align-items: center;
   gap: 34px;
+  margin-left: 60px;
 }
 
 .shop-container img {
@@ -76,6 +76,7 @@
   font-size: 30px;
   font-style: normal;
   font-weight: 500;
-  line-height: normal;
+  line-height: 77px;
   letter-spacing: -1.5px;
+  text-align: center;
 }
