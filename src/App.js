@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Clothes, Home, Login, Register } from "./Pages/index";
+import { Clothes, ContactUs, Home, Login, Register } from "./Pages/index";
 import { Footer, Navbar } from "./Components/Index";
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Clothes" element={<Clothes />} />
+          <Route path="/ContactUs" element={<ContactUs />} />
         </Routes>
         <Footer />
       </Router>
