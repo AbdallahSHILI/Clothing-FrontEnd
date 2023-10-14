@@ -1,7 +1,6 @@
 import React from "react";
 import "./Home.css";
 import { Container } from "../../Components/Index";
-import { Link } from "react-router-dom";
 import logo1 from "../../Components/Assets/beautiful-girl.png";
 import logo2 from "../../Components/Assets/Vector-shop.svg";
 

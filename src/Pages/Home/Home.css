@@ -42,7 +42,7 @@
 }
 
 .life-container p {
-  color: #191818;
+  color: #191818 !important;
   font-family: Poppins;
   font-size: 23px;
   font-style: normal;
