@@ -19,8 +19,13 @@ const ContactUs = () => {
       </div>
       <div className="footer-container">
         <div className="footer-element">
-          <div className="leftFooter"></div>
-          <div className="rightFooter"></div>
+          <div className="leftFooter">
+            <h1>FASHION</h1>
+            <p>Complete your style with awesome clothes from us.</p>
+          </div>
+          <div className="rightFooter">
+            <h1>ha</h1>
+          </div>
         </div>
       </div>
     </div>

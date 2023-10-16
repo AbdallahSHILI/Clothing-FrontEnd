@@ -36,3 +36,18 @@
   line-height: 70px; /* 127.273% */
   letter-spacing: 1.65px;
 }
+.footer-element {
+  color: white;
+  width: 80%;
+  margin: 0px auto;
+  padding: 100px 0px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.leftFooter {
+}
+
+.rightFooter {
+}
