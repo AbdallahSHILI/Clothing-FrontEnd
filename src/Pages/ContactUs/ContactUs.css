@@ -27,7 +27,6 @@
 
 .Conatct-Join-container .join-content h1 {
   color: #fff;
-  text-align: center;
   font-family: Poppins;
   font-size: 55px;
   font-style: normal;
@@ -51,18 +50,27 @@
   position: relative;
 }
 
-.email-container input {
-  padding-right: 4.6em;
-  /* width: 80%;
-  border-radius: 10px;
-  background: #fff; */
+.join-content .email-container input {
+  padding: 0.8em 10em;
+  border: 0.5px solid gray;
+  border-radius: 5px;
 }
 
-.email-container button {
+.join-content .email-container button {
+  background-color: #000;
+  color: #fff;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 6px;
+  right: 12px;
   width: 4.4em;
+  border: 0.5px solid gray;
+  border-radius: 5px;
+  font-family: Poppins;
+  font-size: 33px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 35px;
+  letter-spacing: 0.99px;
 }
 
 .footer-element {

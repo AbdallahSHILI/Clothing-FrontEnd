@@ -1,7 +1,10 @@
 .header {
   display: inline-flex;
-  align-items: flex-end;
-  gap: 367px;
+  align-items: center;
+  justify-content: space-between;
+  width: 98%;
+  height: 85px;
+  margin: 0px auto;
 }
 
 .logo-vector {

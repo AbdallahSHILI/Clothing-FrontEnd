@@ -19,7 +19,7 @@ const ContactUs = () => {
               placeholder="&#767676;  Add your email here"
             />
             <button name="submit" class="" type="submit">
-              Send
+              SEND
             </button>
           </div>
         </div>
