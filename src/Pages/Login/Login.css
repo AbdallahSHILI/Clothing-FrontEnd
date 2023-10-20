@@ -1,15 +1,54 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
-.login-container {
-  width: 80%;
+.Login-container {
+  background-color: #ffef65;
+  width: 95%;
   height: 500px;
   margin: 31px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.Login-container img {
+  width: 38%;
+  float: left;
+}
+
+.right-container {
+  width: 65%;
+  margin: 40px 250px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.login-content {
+  width: 85%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.right-container .login-content h1 {
+  color: #000;
+  font-family: Poppins;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 60px;
+}
+
+.Login-form {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
 }
 
 .btn {
   cursor: pointer;
   padding: 5px 15px;
-  background: var(--light-color);
   color: var(--dark-color-a);
   border: 0;
   font-size: 17px;
@@ -18,14 +57,12 @@
 .join-header {
   text-align: center;
   padding: 20px;
-  background: #666a86;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
 
 .join-main {
   padding: 73px 35px;
-  background: #95b8d1;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -92,7 +129,6 @@
 }
 
 .join-main label {
-  /* display: block; */
   margin-bottom: 5px;
 }
 
