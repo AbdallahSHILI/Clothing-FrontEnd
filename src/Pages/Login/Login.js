@@ -13,11 +13,11 @@ const Login = () => {
             <div class="form-control-input">
               <input
                 type="text"
-                name="username"
-                id="username"
+                name="useremail"
+                id="useremail"
                 required="required"
               />
-              <span className="label">First Name</span>
+              <span className="label">Email</span>
             </div>
             <div class="form-control-input">
               <input

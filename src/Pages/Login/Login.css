@@ -4,18 +4,18 @@
   background-color: #ffef65;
   width: 95%;
   height: 500px;
-  margin: 31px auto;
+  margin: 35px auto;
   display: flex;
   justify-content: space-between;
 }
 .Login-container img {
-  width: 38%;
+  width: 50%;
   float: left;
 }
 
 .right-container {
   width: 65%;
-  margin: 40px 250px;
+  margin: 40px 50px;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -32,6 +32,7 @@
 
 .right-container .login-content h1 {
   color: #000;
+  margin: 0px auto;
   font-family: Poppins;
   font-size: 56px;
   font-style: normal;
@@ -40,6 +41,7 @@
 }
 
 .Login-form {
+  margin: 0px 155px;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -71,14 +73,12 @@
   margin-bottom: 20px;
 }
 
-.join-main .form-control-input {
+.Login-form .form-control-input {
   position: relative;
-  width: 100%;
-  margin: 0px 0px 36px;
+  width: 130%;
 }
 
-.form-control-input input {
-  width: 100%;
+.Login-form .form-control-input input {
   padding: 10px;
   border: 1px solid;
   background: #fff;
@@ -117,7 +117,7 @@
   transform: translateX(10px) translateY(-7px);
   font-size: 0.65em;
   padding: 0 10px;
-  background: #95b8d1;
+  background: #ffef65;
   border-left: 1px solid #666a86;
   border-right: 1px solid #666a86;
   letter-spacing: 0.2em;
@@ -174,9 +174,10 @@
   height: 51px;
 }
 
-.join-main .btn {
-  margin-top: 18px;
-  width: 100%;
+.Login-form .btn {
+  margin: auto 38px;
+  width: 80%;
+  background-color: black;
 }
 
 @media (max-width: 700px) {
