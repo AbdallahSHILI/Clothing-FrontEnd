@@ -8,10 +8,16 @@ const Home = () => {
   return (
     <Container>
       <div className="left-container">
+        <div className="LEUC-container"></div>
+      </div>
+      <img className="girlLogo" src={logo1} />
+
+      {/* <div className="left-container">
         <div className="LEUC-container">
-          <p>LET’S EXPLORE UNIQUE CLOTHES.</p>
-          <div className="unique-container"></div>
-          <div className="lets-container"></div>
+          <p>
+            <span className="first-span">LET’S</span> EXPLORE
+            <span className="second-span">UNIQUE</span> CLOTHES.
+          </p>
         </div>
         <div className="life-container">
           <p>Live for Influential and Innovative fashion!</p>
@@ -23,7 +29,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <img className="girlLogo" src={logo1} />
+      <img className="girlLogo" src={logo1} /> */}
     </Container>
   );
 };

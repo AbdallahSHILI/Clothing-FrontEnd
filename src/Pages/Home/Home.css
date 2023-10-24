@@ -1,28 +1,36 @@
 .girlLogo {
-  width: 38%;
+  width: 50%;
   float: right;
 }
-.LEUC-container {
-  width: 474px;
-  height: 473px;
+
+.left-container {
+  width: 45%;
+  float: right;
+  background-color: #000;
 }
 
-.LEUC-container .unique-container {
+.LEUC-container {
+  width: 90%;
+  height: 90%;
+  margin: 35px auto;
+  background-color: aliceblue;
+}
+
+.first-span {
+  background-color: #fff;
+  width: 300px;
+  height: 75px;
+  transform: rotate(-2deg);
+  flex-shrink: 0;
+}
+
+.second-span {
   background-color: #ebd96b;
   width: 300px;
   height: 75px;
   transform: rotate(-2deg);
   flex-shrink: 0;
   margin: -140px 0px 0px 71px;
-}
-
-.lets-container {
-  background-color: #fff;
-  width: 300px;
-  height: 75px;
-  transform: rotate(-2deg);
-  flex-shrink: 0;
-  margin: -203px 0px 0px 71px;
 }
 
 .LEUC-container p {
