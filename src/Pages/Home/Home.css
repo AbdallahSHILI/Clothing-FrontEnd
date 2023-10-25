@@ -6,48 +6,44 @@
 .left-container {
   width: 45%;
   float: right;
-  background-color: #000;
 }
 
 .LEUC-container {
   width: 90%;
   height: 90%;
   margin: 35px auto;
-  background-color: aliceblue;
-}
-
-.first-span {
-  background-color: #fff;
-  width: 300px;
-  height: 75px;
-  transform: rotate(-2deg);
-  flex-shrink: 0;
-}
-
-.second-span {
-  background-color: #ebd96b;
-  width: 300px;
-  height: 75px;
-  transform: rotate(-2deg);
-  flex-shrink: 0;
-  margin: -140px 0px 0px 71px;
+  color: #000;
 }
 
 .LEUC-container p {
-  flex-shrink: 0;
   color: #000;
+  width: 80%;
   font-family: Poppins;
   font-size: 56px;
   font-style: normal;
   font-weight: 900;
-  line-height: 60px;
-  padding: 70px 0px 0px 100px;
+  line-height: 65px;
+  padding: 30px 0px 0px 35px;
+}
+
+.first-span {
+  background-color: #fff;
+  width: 300px !important;
+  height: 75px !important;
+  transform: rotate(-2deg);
+}
+
+.second-span {
+  background-color: #ebd96b;
+  width: 300px !important;
+  height: 75px !important;
+  transform: rotate(-2deg);
 }
 
 .life-container {
   width: 606px;
   height: 45px;
-  margin: -143px 0px 0px 71px;
+  margin: -190px 0px 0px 65px;
 }
 
 .life-container p {
@@ -68,13 +64,13 @@
 }
 
 .shop-container img {
-  width: 190px;
+  width: 30%;
   height: 31.955px;
 }
 
 .shopNow-button {
-  width: 221px;
-  height: 82px;
+  width: 55%;
+  height: 70px;
   border-radius: 10px;
   background: #000;
 }

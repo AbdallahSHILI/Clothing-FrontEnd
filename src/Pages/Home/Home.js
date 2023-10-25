@@ -8,7 +8,21 @@ const Home = () => {
   return (
     <Container>
       <div className="left-container">
-        <div className="LEUC-container"></div>
+        <div className="LEUC-container">
+          <p>
+            <span className="first-span">LET’S</span> EXPLORE{" "}
+            <span className="second-span">UNIQUE</span> CLOTHES.
+          </p>
+        </div>
+        <div className="life-container">
+          <p>Live for Influential and Innovative fashion!</p>
+        </div>
+        <div className="shop-container">
+          <img src={logo2} />
+          <div className="shopNow-button">
+            <p>Shop Now</p>
+          </div>
+        </div>
       </div>
       <img className="girlLogo" src={logo1} />
 

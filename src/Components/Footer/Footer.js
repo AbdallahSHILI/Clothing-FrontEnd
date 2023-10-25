@@ -1,11 +1,11 @@
 import React from "react";
 import "./Footer.css";
 import HamAbid from "../../Components/Assets/HamadiAbid.svg";
-import Obey from "../../Components/Assets/Obey_new.svg";
-import Shopify from "../../Components/Assets/Shopify_new.svg";
-import Lacoste from "../../Components/Assets/Lacoste_new.svg";
-import Levis from "../../Components/Assets/Levis_new.svg";
-import Amazon from "../../Components/Assets/Amazon_new.svg";
+import Obey from "../../Components/Assets/OBEY.svg";
+import Shopify from "../../Components/Assets/shopify-removebg-preview.jpg";
+import Lacoste from "../../Components/Assets/1-removebg-preview.jpg";
+import Levis from "../../Components/Assets/2-removebg-preview.jpg";
+import Amazon from "../../Components/Assets/3-removebg-preview.jpg";
 
 const Footer = () => {
   return (

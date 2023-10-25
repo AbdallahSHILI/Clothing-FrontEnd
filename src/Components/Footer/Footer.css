@@ -3,13 +3,21 @@
   border-radius: 10px;
   width: 98%;
   height: 85px;
-  margin: 0px auto;
 }
 
 .fashionMark-container {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  /* gap: 76px; */
-  width: 95%;
+  width: 90%;
+  margin: 1% 4%;
+}
+
+.Footer .fashionMark-container img {
+  width: 10%;
+}
+
+.Footer .fashionMark-container:nth-child(3) {
+  background: lightgray -29.485px -56.427px / 133.505% 284.783% no-repeat;
+  mix-blend-mode: multiply;
 }
