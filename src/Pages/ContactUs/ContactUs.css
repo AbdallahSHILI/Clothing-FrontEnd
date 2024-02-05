@@ -56,6 +56,12 @@
   border-radius: 5px;
 }
 
+.join-content .email-container input::placeholder {
+  color: black;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
 .join-content .email-container button {
   background-color: #000;
   color: #fff;

@@ -14,7 +14,7 @@ const Navbar = () => {
         <div className="navbar-control">
           <Link to="/Catalogue">Catalogue</Link>
           <Link to="/Clothes">Fashion</Link>
-          <Link to="/Clothes">Favorite</Link>
+          <Link to="/Favorite">Favorite</Link>
           <Link to="/ContactUs">Contact us</Link>
         </div>
         <div className="LoginSinup">

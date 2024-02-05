@@ -13,9 +13,7 @@ const Clothes = () => {
               <a href="#">My Clothes</a>
             </h2>
           </header>
-          <footer>
-            <section className="post-info"></section>
-          </footer>
+
           <figure>
             <img src={logo} className="post-image" />
             <figcaption>THis is abdallah picture</figcaption>
@@ -23,8 +21,9 @@ const Clothes = () => {
         </section>
       </div>
       <SideBare />
-      <SideBare />
-      <SideBare />
+      <footer>
+        <section className="post-info"></section>
+      </footer>
     </>
   );
 };

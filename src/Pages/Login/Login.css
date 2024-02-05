@@ -8,14 +8,15 @@
   display: flex;
   justify-content: space-between;
 }
+
 .Login-container img {
-  width: 50%;
+  width: 60%;
   float: left;
 }
 
 .right-container {
   width: 65%;
-  margin: 40px 50px;
+  margin: 50px auto;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -34,43 +35,19 @@
   color: #000;
   margin: 0px auto;
   font-family: Poppins;
-  font-size: 56px;
+  font-size: 65px;
   font-style: normal;
   font-weight: 900;
   line-height: 60px;
 }
 
 .Login-form {
-  margin: 0px 155px;
+  width: 43%;
+  margin: auto 115px;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 50px;
-}
-
-.btn {
-  cursor: pointer;
-  padding: 5px 15px;
-  color: var(--dark-color-a);
-  border: 0;
-  font-size: 17px;
-}
-
-.join-header {
-  text-align: center;
-  padding: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-.join-main {
-  padding: 73px 35px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-
-.join-main p {
-  margin-bottom: 20px;
 }
 
 .Login-form .form-control-input {
@@ -92,7 +69,7 @@
 .form-control-input .label {
   position: absolute;
   left: 0;
-  padding: 15px;
+  padding: 10px;
   pointer-events: none;
   font-size: 1em;
   color: #666a86;
@@ -128,56 +105,11 @@
   border: 1px solid #00dfc4;
 }
 
-.join-main label {
-  margin-bottom: 5px;
-}
-
-.join-main input[type="text"] {
-  font-size: 16px;
-  padding: 5px;
-  height: 51px;
-  width: 100%;
-}
-
-.form-control {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  min-width: 250px;
-  height: 50px;
-}
-
-.select-container .icon-container {
-  width: 50px;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #023ca9;
-}
-
-.icon-container {
-  font-size: 30px;
-  color: white;
-}
-
-.select-box {
-  border: none;
-  appearance: none;
-  padding: 0 30px 0 15px;
-  width: 100%;
-  color: #666a86;
-  background-color: #fff;
-  font-size: 20px;
-  height: 51px;
-}
-
 .Login-form .btn {
-  margin: auto 38px;
-  width: 80%;
+  margin: auto 50px;
+  width: 90%;
   background-color: black;
+  color: white;
 }
 
 @media (max-width: 700px) {

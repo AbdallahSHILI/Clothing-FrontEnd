@@ -1,59 +1,53 @@
 import React from "react";
 import "./Register.css";
-import { Container } from "../../Components/Index";
+import logo1 from "../../Components/Assets/Loogin-girl.svg";
 
 const Register = () => {
   return (
-    <Container>
-      <header class="join-header">
-        <h1>Ful Name</h1>
-      </header>
-      <main class="join-main">
-        <form action="chat.html">
-          <div class="form-control-input">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              required="required"
-            />
-            <span>Email</span>
-          </div>
-          <div class="form-control-input">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              required="required"
-            />
-            <span>Phone number</span>
-          </div>
-          <div class="form-control-input">
-            <input
-              type="password"
-              name="username"
-              id="username"
-              required="required"
-            />
-            <span>password</span>
-          </div>
-
-          <div class="form-control-input">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              required="required"
-            />
-            <span>Confirme Password</span>
-          </div>
-
-          <button type="submit" class="btn">
-            Login
-          </button>
-        </form>
-      </main>
-    </Container>
+    <div className="Register_Container">
+      <img src={logo1} />
+      <div className="Right_Container">
+        <div className="Register_Content">
+          <h1>Register Now !</h1>
+          <form className="Register_Form">
+            <div class="form-control-input_register">
+              <input
+                type="text"
+                name="fisrt_lastName"
+                id="fisrt_lastName"
+                required="required"
+              />
+              <span className="label">First Last Name</span>
+            </div>
+            <div class="form-control-input">
+              <input type="text" name="Email" id="Email" required="required" />
+              <span className="label">Email</span>
+            </div>
+            <div class="form-control-input">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                required="required"
+              />
+              <span className="label">password</span>
+            </div>
+            <div class="form-control-input">
+              <input
+                type="Confirm_password"
+                name="Confirm_password"
+                id="Confirm_password"
+                required="required"
+              />
+              <span className="label">Confirm Password</span>
+            </div>
+            <button type="submit" class="btn">
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 

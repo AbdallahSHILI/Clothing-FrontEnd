@@ -16,7 +16,7 @@ const ContactUs = () => {
               name="email"
               type="text"
               class="search-box"
-              placeholder="&#767676;  Add your email here"
+              placeholder="Add your email here"
             />
             <button name="submit" class="" type="submit">
               SEND

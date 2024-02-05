@@ -7,6 +7,7 @@ import {
   Home,
   Login,
   Register,
+  Favorite,
 } from "./Pages/index";
 import { Footer, Navbar } from "./Components/Index";
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/Clothes" element={<Clothes />} />
           <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/Catalogue" element={<Catalogue />} />
+          <Route path="/Favorite" element={<Favorite />} />
         </Routes>
         <Footer />
       </Router>
