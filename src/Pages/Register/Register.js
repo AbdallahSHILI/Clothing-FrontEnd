@@ -10,7 +10,7 @@ const Register = () => {
         <div className="Register_Content">
           <h1>Register Now !</h1>
           <form className="Register_Form">
-            <div class="form-control-input_register">
+            <div class="form-control-input">
               <input
                 type="text"
                 name="fisrt_lastName"
@@ -22,6 +22,15 @@ const Register = () => {
             <div class="form-control-input">
               <input type="text" name="Email" id="Email" required="required" />
               <span className="label">Email</span>
+            </div>
+            <div class="form-control-input">
+              <input
+                type="text"
+                name="PhoneNumber"
+                id="PhoneNumber"
+                required="required"
+              />
+              <span className="label">Phone Number</span>
             </div>
             <div class="form-control-input">
               <input
@@ -40,6 +49,26 @@ const Register = () => {
                 required="required"
               />
               <span className="label">Confirm Password</span>
+            </div>
+            <div className="Checkbox">
+              <input
+                type="checkbox"
+                id="Customer"
+                name="Customer"
+                value="Customer"
+              />
+              <label for="Customer">Customer</label>
+            </div>
+            <div className="checkbox_container">
+              <div className="checkbox">
+                <input
+                  type="checkbox"
+                  id="Designer"
+                  name="Designer"
+                  value="Designer"
+                />
+                <label for="Designer">Designer</label>
+              </div>
             </div>
             <button type="submit" class="btn">
               Register

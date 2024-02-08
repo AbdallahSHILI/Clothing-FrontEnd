@@ -43,7 +43,7 @@
 
 .Login-form {
   width: 43%;
-  margin: auto 115px;
+  margin: auto 170px;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -106,8 +106,8 @@
 }
 
 .Login-form .btn {
-  margin: auto 50px;
-  width: 90%;
+  margin: auto 15px;
+  width: 75%;
   background-color: black;
   color: white;
 }
