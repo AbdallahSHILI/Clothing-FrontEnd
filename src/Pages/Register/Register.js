@@ -1,31 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Register.css";
 import logo1 from "../../Components/Assets/Loogin-girl.svg";
-import { Axios } from "axios";
+import Axios from "axios";
+
+const AuthRegister = () => {
+  return (
+    <div>
+      <Register />
+    </div>
+  );
+};
 
 const Register = () => {
-  const [FisrtlastName, setFisrtlastName] = useState("");
+  const [FisrtLastName, setFisrtLastName] = useState("");
   const [Email, setEmail] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Password, setPassword] = useState("");
 
-  const API = "http://localhost:3000";
+  const API = "http://localhost:3001";
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const data = {
+      FisrtLastName,
+      Email,
+      PhoneNumber,
+      Password,
+    };
     try {
-      await Axios.post(`${API}/Clothing/Users/Signup`, {
-        FisrtlastName,
-        Email,
-        PhoneNumber,
-        Password,
-      });
-      console.log("sayi");
+      await Axios.post("http://localhost:3001/Clothing/Users", data);
+      alert("User created successfully!");
     } catch (error) {
-      console.error("Error creating user:", error);
+      if (error.response && error.response.status === 404) {
+        console.error("Registration failed: Backend endpoint not found.");
+        alert("User registration failed. Please try again later.");
+      } else {
+        console.error("Error creating user:", error);
+        alert("An unexpected error occurred. Please try again later.");
+      }
     }
   };
+  return (
+    <RegisterForm
+      FisrtLastName={FisrtLastName}
+      setFisrtLastName={setFisrtLastName}
+      Email={Email}
+      setEmail={setEmail}
+      PhoneNumber={PhoneNumber}
+      setPhoneNumber={setPhoneNumber}
+      Password={Password}
+      setPassword={setPassword}
+      onSubmit={onSubmit}
+    />
+  );
+};
 
+const RegisterForm = ({
+  FisrtLastName,
+  setFisrtLastName,
+  Email,
+  setEmail,
+  PhoneNumber,
+  setPhoneNumber,
+  Password,
+  setPassword,
+  onSubmit,
+}) => {
   return (
     <div className="Register_Container">
       <img src={logo1} />
@@ -33,18 +73,18 @@ const Register = () => {
         <div className="Register_Content">
           <h1>Register Now !</h1>
           <form className="Register_Form" onSubmit={onSubmit}>
-            <div class="form-control-input">
+            <div className="form-control-input">
               <input
                 type="text"
-                name="fisrt_lastName"
-                id="fisrt_lastName"
+                name="FisrtlastName"
+                id="FisrtlastName"
                 required="required"
-                value={FisrtlastName}
-                onChange={(e) => setFisrtlastName(e.target.value)}
+                value={FisrtLastName}
+                onChange={(e) => setFisrtLastName(e.target.value)}
               />
               <span className="label">First Last Name</span>
             </div>
-            <div class="form-control-input">
+            <div className="form-control-input">
               <input
                 type="text"
                 name="Email"
@@ -55,7 +95,7 @@ const Register = () => {
               />
               <span className="label">Email</span>
             </div>
-            <div class="form-control-input">
+            <div className="form-control-input">
               <input
                 type="text"
                 name="PhoneNumber"
@@ -66,11 +106,11 @@ const Register = () => {
               />
               <span className="label">Phone Number</span>
             </div>
-            <div class="form-control-input">
+            <div className="form-control-input">
               <input
                 type="password"
-                name="password"
-                id="password"
+                name="Password"
+                id="Password"
                 required="required"
                 value={Password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -97,7 +137,7 @@ const Register = () => {
                 <label for="Designer">Designer</label>
               </div>
             </div> */}
-            <button type="submit" class="btn">
+            <button type="submit" className="btn">
               Register
             </button>
           </form>
@@ -107,4 +147,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default AuthRegister;
