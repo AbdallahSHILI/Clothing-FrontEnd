@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Register.css";
 import logo1 from "../../Components/Assets/Loogin-girl.svg";
 import Axios from "axios";
@@ -12,38 +12,31 @@ const AuthRegister = () => {
 };
 
 const Register = () => {
-  const [FisrtLastName, setFisrtLastName] = useState("");
+  const [FirstLastName, setFirstLastName] = useState("");
   const [Email, setEmail] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Password, setPassword] = useState("");
-
   const API = "http://localhost:3001";
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const data = {
-      FisrtLastName,
-      Email,
-      PhoneNumber,
-      Password,
-    };
+  const onSubmit = async (event) => {
+    event.preventDefault();
     try {
-      await Axios.post("http://localhost:3001/Clothing/Users", data);
-      alert("User created successfully!");
+      const response = await Axios.post(`${API}/Clothing/Users/Signup`, {
+        FirstLastName,
+        Email,
+        PhoneNumber,
+        Password,
+      });
+      console.log("Registration successful:", response.data);
     } catch (error) {
-      if (error.response && error.response.status === 404) {
-        console.error("Registration failed: Backend endpoint not found.");
-        alert("User registration failed. Please try again later.");
-      } else {
-        console.error("Error creating user:", error);
-        alert("An unexpected error occurred. Please try again later.");
-      }
+      console.error("Registration failed:", error);
     }
   };
+
   return (
     <RegisterForm
-      FisrtLastName={FisrtLastName}
-      setFisrtLastName={setFisrtLastName}
+      FirstLastName={FirstLastName}
+      setFirstLastName={setFirstLastName}
       Email={Email}
       setEmail={setEmail}
       PhoneNumber={PhoneNumber}
@@ -56,8 +49,8 @@ const Register = () => {
 };
 
 const RegisterForm = ({
-  FisrtLastName,
-  setFisrtLastName,
+  FirstLastName,
+  setFirstLastName,
   Email,
   setEmail,
   PhoneNumber,
@@ -76,11 +69,11 @@ const RegisterForm = ({
             <div className="form-control-input">
               <input
                 type="text"
-                name="FisrtlastName"
-                id="FisrtlastName"
+                name="FirstLastName"
+                id="FirstLastName"
                 required="required"
-                value={FisrtLastName}
-                onChange={(e) => setFisrtLastName(e.target.value)}
+                value={FirstLastName}
+                onChange={(e) => setFirstLastName(e.target.value)}
               />
               <span className="label">First Last Name</span>
             </div>
