@@ -8,6 +8,7 @@ import {
   Login,
   Register,
   Favorite,
+  Auth,
 } from "./Pages/index";
 import { Footer, Navbar } from "./Components/Index";
 
@@ -18,8 +19,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
+          <Route path="/Auth" element={<Auth />} />
           <Route path="/Clothes" element={<Clothes />} />
           <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/Catalogue" element={<Catalogue />} />
