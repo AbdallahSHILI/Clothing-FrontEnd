@@ -51,6 +51,24 @@
   gap: 30px;
 }
 
+.Login-element {
+  background-color: #0a66c2;
+  border-radius: 12px;
+  color: #ffffff;
+  box-sizing: border-box;
+  font-size: 24px;
+  overflow: hidden;
+}
+
+.Lougout-element {
+  background-color: #0a66c2;
+  border-radius: 12px;
+  color: #ffffff;
+  box-sizing: border-box;
+  font-size: 24px;
+  overflow: hidden;
+}
+
 .LoginSinup {
   width: 134px;
   height: 62px;
