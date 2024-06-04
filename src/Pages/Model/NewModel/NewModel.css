@@ -1,0 +1,10 @@
+.container_element {
+  border: 3px solid #000;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  margin: 45px auto;
+  padding: 25px;
+  width: 65%;
+}

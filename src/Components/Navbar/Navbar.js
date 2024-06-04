@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="navbar-element">
         <div className="navbar-control">
           <Link to="/Catalogue">Catalogue</Link>
-          <Link to="/Clothes">Fashion</Link>
+          <Link to="/Fashion">Fashion</Link>
           <Link to="/Favorite">Favorite</Link>
           <Link to="/ContactUs">Contact us</Link>
         </div>

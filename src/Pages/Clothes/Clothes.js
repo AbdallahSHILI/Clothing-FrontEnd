@@ -1,7 +1,7 @@
 import React from "react";
 import "./Clothes.css";
 import logo from "../../Components/Assets/My-Pic.jpg";
-import SideBare from "../SideBare/SideBare";
+import Fashion from "../Fashion/Fashion";
 
 const Clothes = () => {
   return (
@@ -20,7 +20,6 @@ const Clothes = () => {
           </figure>
         </section>
       </div>
-      <SideBare />
       <footer>
         <section className="post-info"></section>
       </footer>

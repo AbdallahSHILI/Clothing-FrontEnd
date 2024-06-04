@@ -8,6 +8,8 @@ import {
   Login,
   Register,
   Favorite,
+  Fashion,
+  NewModel,
 } from "./Pages/index";
 import { Footer, Navbar } from "./Components/Index";
 
@@ -24,6 +26,9 @@ function App() {
           <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/Catalogue" element={<Catalogue />} />
           <Route path="/Favorite" element={<Favorite />} />
+
+          <Route path="/Fashion" element={<Fashion />} />
+          <Route path="/Fashion/NewModel" element={<NewModel />} />
         </Routes>
         <Footer />
       </Router>
