@@ -27,12 +27,12 @@ const Navbar = () => {
         </div>
         <div className="LoginSignup">
           {isAuthenticated ? (
-            <button onClick={handleLogout} className="Logout-element">
+            <button onClick={handleLogout} className="Logout_button">
               Logout
             </button>
           ) : (
             <Link to="/Login">
-              <button className="Login-element">Login</button>
+              <button className="Login_button">Login</button>
             </Link>
           )}
         </div>

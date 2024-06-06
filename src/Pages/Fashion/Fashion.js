@@ -9,7 +9,10 @@ const Fashion = () => {
         New To Clothing? <Link to="/Register">Sign Up</Link>
       </p>
       <p>
-        <Link to="/Fashion/NewModel">NewModel</Link>
+        New Model<Link to="/Fashion/NewModel">NewModel</Link>
+      </p>
+      <p>
+        All Models<Link to="/Fashion/AllModels">All Model</Link>
       </p>
     </div>
   );

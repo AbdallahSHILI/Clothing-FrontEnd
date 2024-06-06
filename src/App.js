@@ -10,6 +10,7 @@ import {
   Favorite,
   Fashion,
   NewModel,
+  AllModels,
 } from "./Pages/index";
 import { Footer, Navbar } from "./Components/Index";
 
@@ -26,9 +27,9 @@ function App() {
           <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/Catalogue" element={<Catalogue />} />
           <Route path="/Favorite" element={<Favorite />} />
-
           <Route path="/Fashion" element={<Fashion />} />
           <Route path="/Fashion/NewModel" element={<NewModel />} />
+          <Route path="/Fashion/AllModels" element={<AllModels />} />
         </Routes>
         <Footer />
       </Router>
