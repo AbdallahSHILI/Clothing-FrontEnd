@@ -8,6 +8,7 @@
   padding: 25px;
   width: 65%;
 }
+
 .send_btn {
   background-color: #0a66c2;
   border-radius: 10px;
@@ -16,6 +17,10 @@
   font-size: 22px;
   overflow: hidden;
   margin: 3%;
+}
+
+#Image {
+  margin: 20px;
 }
 
 .Message {
