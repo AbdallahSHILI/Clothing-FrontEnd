@@ -6,5 +6,5 @@ export { default as Catalogue } from "./Catalogue/Catalogue";
 export { default as Favorite } from "./Favorite/Favorite";
 export { default as Login } from "./Login/Login";
 export { default as Register } from "./Register/Register";
-export { default as NewModel } from "./Model/NewModel/NewModel";
-export { default as AllModels } from "./Model/AllModel/AllModels";
+export { default as NewModel } from "./Clothes/NewClothes/NewClothes";
+export { default as AllModels } from "./Clothes/AllClothes/AllClothes";

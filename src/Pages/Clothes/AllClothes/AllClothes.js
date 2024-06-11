@@ -12,9 +12,6 @@ const AllModels = () => {
     const fetchModels = async () => {
       try {
         const response = await Axios.get(`${API}/Clothing/Clothes/`);
-        response.data.doc.forEach((item) => {
-          console.log(item.Image);
-        });
         setModels(response.data.doc);
       } catch (error) {
         console.error("Fetching Models Failed", error);

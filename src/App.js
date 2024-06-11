@@ -28,8 +28,8 @@ function App() {
           <Route path="/Catalogue" element={<Catalogue />} />
           <Route path="/Favorite" element={<Favorite />} />
           <Route path="/Fashion" element={<Fashion />} />
-          <Route path="/Fashion/NewModel" element={<NewModel />} />
-          <Route path="/Fashion/AllModels" element={<AllModels />} />
+          <Route path="/Fashion/NewClothes" element={<NewClothes />} />
+          <Route path="/Fashion/AllClothes" element={<AllClothes />} />
         </Routes>
         <Footer />
       </Router>
