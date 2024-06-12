@@ -1,10 +1,8 @@
 export { default as Home } from "./Home/Home";
-export { default as Clothes } from "./Clothes/Clothes";
 export { default as Fashion } from "./Fashion/Fashion";
 export { default as ContactUs } from "./ContactUs/ContactUs";
-export { default as Catalogue } from "./Catalogue/Catalogue";
 export { default as Favorite } from "./Favorite/Favorite";
 export { default as Login } from "./Login/Login";
 export { default as Register } from "./Register/Register";
-export { default as NewModel } from "./Clothes/NewClothes/NewClothes";
-export { default as AllModels } from "./Clothes/AllClothes/AllClothes";
+export { default as NewClothes } from "./Clothes/NewClothes/NewClothes";
+export { default as AllClothes } from "./Catalogue/AllClothes";

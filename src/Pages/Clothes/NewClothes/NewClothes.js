@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import "./NewModel.css";
+import React, { useState, useRef } from "react";
+import "./NewClothes.css";
 import Axios from "axios";
 
-const NewModel = () => {
+const NewClothes = () => {
   const [Description, setDescription] = useState("");
-  const [Image, setImage] = useState(null); // State to store the selected image file
+  const [Image, setImage] = useState(null);
   const [message, setMessage] = useState("");
+  const fileInputRef = useRef(null); // Create a ref for the file input
   const API = "http://localhost:3001";
 
   const onSubmit = async (event) => {
@@ -24,19 +25,25 @@ const NewModel = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      setMessage("Model sent successfully!");
+      setMessage("Clothes sent successfully!");
       setDescription("");
-      setImage(null); // Reset the selected image
+      setImage(null);
+      fileInputRef.current.value = ""; // Clear the file input manually
+
+      // Hide the message after 3 seconds
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
     } catch (error) {
-      console.error("Sending Model Failed", error);
-      setMessage("Sending Model Failed");
+      console.error("Sending Clothes Failed", error);
+      setMessage("Sending Clothes Failed");
     }
   };
 
   return (
     <div>
       <form className="container_element" onSubmit={onSubmit}>
-        <span>Email</span>
+        <span>Description</span>
         <input
           type="text"
           name="Description"
@@ -51,15 +58,18 @@ const NewModel = () => {
           id="Image"
           accept="image/*"
           required
+          ref={fileInputRef} // Attach the ref to the file input
           onChange={(e) => setImage(e.target.files[0])} // Get the first file selected by the user
         />
         <button type="submit" className="send_btn">
           Send
         </button>
-        {message && <div className="Message">{message}</div>}
+        {message && (
+          <div className={`Message ${message && "fadeIn"}`}>{message}</div>
+        )}
       </form>
     </div>
   );
 };
 
-export default NewModel;
+export default NewClothes;
