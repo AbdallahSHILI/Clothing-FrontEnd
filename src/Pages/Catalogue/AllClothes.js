@@ -11,7 +11,6 @@ const AllClothes = () => {
     const fetchClothes = async () => {
       try {
         const response = await Axios.get(`${API}/Clothing/Clothes/`);
-        console.log("API Response:", response.data);
         setClothes(response.data.doc);
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
@@ -30,7 +29,7 @@ const AllClothes = () => {
           </p>
           {clothes.Image && (
             <img
-              src={`${API}/${clothes.Image}`}
+              src={`${API}/images/${clothes.Image}`}
               alt={clothes.Description}
               style={{ maxWidth: "100%", height: "auto" }}
             />
