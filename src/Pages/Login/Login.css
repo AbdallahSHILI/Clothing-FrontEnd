@@ -9,6 +9,20 @@
   justify-content: space-between;
 }
 
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 .Login-container img {
   width: 60%;
   float: left;

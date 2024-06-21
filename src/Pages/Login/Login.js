@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const API = "http://localhost:3001";
   const navigate = useNavigate();
 
@@ -21,10 +22,26 @@ const Login = () => {
       });
       Cookies.set("access-token", response.data.token);
       window.localStorage.setItem("userId", response.data.user._id);
+      // Hide the message after 3 seconds
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
       navigate("/");
       window.location.reload();
     } catch (error) {
       console.error("Login failed:", error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setMessage(`Login Failed: ${error.response.data.message}`);
+      } else {
+        setMessage("Login Failed: Email or Password is incorrect.");
+      }
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
     }
   };
 
@@ -34,12 +51,21 @@ const Login = () => {
       setEmail={setEmail}
       Password={Password}
       setPassword={setPassword}
+      message={message}
+      setMessage={setMessage}
       onSubmit={onSubmit}
     />
   );
 };
 
-const LoginForm = ({ Email, setEmail, Password, setPassword, onSubmit }) => {
+const LoginForm = ({
+  Email,
+  setEmail,
+  Password,
+  setPassword,
+  message,
+  onSubmit,
+}) => {
   return (
     <div className="Login-container">
       <img src={logo1} alt="Login Illustration" />
@@ -73,6 +99,11 @@ const LoginForm = ({ Email, setEmail, Password, setPassword, onSubmit }) => {
               <button type="submit" className="btn">
                 Login
               </button>
+              {message && (
+                <div className={`Message ${message && "fadeIn"}`}>
+                  {message}
+                </div>
+              )}
               <p>
                 New To Clothing? <Link to="/Register">Sign Up</Link>
               </p>

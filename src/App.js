@@ -24,7 +24,7 @@ function App() {
           <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/Favorite" element={<Favorite />} />
           <Route path="/Fashion" element={<Fashion />} />
-          <Route path="/Fashion/NewClothes" element={<NewClothes />} />
+          <Route path="/NewClothes" element={<NewClothes />} />
           <Route path="/AllClothes" element={<AllClothes />} />
         </Routes>
         <Footer />
