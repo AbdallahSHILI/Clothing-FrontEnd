@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./AllClothes.css";
 import Axios from "axios";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const AllClothes = () => {
   const [Clothes, setClothes] = useState([]);
@@ -34,6 +35,7 @@ const AllClothes = () => {
               style={{ maxWidth: "100%", height: "auto" }}
             />
           )}
+          <FontAwesomeIcon icon={faHeart} className="heart_icon" />
         </div>
       ))}
     </div>

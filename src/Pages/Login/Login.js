@@ -37,7 +37,7 @@ const Login = () => {
       ) {
         setMessage(`Login Failed: ${error.response.data.message}`);
       } else {
-        setMessage("Login Failed: Email or Password is incorrect.");
+        setMessage("Email or Password is incorrect.");
       }
       setTimeout(() => {
         setMessage("");
@@ -100,7 +100,7 @@ const LoginForm = ({
                 Login
               </button>
               {message && (
-                <div className={`Message ${message && "fadeIn"}`}>
+                <div className={`Login_Message ${message && "fadeIn"}`}>
                   {message}
                 </div>
               )}

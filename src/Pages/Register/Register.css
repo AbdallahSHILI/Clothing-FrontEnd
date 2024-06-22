@@ -13,6 +13,11 @@
   width: 60%;
   float: left;
 }
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 2px;
+}
 
 .Right_Container {
   width: 65%;
@@ -28,7 +33,7 @@
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 25px;
+  gap: 40px;
 }
 
 .Right_Container .Register_Content h1 {

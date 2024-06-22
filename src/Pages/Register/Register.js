@@ -2,16 +2,43 @@ import React, { useState } from "react";
 import "./Register.css";
 import logo1 from "../../Components/Assets/Loogin-girl.svg";
 import Axios from "axios";
+import validator from "validator"; // Add this
 
 const Register = () => {
   const [FirstLastName, setFirstLastName] = useState("");
   const [Email, setEmail] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
   const API = "http://localhost:3001";
+
+  const validateForm = () => {
+    const errors = {};
+    const nameParts = FirstLastName.trim().split(" ");
+    if (nameParts.length < 2) {
+      errors.FirstLastName = "Please enter both first and last name!";
+    }
+    if (!validator.isEmail(Email)) {
+      errors.Email = "Please enter a valid email!";
+    }
+    if (Password.length < 8) {
+      errors.Password = "Password must be at least 8 characters long!";
+    }
+    if (PhoneNumber.length < 8) {
+      errors.PhoneNumber = "PhoneNumber must be at least 8 number long!";
+    }
+
+    // Add other validations as needed
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0; // Return true if no errors, false otherwise
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    if (!validateForm()) {
+      return; // Stop the form submission if validation fails
+    }
     try {
       const response = await Axios.post(`${API}/Clothing/Users/Signup`, {
         FirstLastName,
@@ -21,7 +48,11 @@ const Register = () => {
       });
       console.log("Registration successful:", response.data);
     } catch (error) {
-      console.error("Registration failed:", error);
+      if (error.response && error.response.data) {
+        setErrors({ backend: error.response.data.message }); // Handle backend validation errors
+      } else {
+        setErrors({ backend: "Registration failed: " + error.message });
+      }
     }
   };
 
@@ -36,6 +67,7 @@ const Register = () => {
       Password={Password}
       setPassword={setPassword}
       onSubmit={onSubmit}
+      errors={errors}
     />
   );
 };
@@ -50,10 +82,11 @@ const RegisterForm = ({
   Password,
   setPassword,
   onSubmit,
+  errors,
 }) => {
   return (
     <div className="Register_Container">
-      <img src={logo1} />
+      <img src={logo1} alt="Logo" />
       <div className="Right_Container">
         <div className="Register_Content">
           <h1>Register Now !</h1>
@@ -68,6 +101,9 @@ const RegisterForm = ({
                 onChange={(e) => setFirstLastName(e.target.value)}
               />
               <span className="label">First Last Name</span>
+              {errors.FirstLastName && (
+                <p className="error">{errors.FirstLastName}</p>
+              )}
             </div>
             <div className="form_control_input">
               <input
@@ -79,10 +115,11 @@ const RegisterForm = ({
                 onChange={(e) => setEmail(e.target.value)}
               />
               <span className="label">Email</span>
+              {errors.Email && <p className="error">{errors.Email}</p>}
             </div>
             <div className="form_control_input">
               <input
-                type="text"
+                type="number"
                 name="PhoneNumber"
                 id="PhoneNumber"
                 required="required"
@@ -100,28 +137,10 @@ const RegisterForm = ({
                 value={Password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <span className="label">password</span>
+              <span className="label">Password</span>
+              {errors.Password && <p className="error">{errors.Password}</p>}
             </div>
-            {/* <div className="Checkbox">
-                    <input
-                      type="checkbox"
-                      id="Customer"
-                      name="Customer"
-                      value="Customer"
-                    />
-                    <label for="Customer">Customer</label>
-                  </div>
-                  <div className="checkbox_container">
-                    <div className="checkbox">
-                      <input
-                        type="checkbox"
-                        id="Designer"
-                        name="Designer"
-                        value="Designer"
-                      />
-                      <label for="Designer">Designer</label>
-                    </div>
-                  </div> */}
+            {errors.backend && <p className="error">{errors.backend}</p>}
             <button type="submit" className="btn">
               Register
             </button>
