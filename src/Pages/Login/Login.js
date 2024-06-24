@@ -22,6 +22,7 @@ const Login = () => {
       });
       Cookies.set("access-token", response.data.token);
       window.localStorage.setItem("userId", response.data.user._id);
+
       // Hide the message after 3 seconds
       setTimeout(() => {
         setMessage("");
