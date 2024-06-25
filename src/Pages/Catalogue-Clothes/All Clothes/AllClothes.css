@@ -21,3 +21,20 @@
   height: auto;
   margin-top: 10px;
 }
+
+.heart {
+  margin: 20px auto;
+}
+
+.icon_container {
+  display: flex;
+  justify-content: space-around; /* Evenly space the icons */
+  width: 100%;
+  margin-top: 10px;
+}
+
+.icon {
+  flex: 1; /* Make each icon take equal space */
+  display: flex; /* Enable flexbox for each icon */
+  justify-content: center; /* Center the icons horizontally */
+}

@@ -41,16 +41,24 @@ const AllClothes = () => {
   };
 
   const handleDelete = (id) => {
+    console.log("Clothes", Clothes);
     // Remove the clothing item from the state after it has been deleted
     setClothes((prevClothes) =>
       prevClothes.filter((clothes) => clothes._id !== id)
     );
+    console.log("Clothes", Clothes);
   };
 
   return (
     <div className="models_container">
       {Clothes.map((clothes, index) => (
-        <div key={index} className="model_card">
+        <div key={clothes._id} className="model_card">
+          <div className="heart">
+            <Heart
+              isClick={clickedHearts[index]}
+              onClick={() => handleHeartClick(index)}
+            />
+          </div>
           <p>Description: {clothes.Description}</p>
           <p>
             Creation Date: {new Date(clothes.CreationDate).toLocaleDateString()}
@@ -62,18 +70,21 @@ const AllClothes = () => {
               style={{ maxWidth: "100%", height: "auto" }}
             />
           )}
-          <Heart
-            isClick={clickedHearts[index]}
-            onClick={() => handleHeartClick(index)}
-          />
-          <DeleteClothes id={clothes._id} onDelete={handleDelete} />
-          <Icon
-            name="browse"
-            tooltip="browse"
-            theme="light"
-            size="medium"
-            // onClick={doSomething}
-          />
+
+          <div className="icon_container">
+            <div className="icon">
+              <DeleteClothes id={clothes._id} onDelete={handleDelete} />
+            </div>
+            <div className="icon">
+              <Icon
+                name="browse"
+                tooltip="browse"
+                theme="light"
+                size="medium"
+                // onClick={doSomething}
+              />
+            </div>
+          </div>
         </div>
       ))}
     </div>
