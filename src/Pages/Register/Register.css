@@ -1,37 +1,66 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
-.btn {
-  cursor: pointer;
-  padding: 5px 15px;
-  background: var(--light-color);
-  color: var(--dark-color-a);
-  border: 0;
-  font-size: 17px;
+.Register_Container {
+  background-color: #ffef65;
+  width: 95%;
+  height: 500px;
+  margin: 35px auto;
+  display: flex;
+  justify-content: space-between;
 }
 
-.join-header {
-  text-align: center;
-  padding: 20px;
-  background: #666a86;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+.Register_Container img {
+  width: 60%;
+  float: left;
+}
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 2px;
 }
 
-.join-main {
-  padding: 73px 35px;
-  background: #95b8d1;
+.Right_Container {
+  width: 65%;
+  margin: 5px auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
 }
 
-.join-main p {
-  margin-bottom: 20px;
+.Register_Content {
+  width: 85%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
 }
 
-.join-main .form-control-input {
+.Right_Container .Register_Content h1 {
+  color: #000;
+  margin: 0px auto;
+  font-family: Poppins;
+  font-size: 65px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 60px;
+}
+
+.Register_Form {
+  width: 43%;
+  margin: auto 115px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.Register_Form .form_control_input {
   position: relative;
-  width: 100%;
-  margin: 0px 0px 36px;
+  width: 130%;
 }
-.form-control-input input {
+
+.Register_Form .form_control_input input {
   width: 100%;
   padding: 10px;
   border: 1px solid;
@@ -42,7 +71,7 @@
   font-size: 1 em;
   transition: 0.5 s;
 }
-.form-control-input span {
+.form_control_input .label {
   position: absolute;
   left: 0;
   padding: 15px;
@@ -53,8 +82,7 @@
   transition: 0.5s;
 }
 
-.form-control-input input:valid ~ span,
-.form-control-input input:focus ~ span {
+.form_control_input input:focus ~ .label {
   color: #000;
   transform: translateX(10px) translateY(-7px);
   font-size: 0.65em;
@@ -64,59 +92,28 @@
   border-right: 1px solid #666a86;
   letter-spacing: 0.2em;
 }
-.form-control-input input:valid,
-.form-control-input input:focus {
+
+.form_control_input input:valid ~ .label,
+.form_control_input input:focus ~ .label {
+  color: #000;
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.65em;
+  padding: 0 10px;
+  background: #ffef65;
+  border-left: 1px solid #666a86;
+  border-right: 1px solid #666a86;
+  letter-spacing: 0.2em;
+}
+
+.form_control_input input:valid,
+.form_control_input input:focus {
   border: 1px solid #00dfc4;
 }
-
-.join-main label {
-  /* display: block; */
-  margin-bottom: 5px;
-}
-
-.join-main input[type="text"] {
-  font-size: 16px;
-  padding: 5px;
-  height: 51px;
-  width: 100%;
-}
-
-.form-control {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  min-width: 250px;
-  height: 50px;
-}
-.select-container .icon-container {
-  width: 50px;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #023ca9;
-}
-.icon-container {
-  font-size: 30px;
+.Register_Form .btn {
+  margin: auto 50px;
+  width: 90%;
+  background-color: black;
   color: white;
-}
-
-.select-box {
-  border: none;
-  appearance: none;
-  padding: 0 30px 0 15px;
-  width: 100%;
-  color: #666a86;
-  background-color: #fff;
-  font-size: 20px;
-  height: 51px;
-}
-
-.join-main .btn {
-  margin-top: 18px;
-  width: 100%;
 }
 
 @media (max-width: 700px) {
@@ -127,4 +124,7 @@
   .chat-sidebar {
     display: none;
   }
+}
+.checkbox_container .checkbox {
+  display: inline;
 }

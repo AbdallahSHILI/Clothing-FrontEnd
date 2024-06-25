@@ -2,19 +2,144 @@
   margin: 50px auto;
 }
 
-.ConatctJoin-container {
+.Conatct-Join-container {
   background-color: #e5c643;
-  width: 90%;
-  height: 200px;
+  color: white;
+  width: 100%;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+}
+.join-content {
+  max-width: 930px;
+  width: 100%;
+  margin: 0px auto;
+  text-align: center;
+  padding: 100px 0px;
 }
 
 .footer-container {
   background-color: #000;
   color: white;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.Conatct-Join-container .join-content h1 {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 70px;
+  letter-spacing: 1.65px;
+}
+
+.Conatct-Join-container .join-content p {
+  color: #fffcf8;
+  font-family: Poppins;
+  font-size: 29px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 35px;
+  letter-spacing: 0.96px;
+}
+
+.email-container {
+  display: inline-block;
+  position: relative;
+}
+
+.join-content .email-container input {
+  padding: 0.8em 10em;
+  border: 0.5px solid gray;
+  border-radius: 5px;
+}
+
+.join-content .email-container input::placeholder {
+  color: black;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.join-content .email-container button {
+  background-color: #000;
+  color: #fff;
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  width: 4.4em;
+  border: 0.5px solid gray;
+  border-radius: 5px;
+  font-family: Poppins;
+  font-size: 33px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 35px;
+  letter-spacing: 0.99px;
+}
+
+.footer-element {
   width: 90%;
-  height: 200px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  margin: 0px auto;
+  padding: 100px 0px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.leftFooter {
+  width: 40%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.leftFooter h1 {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 1.2px;
+}
+
+.leftFooter p {
+  color: #8e8e8e;
+  font-family: Roboto;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0.48px;
+}
+
+.leftFooter .socialMedia-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.rightFooter {
+  width: 50%;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.first-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.second-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.third-container {
+  display: flex;
+  flex-direction: column;
 }

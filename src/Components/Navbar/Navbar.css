@@ -1,7 +1,10 @@
 .header {
   display: inline-flex;
-  align-items: flex-end;
-  gap: 367px;
+  align-items: center;
+  justify-content: space-between;
+  width: 98%;
+  height: 85px;
+  margin: 0px auto;
 }
 
 .logo-vector {
@@ -46,6 +49,24 @@
   display: flex;
   align-items: flex-start;
   gap: 30px;
+}
+
+.Login_button {
+  background-color: #0a66c2;
+  border-radius: 12px;
+  color: #ffffff;
+  box-sizing: border-box;
+  font-size: 24px;
+  overflow: hidden;
+}
+
+.Lougout_button {
+  background-color: #0a66c2;
+  border-radius: 12px;
+  color: #ffffff;
+  box-sizing: border-box;
+  font-size: 24px;
+  overflow: hidden;
 }
 
 .LoginSinup {

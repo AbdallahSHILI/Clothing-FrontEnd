@@ -1,0 +1,53 @@
+.container_element {
+  border: 3px solid #000;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  margin: 45px auto;
+  padding: 25px;
+  width: 65%;
+}
+
+.send_btn {
+  background-color: #0a66c2;
+  border-radius: 10px;
+  color: #ffffff;
+  box-sizing: border-box;
+  font-size: 22px;
+  overflow: hidden;
+  margin: 3%;
+}
+
+#Image {
+  margin: 20px;
+}
+
+.Message {
+  color: #4cc9f0;
+  font-size: 20px;
+  padding: 10px;
+  border: 2px solid #12086f;
+  background-color: #ffe6e6;
+  border-radius: 5px;
+  text-align: center;
+  width: 80%;
+  margin: 10px auto;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeIn 0.5s forwards, fadeOut 0.5s 2.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}

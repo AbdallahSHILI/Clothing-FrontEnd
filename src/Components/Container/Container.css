@@ -1,11 +1,9 @@
 .join-container {
-  width: 100%;
+  width: 95%;
   height: 500px;
-  flex-shrink: 0;
   border-radius: 59px;
-  /* background: #f4f6f5; */
   background: #e7e6e6;
   margin: 31px auto;
   display: flex;
-  padding: 0 100px 0 100px;
+  justify-content: space-between;
 }

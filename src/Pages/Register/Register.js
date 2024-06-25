@@ -1,59 +1,153 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.css";
-import { Container } from "../../Components/Index";
+import logo1 from "../../Components/Assets/Loogin-girl.svg";
+import Axios from "axios";
+import validator from "validator"; // Add this
 
 const Register = () => {
+  const [FirstLastName, setFirstLastName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [PhoneNumber, setPhoneNumber] = useState("");
+  const [Password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+  const API = "http://localhost:3001";
+
+  const validateForm = () => {
+    const errors = {};
+    const nameParts = FirstLastName.trim().split(" ");
+    if (nameParts.length < 2) {
+      errors.FirstLastName = "Please enter both first and last name!";
+    }
+    if (!validator.isEmail(Email)) {
+      errors.Email = "Please enter a valid email!";
+    }
+    if (Password.length < 8) {
+      errors.Password = "Password must be at least 8 characters long!";
+    }
+    if (PhoneNumber.length < 8) {
+      errors.PhoneNumber = "PhoneNumber must be at least 8 number long!";
+    }
+
+    // Add other validations as needed
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0; // Return true if no errors, false otherwise
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    if (!validateForm()) {
+      return; // Stop the form submission if validation fails
+    }
+    try {
+      const response = await Axios.post(`${API}/Clothing/Users/Signup`, {
+        FirstLastName,
+        Email,
+        PhoneNumber,
+        Password,
+      });
+      console.log("Registration successful:", response.data);
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setErrors({ backend: error.response.data.message }); // Handle backend validation errors
+      } else {
+        setErrors({ backend: "Registration failed: " + error.message });
+      }
+    }
+  };
+
   return (
-    <Container>
-      <header class="join-header">
-        <h1>Ful Name</h1>
-      </header>
-      <main class="join-main">
-        <form action="chat.html">
-          <div class="form-control-input">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              required="required"
-            />
-            <span>Email</span>
-          </div>
-          <div class="form-control-input">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              required="required"
-            />
-            <span>Phone number</span>
-          </div>
-          <div class="form-control-input">
-            <input
-              type="password"
-              name="username"
-              id="username"
-              required="required"
-            />
-            <span>password</span>
-          </div>
+    <RegisterForm
+      FirstLastName={FirstLastName}
+      setFirstLastName={setFirstLastName}
+      Email={Email}
+      setEmail={setEmail}
+      PhoneNumber={PhoneNumber}
+      setPhoneNumber={setPhoneNumber}
+      Password={Password}
+      setPassword={setPassword}
+      onSubmit={onSubmit}
+      errors={errors}
+    />
+  );
+};
 
-          <div class="form-control-input">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              required="required"
-            />
-            <span>Confirme Password</span>
-          </div>
-
-          <button type="submit" class="btn">
-            Login
-          </button>
-        </form>
-      </main>
-    </Container>
+const RegisterForm = ({
+  FirstLastName,
+  setFirstLastName,
+  Email,
+  setEmail,
+  PhoneNumber,
+  setPhoneNumber,
+  Password,
+  setPassword,
+  onSubmit,
+  errors,
+}) => {
+  return (
+    <div className="Register_Container">
+      <img src={logo1} alt="Logo" />
+      <div className="Right_Container">
+        <div className="Register_Content">
+          <h1>Register Now !</h1>
+          <form className="Register_Form" onSubmit={onSubmit}>
+            <div className="form_control_input">
+              <input
+                type="text"
+                name="FirstLastName"
+                id="FirstLastName"
+                required="required"
+                value={FirstLastName}
+                onChange={(e) => setFirstLastName(e.target.value)}
+              />
+              <span className="label">First Last Name</span>
+              {errors.FirstLastName && (
+                <p className="error">{errors.FirstLastName}</p>
+              )}
+            </div>
+            <div className="form_control_input">
+              <input
+                type="text"
+                name="Email"
+                id="Email"
+                required="required"
+                value={Email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <span className="label">Email</span>
+              {errors.Email && <p className="error">{errors.Email}</p>}
+            </div>
+            <div className="form_control_input">
+              <input
+                type="number"
+                name="PhoneNumber"
+                id="PhoneNumber"
+                required="required"
+                value={PhoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+              <span className="label">Phone Number</span>
+            </div>
+            <div className="form_control_input">
+              <input
+                type="password"
+                name="Password"
+                id="Password"
+                required="required"
+                value={Password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span className="label">Password</span>
+              {errors.Password && <p className="error">{errors.Password}</p>}
+            </div>
+            {errors.backend && <p className="error">{errors.backend}</p>}
+            <button type="submit" className="btn">
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 

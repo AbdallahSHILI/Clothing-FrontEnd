@@ -3,60 +3,21 @@
   border-radius: 10px;
   width: 98%;
   height: 85px;
-  margin: 0px auto;
 }
 
 .fashionMark-container {
   display: inline-flex;
   align-items: center;
-  gap: 76px;
-  margin-left: 30px;
+  justify-content: space-between;
+  width: 90%;
+  margin: 1% 4%;
 }
 
-.HamAbid {
-  background: url("C:\Users\SMPS\Desktop\My Projects\clothingfront\src\Components\Assets\HamadiAbid.png"),
-    lightgray 0px -23.923px / 100% 170.13% no-repeat;
-  mix-blend-mode: multiply;
-  width: 110px;
-  height: 70px;
+.Footer .fashionMark-container img {
+  width: 10%;
 }
 
-.Obey {
-  background: url("C:\Users\SMPS\Desktop\My Projects\clothingfront\src\Components\Assets\obey_new.png"),
-    lightgray 0px -48.092px / 100% 284.783% no-repeat;
-  mix-blend-mode: multiply;
-  width: 135px;
-  height: 50px;
-}
-
-.Shopify {
-  background: url("C:\Users\SMPS\Desktop\My Projects\clothingfront\src\Components\Assets\Shopify_new.jpeg"),
-    lightgray -29.485px -56.427px / 133.505% 284.783% no-repeat;
-  width: 170px;
-  height: 55px;
-  mix-blend-mode: multiply;
-}
-
-.Lacoste {
-  background: url("C:\Users\SMPS\Desktop\My Projects\clothingfront\src\Components\Assets\Lacoste_new.png"),
-    lightgray 0px -75.344px / 100% 335.897% no-repeat;
-  width: 205px;
-  height: 30px;
-  mix-blend-mode: multiply;
-}
-
-.Levis {
-  background: url("C:\Users\SMPS\Desktop\My Projects\clothingfront\src\Components\Assets\Levis_new.png"),
-    lightgray -12.176px -34.787px / 117.436% 204.687% no-repeat;
-  width: 105px;
-  height: 50px;
-  mix-blend-mode: multiply;
-}
-
-.Amazon {
-  background: url("C:\Users\SMPS\Desktop\My Projects\clothingfront\src\Components\Assets\Amazon_new.jpeg"),
-    lightgray -54.959px -61.056px / 162.162% 296.296% no-repeat;
-  width: 105px;
-  height: 51px;
+.Footer .fashionMark-container:nth-child(3) {
+  background: lightgray -29.485px -56.427px / 133.505% 284.783% no-repeat;
   mix-blend-mode: multiply;
 }
