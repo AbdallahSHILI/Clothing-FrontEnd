@@ -51,42 +51,47 @@ const AllClothes = () => {
 
   return (
     <div className="models_container">
-      {Clothes.map((clothes, index) => (
-        <div key={clothes._id} className="model_card">
-          <div className="heart">
-            <Heart
-              isClick={clickedHearts[index]}
-              onClick={() => handleHeartClick(index)}
-            />
-          </div>
-          <p>Description: {clothes.Description}</p>
-          <p>
-            Creation Date: {new Date(clothes.CreationDate).toLocaleDateString()}
-          </p>
-          {clothes.Image && (
-            <img
-              src={`${API}/images/${clothes.Image}`}
-              alt={clothes.Description}
-              style={{ maxWidth: "100%", height: "auto" }}
-            />
-          )}
-
-          <div className="icon_container">
-            <div className="icon">
-              <DeleteClothes id={clothes._id} onDelete={handleDelete} />
-            </div>
-            <div className="icon">
-              <Icon
-                name="browse"
-                tooltip="browse"
-                theme="light"
-                size="medium"
-                // onClick={doSomething}
+      {Clothes.map((clothes, index) => {
+        let cardClass = "model_card";
+        if (clickedHearts[index]) {
+          cardClass += " clicked";
+        }
+        return (
+          <div key={clothes._id} className={cardClass}>
+            <div className="heart">
+              <Heart
+                isClick={clickedHearts[index]}
+                onClick={() => handleHeartClick(index)}
               />
             </div>
+            <p>Description: {clothes.Description}</p>
+            <p>
+              Creation Date:{" "}
+              {new Date(clothes.CreationDate).toLocaleDateString()}
+            </p>
+            {clothes.Image && (
+              <img
+                src={`${API}/images/${clothes.Image}`}
+                alt={clothes.Description}
+                style={{ maxWidth: "100%", height: "auto" }}
+              />
+            )}
+            <div className="icon_container">
+              <div className="icon">
+                <DeleteClothes id={clothes._id} onDelete={handleDelete} />
+              </div>
+              <div className="icon">
+                <Icon
+                  name="browse"
+                  tooltip="browse"
+                  theme="light"
+                  size="medium"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

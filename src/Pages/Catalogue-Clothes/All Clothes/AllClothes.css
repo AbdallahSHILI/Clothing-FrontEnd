@@ -6,6 +6,7 @@
 }
 
 .model_card {
+  position: relative; /* add this line to make heart icon in the corner */
   border: 2px solid #000;
   background-color: #fff;
   border-radius: 10px;
@@ -16,14 +17,27 @@
   text-align: center;
 }
 
+.model_card.clicked {
+  background-color: pink;
+}
+
 .model_card img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 250px !important;
+  object-fit: contain; /* make image in real size */
+  object-position: center;
+  border-radius: 10px;
   margin-top: 10px;
 }
 
-.heart {
-  margin: 20px auto;
+.model_card .heart {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 70px;
+  height: 50px;
+  padding: 0;
+  margin: -30px auto;
 }
 
 .icon_container {
