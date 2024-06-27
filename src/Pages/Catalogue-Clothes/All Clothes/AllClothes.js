@@ -11,8 +11,8 @@ import DeleteClothes from "../Delete Clothes/DeleteClothes";
 const AllClothes = () => {
   const [Clothes, setClothes] = useState([]);
   const [clickedHearts, setClickedHearts] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false); // we don't need the modal to be open directly
   const API = "http://localhost:3001";
-  const navigate = useNavigate();
 
   // Fetch data when the component mounts
   useEffect(() => {
@@ -47,6 +47,16 @@ const AllClothes = () => {
       prevClothes.filter((clothes) => clothes._id !== id)
     );
     console.log("Clothes", Clothes);
+  };
+
+  const openModal = (clothes) => {
+    setSelectedClothes(clothes);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedClothes(null);
   };
 
   return (
@@ -86,6 +96,7 @@ const AllClothes = () => {
                   tooltip="browse"
                   theme="light"
                   size="medium"
+                  onClick={() => openModal(clothes)}
                 />
               </div>
             </div>
