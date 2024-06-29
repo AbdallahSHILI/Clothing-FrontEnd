@@ -5,6 +5,30 @@
   padding: 20px;
 }
 
+.Header {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  margin-bottom: 10px; /* Add some space below the header */
+}
+
+.models_container hr {
+  width: 100%;
+  border: 0;
+  border-top: 3px solid;
+  background-color: #ccc;
+  margin: 5px auto;
+}
+
+.description {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px auto;
+  animation: fadeIn 2s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
 .model_card {
   position: relative; /* add this line to make heart icon in the corner */
   border: 2px solid #000;
@@ -51,4 +75,15 @@
   flex: 1; /* Make each icon take equal space */
   display: flex; /* Enable flexbox for each icon */
   justify-content: center; /* Center the icons horizontally */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

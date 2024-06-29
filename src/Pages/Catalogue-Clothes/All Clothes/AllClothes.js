@@ -49,15 +49,15 @@ const AllClothes = () => {
     console.log("Clothes", Clothes);
   };
 
-  const openModal = (clothes) => {
-    setSelectedClothes(clothes);
-    setModalIsOpen(true);
-  };
+  // const openModal = (clothes) => {
+  //   setSelectedClothes(clothes);
+  //   setModalIsOpen(true);
+  // };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-    setSelectedClothes(null);
-  };
+  // const closeModal = () => {
+  //   setModalIsOpen(false);
+  //   setSelectedClothes(null);
+  // };
 
   return (
     <div className="models_container">
@@ -68,17 +68,16 @@ const AllClothes = () => {
         }
         return (
           <div key={clothes._id} className={cardClass}>
-            <div className="heart">
-              <Heart
-                isClick={clickedHearts[index]}
-                onClick={() => handleHeartClick(index)}
-              />
+            <div className="Header">
+              <h1 className="description">{clothes.Description}</h1>
+              <div className="heart">
+                <Heart
+                  isClick={clickedHearts[index]}
+                  onClick={() => handleHeartClick(index)}
+                />
+              </div>
             </div>
-            <p>Description: {clothes.Description}</p>
-            <p>
-              Creation Date:{" "}
-              {new Date(clothes.CreationDate).toLocaleDateString()}
-            </p>
+            <hr />
             {clothes.Image && (
               <img
                 src={`${API}/images/${clothes.Image}`}
@@ -86,6 +85,10 @@ const AllClothes = () => {
                 style={{ maxWidth: "100%", height: "auto" }}
               />
             )}
+            <p>
+              Creation Date:{" "}
+              {new Date(clothes.CreationDate).toLocaleDateString()}
+            </p>
             <div className="icon_container">
               <div className="icon">
                 <DeleteClothes id={clothes._id} onDelete={handleDelete} />
@@ -96,7 +99,7 @@ const AllClothes = () => {
                   tooltip="browse"
                   theme="light"
                   size="medium"
-                  onClick={() => openModal(clothes)}
+                  // onClick={() => openModal(clothes)}
                 />
               </div>
             </div>
