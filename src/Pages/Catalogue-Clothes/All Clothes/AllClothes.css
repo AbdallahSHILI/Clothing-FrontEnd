@@ -19,12 +19,36 @@
   margin: 5px auto;
 }
 
+/* Styles for the modal content */
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+}
+
+/* Styles for the overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 200px;
+  right: 200px;
+  bottom: 100px;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .description {
   font-size: 20px;
   font-weight: bold;
   color: #333;
   margin: 20px auto;
-  animation: fadeIn 2s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
