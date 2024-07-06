@@ -27,7 +27,7 @@ function App() {
           <Route path="/Fashion" element={<Fashion />} />
           <Route path="/NewClothes" element={<NewClothes />} />
           <Route path="/AllClothes" element={<AllClothes />} />
-          <Route path="/OneClothes/:idClothes" element={<OneClothes />} />
+          <Route path="/OneClothes/:id" element={<OneClothes />} />
         </Routes>
         <Footer />
       </Router>

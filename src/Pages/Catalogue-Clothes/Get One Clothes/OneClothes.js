@@ -12,7 +12,7 @@ const OneClothes = () => {
     const fetchClothes = async () => {
       try {
         const response = await Axios.get(`${API}/Clothing/Clothes/${id}`);
-        setClothes(response.data.doc);
+        setClothes(response.data.clothes);
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
       }
@@ -21,7 +21,7 @@ const OneClothes = () => {
   }, [id]);
 
   if (!clothes) {
-    return <div className="loading">Loading...</div>; // Apply CSS class for loading state
+    return <div className="loading">Loading...</div>;
   }
 
   return (
@@ -31,12 +31,10 @@ const OneClothes = () => {
         <img
           src={`${API}/images/${clothes.Image}`}
           alt={clothes.Description}
-          className="clothes-image" // Apply CSS class for the image
+          className="clothes-image"
         />
       )}
-      <p>
-        Creation Date: {new Date(clothes.CreationDate).toLocaleDateString()}
-      </p>
+      <p>{new Date(clothes.Date).toLocaleDateString()}</p>
     </div>
   );
 };

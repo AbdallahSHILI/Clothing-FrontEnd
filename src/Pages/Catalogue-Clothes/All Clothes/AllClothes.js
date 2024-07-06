@@ -76,10 +76,6 @@ const AllClothes = () => {
                 />
               </Link>
             )}
-            <p>
-              Creation Date:{" "}
-              {new Date(clothes.CreationDate).toLocaleDateString()}
-            </p>
             <div className="icon_container">
               <div className="icon">
                 <DeleteClothes id={clothes._id} onDelete={handleDelete} />
