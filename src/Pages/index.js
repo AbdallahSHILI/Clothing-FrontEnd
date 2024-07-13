@@ -6,3 +6,4 @@ export { default as Login } from "./Login/Login";
 export { default as Register } from "./Register/Register";
 export { default as NewClothes } from "./Catalogue-Clothes/NewClothes/NewClothes";
 export { default as AllClothes } from "./Catalogue-Clothes/All Clothes/AllClothes";
+export { default as OneClothes } from "./Catalogue-Clothes/Get One Clothes/OneClothes";

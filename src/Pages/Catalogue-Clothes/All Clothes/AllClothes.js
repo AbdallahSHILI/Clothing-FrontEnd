@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./AllClothes.css";
 import Heart from "react-animated-heart";
 import "react-crud-icons/dist/css/react-crud-icons.css";
@@ -11,7 +11,6 @@ import DeleteClothes from "../Delete Clothes/DeleteClothes";
 const AllClothes = () => {
   const [Clothes, setClothes] = useState([]);
   const [clickedHearts, setClickedHearts] = useState([]);
-  const [modalIsOpen, setModalIsOpen] = useState(false); // we don't need the modal to be open directly
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
@@ -31,13 +30,20 @@ const AllClothes = () => {
     fetchClothes();
   }, []);
 
-  const handleHeartClick = (index) => {
-    //First, we create a copy of the current clickedHearts array using the spread operator (...)
-    const newClickedHearts = [...clickedHearts]; // newClickedHearts is [false, false, false]
-    //Next, we toggle the state of the heart at the specified index. If the current state is false, it changes to true, and vice versa:
-    newClickedHearts[index] = !newClickedHearts[index]; //if true the turn to false and vice versa
-    //Finally, we update the clickedHearts state with the modified array:
-    setClickedHearts(newClickedHearts);
+  const handleHeartClick = async (index, id) => {
+    try {
+      console.log("Clicked heart", id);
+      //First, we create a copy of the current clickedHearts array using the spread operator (...)
+      const newClickedHearts = [...clickedHearts]; // newClickedHearts is [false, false, false]
+      //Next, we toggle the state of the heart at the specified index. If the current state is false, it changes to true, and vice versa:
+      newClickedHearts[index] = !newClickedHearts[index]; //if true the turn to false and vice versa
+      //Finally, we update the clickedHearts state with the modified array:
+      setClickedHearts(newClickedHearts);
+      const response = await Axios.patch(`${API}/Clothing/Clothes/${id}`);
+      console.log("Favorite status updated", response.data);
+    } catch (error) {
+      console.error("Updating Favorite status Failed", error);
+    }
   };
 
   const handleDelete = (id) => {
@@ -49,16 +55,6 @@ const AllClothes = () => {
     console.log("Clothes", Clothes);
   };
 
-  const openModal = (clothes) => {
-    setSelectedClothes(clothes);
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-    setSelectedClothes(null);
-  };
-
   return (
     <div className="models_container">
       {Clothes.map((clothes, index) => {
@@ -68,36 +64,39 @@ const AllClothes = () => {
         }
         return (
           <div key={clothes._id} className={cardClass}>
-            <div className="heart">
-              <Heart
-                isClick={clickedHearts[index]}
-                onClick={() => handleHeartClick(index)}
-              />
+            <div className="Header">
+              <h1 className="description">{clothes.Description}</h1>
+              <div className="heart">
+                <Heart
+                  isClick={clickedHearts[index]}
+                  onClick={() => handleHeartClick(index, clothes._id)}
+                />
+              </div>
             </div>
-            <p>Description: {clothes.Description}</p>
-            <p>
-              Creation Date:{" "}
-              {new Date(clothes.CreationDate).toLocaleDateString()}
-            </p>
+            <hr />
             {clothes.Image && (
-              <img
-                src={`${API}/images/${clothes.Image}`}
-                alt={clothes.Description}
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
+              <Link to={`/OneClothes/${clothes._id}`}>
+                <img
+                  src={`${API}/images/${clothes.Image}`}
+                  alt={clothes.Description}
+                  style={{ maxWidth: "100%", height: "auto" }}
+                />
+              </Link>
             )}
             <div className="icon_container">
               <div className="icon">
                 <DeleteClothes id={clothes._id} onDelete={handleDelete} />
               </div>
               <div className="icon">
-                <Icon
-                  name="browse"
-                  tooltip="browse"
-                  theme="light"
-                  size="medium"
-                  onClick={() => openModal(clothes)}
-                />
+                <Link to={`/OneClothes/${clothes._id}`}>
+                  <Icon
+                    name="browse"
+                    tooltip="browse"
+                    theme="light"
+                    size="medium"
+                    // onClick={() => openModal(clothes)}
+                  />
+                </Link>
               </div>
             </div>
           </div>
