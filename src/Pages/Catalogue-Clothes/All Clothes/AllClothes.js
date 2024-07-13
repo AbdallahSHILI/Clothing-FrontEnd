@@ -30,13 +30,20 @@ const AllClothes = () => {
     fetchClothes();
   }, []);
 
-  const handleHeartClick = (index) => {
-    //First, we create a copy of the current clickedHearts array using the spread operator (...)
-    const newClickedHearts = [...clickedHearts]; // newClickedHearts is [false, false, false]
-    //Next, we toggle the state of the heart at the specified index. If the current state is false, it changes to true, and vice versa:
-    newClickedHearts[index] = !newClickedHearts[index]; //if true the turn to false and vice versa
-    //Finally, we update the clickedHearts state with the modified array:
-    setClickedHearts(newClickedHearts);
+  const handleHeartClick = async (index, id) => {
+    try {
+      console.log("Clicked heart", id);
+      //First, we create a copy of the current clickedHearts array using the spread operator (...)
+      const newClickedHearts = [...clickedHearts]; // newClickedHearts is [false, false, false]
+      //Next, we toggle the state of the heart at the specified index. If the current state is false, it changes to true, and vice versa:
+      newClickedHearts[index] = !newClickedHearts[index]; //if true the turn to false and vice versa
+      //Finally, we update the clickedHearts state with the modified array:
+      setClickedHearts(newClickedHearts);
+      const response = await Axios.patch(`${API}/Clothing/Clothes/${id}`);
+      console.log("Favorite status updated", response.data);
+    } catch (error) {
+      console.error("Updating Favorite status Failed", error);
+    }
   };
 
   const handleDelete = (id) => {
@@ -62,13 +69,13 @@ const AllClothes = () => {
               <div className="heart">
                 <Heart
                   isClick={clickedHearts[index]}
-                  onClick={() => handleHeartClick(index)}
+                  onClick={() => handleHeartClick(index, clothes._id)}
                 />
               </div>
             </div>
             <hr />
             {clothes.Image && (
-              <Link to={`//${clothes._id}`}>
+              <Link to={`/OneClothes/${clothes._id}`}>
                 <img
                   src={`${API}/images/${clothes.Image}`}
                   alt={clothes.Description}
