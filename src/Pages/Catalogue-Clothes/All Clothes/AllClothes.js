@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./AllClothes.css";
 import Heart from "react-animated-heart";
 import "react-crud-icons/dist/css/react-crud-icons.css";
@@ -30,17 +30,22 @@ const AllClothes = () => {
     fetchClothes();
   }, []);
 
-  const handleHeartClick = async (index, id) => {
+  const handleHeartClick = async (index, id, currentFavorite) => {
     try {
-      console.log("Clicked heart", id);
-      //First, we create a copy of the current clickedHearts array using the spread operator (...)
-      const newClickedHearts = [...clickedHearts]; // newClickedHearts is [false, false, false]
-      //Next, we toggle the state of the heart at the specified index. If the current state is false, it changes to true, and vice versa:
-      newClickedHearts[index] = !newClickedHearts[index]; //if true the turn to false and vice versa
-      //Finally, we update the clickedHearts state with the modified array:
-      setClickedHearts(newClickedHearts);
-      const response = await Axios.patch(`${API}/Clothing/Clothes/${id}`);
-      console.log("Favorite status updated", response.data);
+      // Toggle favorite status
+      const newFavoriteStatus = !currentFavorite;
+
+      // Update favorite status in the backend
+      const response = await Axios.patch(`${API}/Clothing/Clothes/${id}`, {
+        Favorite: newFavoriteStatus,
+      });
+
+      // Update favorite status in the frontend
+      // Creating a copy of the array
+      // Create a new version of the state, modify it, and then update the state with this new version.
+      const newClothes = [...Clothes];
+      newClothes[index].Favorite = newFavoriteStatus;
+      setClothes(newClothes);
     } catch (error) {
       console.error("Updating Favorite status Failed", error);
     }
@@ -59,7 +64,7 @@ const AllClothes = () => {
     <div className="models_container">
       {Clothes.map((clothes, index) => {
         let cardClass = "model_card";
-        if (clickedHearts[index]) {
+        if (clothes.Favorite) {
           cardClass += " clicked";
         }
         return (
@@ -68,8 +73,10 @@ const AllClothes = () => {
               <h1 className="description">{clothes.Description}</h1>
               <div className="heart">
                 <Heart
-                  isClick={clickedHearts[index]}
-                  onClick={() => handleHeartClick(index, clothes._id)}
+                  isClick={clothes.Favorite}
+                  onClick={() =>
+                    handleHeartClick(index, clothes._id, clothes.Favorite)
+                  }
                 />
               </div>
             </div>
