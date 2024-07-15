@@ -62,6 +62,17 @@ const AllClothes = () => {
 
   return (
     <div className="models_container">
+      <div className="header">
+        <Link to={`${API}/NewClothes`}>
+          <Icon
+            name="add"
+            tooltip="add"
+            theme="light"
+            size="medium"
+            // onClick={() => openModal(clothes)}
+          />
+        </Link>
+      </div>
       {Clothes.map((clothes, index) => {
         let cardClass = "model_card";
         if (clothes.Favorite) {
