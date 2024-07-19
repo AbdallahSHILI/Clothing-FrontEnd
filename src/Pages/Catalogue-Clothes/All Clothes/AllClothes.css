@@ -7,10 +7,27 @@
 
 .Header {
   display: flex;
-  align-items: center; /* Center items vertically */
-  margin-bottom: 10px; /* Add some space below the header */
+  align-items: center;
+  margin-bottom: 10px;
 }
 
+.newClothes_header {
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.newClothes_header a {
+  display: flex;
+  align-items: center;
+}
+
+.newClothes_header h1 {
+  margin-left: 10px;
+  margin-bottom: 3px;
+  font-size: 20px;
+  color: #333;
+}
 .models_container hr {
   width: 100%;
   border: 0;

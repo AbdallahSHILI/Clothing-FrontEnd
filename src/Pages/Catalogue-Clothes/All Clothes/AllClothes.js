@@ -61,9 +61,9 @@ const AllClothes = () => {
   };
 
   return (
-    <div className="models_container">
-      <div className="header">
-        <Link to={`${API}/NewClothes`}>
+    <>
+      <div className="newClothes_header">
+        <Link to={`/NewClothes`}>
           <Icon
             name="add"
             tooltip="add"
@@ -71,56 +71,59 @@ const AllClothes = () => {
             size="medium"
             // onClick={() => openModal(clothes)}
           />
+          <h1>Add New Clothes</h1>
         </Link>
       </div>
-      {Clothes.map((clothes, index) => {
-        let cardClass = "model_card";
-        if (clothes.Favorite) {
-          cardClass += " clicked";
-        }
-        return (
-          <div key={clothes._id} className={cardClass}>
-            <div className="Header">
-              <h1 className="description">{clothes.Description}</h1>
-              <div className="heart">
-                <Heart
-                  isClick={clothes.Favorite}
-                  onClick={() =>
-                    handleHeartClick(index, clothes._id, clothes.Favorite)
-                  }
-                />
+      <div className="models_container">
+        {Clothes.map((clothes, index) => {
+          let cardClass = "model_card";
+          if (clothes.Favorite) {
+            cardClass += " clicked";
+          }
+          return (
+            <div key={clothes._id} className={cardClass}>
+              <div className="Header">
+                <h1 className="description">{clothes.Description}</h1>
+                <div className="heart">
+                  <Heart
+                    isClick={clothes.Favorite}
+                    onClick={() =>
+                      handleHeartClick(index, clothes._id, clothes.Favorite)
+                    }
+                  />
+                </div>
               </div>
-            </div>
-            <hr />
-            {clothes.Image && (
-              <Link to={`/OneClothes/${clothes._id}`}>
-                <img
-                  src={`${API}/images/${clothes.Image}`}
-                  alt={clothes.Description}
-                  style={{ maxWidth: "100%", height: "auto" }}
-                />
-              </Link>
-            )}
-            <div className="icon_container">
-              <div className="icon">
-                <DeleteClothes id={clothes._id} onDelete={handleDelete} />
-              </div>
-              <div className="icon">
+              <hr />
+              {clothes.Image && (
                 <Link to={`/OneClothes/${clothes._id}`}>
-                  <Icon
-                    name="browse"
-                    tooltip="browse"
-                    theme="light"
-                    size="medium"
-                    // onClick={() => openModal(clothes)}
+                  <img
+                    src={`${API}/images/${clothes.Image}`}
+                    alt={clothes.Description}
+                    style={{ maxWidth: "100%", height: "auto" }}
                   />
                 </Link>
+              )}
+              <div className="icon_container">
+                <div className="icon">
+                  <DeleteClothes id={clothes._id} onDelete={handleDelete} />
+                </div>
+                <div className="icon">
+                  <Link to={`/OneClothes/${clothes._id}`}>
+                    <Icon
+                      name="browse"
+                      tooltip="browse"
+                      theme="light"
+                      size="medium"
+                      // onClick={() => openModal(clothes)}
+                    />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

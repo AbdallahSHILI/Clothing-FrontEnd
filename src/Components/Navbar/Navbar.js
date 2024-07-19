@@ -2,6 +2,7 @@ import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../Assets/Vector.svg";
+import Chariot from "../Assets/chariot.png";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
@@ -24,6 +25,9 @@ const Navbar = () => {
           <Link to="/Fashion">Fashion</Link>
           <Link to="/Favorite">Favorite</Link>
           <Link to="/ContactUs">Contact us</Link>
+          <Link to="/ContactUs">
+            <img src={Chariot} alt="Chariot" />
+          </Link>
         </div>
         <div className="LoginSignup">
           {isAuthenticated ? (
