@@ -10,7 +10,6 @@ import DeleteClothes from "../Delete Clothes/DeleteClothes";
 
 const AllClothes = () => {
   const [Clothes, setClothes] = useState([]);
-  const [clickedHearts, setClickedHearts] = useState([]);
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
@@ -19,10 +18,6 @@ const AllClothes = () => {
       try {
         const response = await Axios.get(`${API}/Clothing/Clothes/`);
         setClothes(response.data.doc);
-        // Initialize clickedHearts state with false for each clothing item
-        //Create a new array of length 3 (since there are 3 clothing items).
-        // Fill this array with false values, indicating that none of the hearts are clicked initially.
-        setClickedHearts(new Array(response.data.doc.length).fill(false));
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
       }
@@ -52,12 +47,33 @@ const AllClothes = () => {
   };
 
   const handleDelete = (id) => {
-    console.log("Clothes", Clothes);
     // Remove the clothing item from the state after it has been deleted
     setClothes((prevClothes) =>
       prevClothes.filter((clothes) => clothes._id !== id)
     );
-    console.log("Clothes", Clothes);
+  };
+
+  const handleBuy = async (index, id, currentBuyingStatus) => {
+    try {
+      // Toggle favorite status
+      const newBuyingStatus = !currentBuyingStatus;
+
+      const response = await Axios.patch(
+        `${API}/Clothing/Clothes/BuyOneClothes/${id}`,
+        {
+          Buyed: newBuyingStatus,
+        }
+      );
+
+      // Update Buying status in the frontend
+      // Creating a copy of the array
+      // Create a new version of the state, modify it, and then update the state with this new version.
+      const newClothes = [...Clothes];
+      newClothes[index].Buyed = newBuyingStatus;
+      setClothes(newClothes);
+    } catch (error) {
+      console.error("Buying Clothes Failed", error);
+    }
   };
 
   return (
@@ -74,12 +90,25 @@ const AllClothes = () => {
           <h1>Add New Clothes</h1>
         </Link>
       </div>
+
       <div className="models_container">
         {Clothes.map((clothes, index) => {
           let cardClass = "model_card";
           if (clothes.Favorite) {
             cardClass += " clicked";
           }
+
+          let buttonClass = "Buy_Button";
+          if (clothes.Buyed) {
+            buttonClass += " buyed";
+          }
+          let buttonText = "";
+          if (clothes.Buyed) {
+            buttonText = "Unbuy";
+          } else {
+            buttonText = "Buy";
+          }
+
           return (
             <div key={clothes._id} className={cardClass}>
               <div className="Header">
@@ -107,6 +136,12 @@ const AllClothes = () => {
                 <div className="icon">
                   <DeleteClothes id={clothes._id} onDelete={handleDelete} />
                 </div>
+                <button
+                  onClick={() => handleBuy(index, clothes._id, clothes.Buyed)}
+                  className={buttonClass}
+                >
+                  {buttonText}
+                </button>
                 <div className="icon">
                   <Link to={`/OneClothes/${clothes._id}`}>
                     <Icon

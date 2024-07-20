@@ -123,6 +123,25 @@
   justify-content: center; /* Center the icons horizontally */
 }
 
+/* Styles for the Buy button */
+.Buy_Button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Buy_Button.buyed {
+  background-color: #28a745;
+}
+
+.Buy_Button:hover {
+  background-color: #0056b3;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
