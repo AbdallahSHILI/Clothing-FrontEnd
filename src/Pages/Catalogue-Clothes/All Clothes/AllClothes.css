@@ -126,7 +126,7 @@
 /* Styles for the Buy button */
 .Buy_Button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #17a2b8;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -135,11 +135,7 @@
 }
 
 .Buy_Button.buyed {
-  background-color: #28a745;
-}
-
-.Buy_Button:hover {
-  background-color: #0056b3;
+  background-color: #ff6f61;
 }
 
 @keyframes fadeIn {

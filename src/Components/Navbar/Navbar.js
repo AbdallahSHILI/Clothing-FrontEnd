@@ -25,7 +25,7 @@ const Navbar = () => {
           <Link to="/Fashion">Fashion</Link>
           <Link to="/Favorite">Favorite</Link>
           <Link to="/ContactUs">Contact us</Link>
-          <Link to="/ContactUs">
+          <Link to="/AllBuyedClothes">
             <img src={Chariot} alt="Chariot" />
           </Link>
         </div>

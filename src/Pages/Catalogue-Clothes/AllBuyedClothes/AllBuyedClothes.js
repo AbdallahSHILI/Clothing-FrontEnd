@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
-import Heart from "react-animated-heart";
 import "react-crud-icons/dist/css/react-crud-icons.css";
-import Icon from "react-crud-icons";
-import "./Favorite.css";
-import DeleteClothes from "../Catalogue-Clothes/Delete Clothes/DeleteClothes";
+import "./AllBuyedClothes.css";
 
 export const AllBuyedClothes = () => {
   const [BuyedClothes, setBuyedClothes] = useState([]);
@@ -41,20 +38,27 @@ export const AllBuyedClothes = () => {
       // Update Buying status in the frontend
       // Creating a copy of the array
       // Create a new version of the state, modify it, and then update the state with this new version.
-      const newClothes = [...Clothes];
+      const newClothes = [...BuyedClothes];
       newClothes[index].Buyed = newBuyingStatus;
-      setClothes(newClothes);
+      setBuyedClothes(newClothes);
+
+      // Remove the item from the list if it's been unbought
+      if (!newBuyingStatus) {
+        setBuyedClothes((prevClothes) =>
+          prevClothes.filter((_, i) => i !== index)
+        );
+      }
     } catch (error) {
       console.error("Buying Clothes Failed", error);
     }
   };
 
   return (
-    <div className="mainContent">
-      {BuyedClothes.map((buyedClothes) => (
-        <div key={buyedClothes._id} className="model_card clicked">
-          <div className="Header">
-            <h1 className="description">{buyedClothes.Description}</h1>
+    <div className="buy_models_container">
+      {BuyedClothes.map((buyedClothes, index) => (
+        <div key={buyedClothes._id} className="buy_model_card">
+          <div className="buy_Header">
+            <h1 className="buy_description">{buyedClothes.Description}</h1>
           </div>
           <hr />
           {buyedClothes.Image && (
@@ -66,26 +70,14 @@ export const AllBuyedClothes = () => {
               />
             </Link>
           )}
-          <div className="icon_container">
-            <div className="icon">
-              <DeleteClothes
-                id={buyedClothes._id}
-                onDelete={() => {
-                  /* handleDelete should be defined if you want to handle deletes */
-                }}
-              />
-            </div>
-            <div className="icon">
-              <Link to={`/OneClothes/${favClothes._id}`}>
-                <Icon
-                  name="browse"
-                  tooltip="browse"
-                  theme="light"
-                  size="medium"
-                />
-              </Link>
-            </div>
-          </div>
+          <button
+            onClick={() =>
+              handleBuy(index, buyedClothes._id, buyedClothes.Buyed)
+            }
+            className="buy_Buy_Button"
+          >
+            Unbuy
+          </button>
         </div>
       ))}
     </div>
