@@ -7,10 +7,27 @@
 
 .Header {
   display: flex;
-  align-items: center; /* Center items vertically */
-  margin-bottom: 10px; /* Add some space below the header */
+  align-items: center;
+  margin-bottom: 10px;
 }
 
+.newClothes_header {
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.newClothes_header a {
+  display: flex;
+  align-items: center;
+}
+
+.newClothes_header h1 {
+  margin-left: 10px;
+  margin-bottom: 3px;
+  font-size: 20px;
+  color: #333;
+}
 .models_container hr {
   width: 100%;
   border: 0;
@@ -104,6 +121,21 @@
   flex: 1; /* Make each icon take equal space */
   display: flex; /* Enable flexbox for each icon */
   justify-content: center; /* Center the icons horizontally */
+}
+
+/* Styles for the Buy button */
+.Buy_Button {
+  padding: 10px 20px;
+  background-color: #17a2b8;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Buy_Button.buyed {
+  background-color: #ff6f61;
 }
 
 @keyframes fadeIn {
