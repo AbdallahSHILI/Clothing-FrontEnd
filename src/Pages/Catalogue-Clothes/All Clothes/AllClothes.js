@@ -7,8 +7,10 @@ import Heart from "react-animated-heart";
 import "react-crud-icons/dist/css/react-crud-icons.css";
 import Icon from "react-crud-icons";
 import DeleteClothes from "../Delete Clothes/DeleteClothes";
+import Cookies from "js-cookie";
 
 const AllClothes = () => {
+  const isAuthenticated = Cookies.get("access-token");
   const [Clothes, setClothes] = useState([]);
   const API = "http://localhost:3001";
 
@@ -113,14 +115,16 @@ const AllClothes = () => {
             <div key={clothes._id} className={cardClass}>
               <div className="Header">
                 <h1 className="description">{clothes.Description}</h1>
-                <div className="heart">
-                  <Heart
-                    isClick={clothes.Favorite}
-                    onClick={() =>
-                      handleHeartClick(index, clothes._id, clothes.Favorite)
-                    }
-                  />
-                </div>
+                {isAuthenticated && (
+                  <div className="heart">
+                    <Heart
+                      isClick={clothes.Favorite}
+                      onClick={() =>
+                        handleHeartClick(index, clothes._id, clothes.Favorite)
+                      }
+                    />
+                  </div>
+                )}
               </div>
               <hr />
               {clothes.Image && (
@@ -132,28 +136,30 @@ const AllClothes = () => {
                   />
                 </Link>
               )}
-              <div className="icon_container">
-                <div className="icon">
-                  <DeleteClothes id={clothes._id} onDelete={handleDelete} />
+              {isAuthenticated && (
+                <div className="icon_container">
+                  <div className="icon">
+                    <DeleteClothes id={clothes._id} onDelete={handleDelete} />
+                  </div>
+                  <button
+                    onClick={() => handleBuy(index, clothes._id, clothes.Buyed)}
+                    className={buttonClass}
+                  >
+                    {buttonText}
+                  </button>
+                  <div className="icon">
+                    <Link to={`/OneClothes/${clothes._id}`}>
+                      <Icon
+                        name="browse"
+                        tooltip="browse"
+                        theme="light"
+                        size="medium"
+                        // onClick={() => openModal(clothes)}
+                      />
+                    </Link>
+                  </div>
                 </div>
-                <button
-                  onClick={() => handleBuy(index, clothes._id, clothes.Buyed)}
-                  className={buttonClass}
-                >
-                  {buttonText}
-                </button>
-                <div className="icon">
-                  <Link to={`/OneClothes/${clothes._id}`}>
-                    <Icon
-                      name="browse"
-                      tooltip="browse"
-                      theme="light"
-                      size="medium"
-                      // onClick={() => openModal(clothes)}
-                    />
-                  </Link>
-                </div>
-              </div>
+              )}
             </div>
           );
         })}
