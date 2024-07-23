@@ -13,6 +13,7 @@ const AllClothes = () => {
   const isAuthenticated = Cookies.get("access-token");
   const [Clothes, setClothes] = useState([]);
   const API = "http://localhost:3001";
+  console.log("000000:", Clothes);
 
   // Fetch data when the component mounts
   useEffect(() => {
@@ -20,13 +21,14 @@ const AllClothes = () => {
       try {
         const response = await Axios.get(`${API}/Clothing/Clothes/`);
         setClothes(response.data.doc);
+        console.log("111111:", Clothes);
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
       }
     };
     fetchClothes();
-  }, []);
-
+  }, [isAuthenticated]);
+  console.log("333333:", Clothes);
   const handleHeartClick = async (index, id, currentFavorite) => {
     try {
       // Toggle favorite status
@@ -77,6 +79,40 @@ const AllClothes = () => {
       console.error("Buying Clothes Failed", error);
     }
   };
+
+  useEffect(() => {
+    // Define the logout handler function
+    const handleLogout = () => {
+      // Remove the access token cookie
+      Cookies.remove("access-token");
+
+      // Reset the favorite status of all clothes to false
+      setClothes((prevClothes) =>
+        prevClothes.map((clothes) => ({
+          ...clothes,
+          Favorite: false,
+        }))
+      );
+      console.log("4444444", Clothes);
+      /* Reload the page to reflect changes in the UI.
+    This reloads the page to reflect the changes immediately
+     in the UI.*/
+      window.location.reload();
+    };
+
+    /* Add the logout event listener when the component mounts
+  This line adds an event listener to the window object. 
+  The handleLogout function will be called whenever the "logout" event 
+  is dispatched.*/
+    window.addEventListener("logout", handleLogout);
+
+    /* Cleanup function to remove the event listener when the component unmounts
+  The return function is the cleanup function. It removes the "logout" event listener
+   when the component unmounts to prevent memory leaks.*/
+    return () => {
+      window.removeEventListener("logout", handleLogout);
+    };
+  }, []); // Empty dependency array means this runs once when the component mounts
 
   return (
     <>
