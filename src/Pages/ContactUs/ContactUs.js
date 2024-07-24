@@ -7,16 +7,24 @@ import twiterLogo from "../../Components/Assets/twiter_logo.svg";
 const ContactUs = () => {
   return (
     <div className="Contact-container">
-      <div className="Conatct-Join-container">
-        <div className="join-content">
-          <h1>JOIN SHOPPING COMMUNITY TO GET MONTHLY PROMO</h1>
-          <p>Type your email down below and be young wild generation</p>
-          <div className="email-container">
-            <input name="email" type="text" placeholder="Add your email here" />
-            <button name="submit" type="submit">
-              SEND
-            </button>
+      <div className="ConatctUs_container">
+        <div className="left_ContactUs">
+          <h1>Contact us</h1>
+          <div className="Inputs_container">
+            <input
+              name="userName"
+              type="text"
+              placeholder="Enter your name here"
+            />
+            <input
+              name="email"
+              type="text"
+              placeholder="Enter your email here"
+            />
           </div>
+          <button name="submit" type="submit">
+            SEND
+          </button>
         </div>
       </div>
       <div className="footer-container">

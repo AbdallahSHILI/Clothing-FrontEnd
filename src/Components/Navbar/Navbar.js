@@ -9,8 +9,18 @@ const Navbar = () => {
   const isAuthenticated = Cookies.get("access-token");
 
   const handleLogout = () => {
+    // Remove the access token cookie
     Cookies.remove("access-token");
-    window.location.reload(); // Refresh the page to update the UI
+
+    // Dispatch the "logout" event
+    /*creating and sending a custom event named logout. 
+Any component or part of your application that is 
+set up to listen for this event can then respond to it.*/
+    const event = new Event("logout"); //create a new logout event.
+    window.dispatchEvent(event); //sends or "dispatches" this event to the window object, making it a global event.
+
+    // Redirect the user to the login page (or any other desired page)
+    window.location.href = "/login";
   };
 
   return (
@@ -22,12 +32,14 @@ const Navbar = () => {
       <div className="navbar-element">
         <div className="navbar-control">
           <Link to="/AllClothes">Catalogue</Link>
-          <Link to="/Fashion">Fashion</Link>
-          <Link to="/Favorite">Favorite</Link>
+          {isAuthenticated && <Link to="/Fashion">Fashion</Link>}
+          {isAuthenticated && <Link to="/Favorite">Favorite</Link>}
           <Link to="/ContactUs">Contact us</Link>
-          <Link to="/AllBuyedClothes">
-            <img src={Chariot} alt="Chariot" />
-          </Link>
+          {isAuthenticated && (
+            <Link to="/AllBuyedClothes">
+              <img src={Chariot} alt="Chariot" />
+            </Link>
+          )}
         </div>
         <div className="LoginSignup">
           {isAuthenticated ? (

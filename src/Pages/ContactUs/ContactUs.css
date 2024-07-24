@@ -2,12 +2,32 @@
   margin: 50px auto;
 }
 
+.ConatctUs_container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fff;
+  margin: 25px auto;
+  color: black;
+  border: 5px dashed rgba(64, 58, 58, 0.5);
+  width: 90%;
+}
+
+.left_ContactUs {
+  width: 45%;
+}
+
+.Inputs_container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Inputs_container input {
+  margin: 20px;
+}
+
 .Conatct-Join-container {
-  background-color: #e5c643;
-  color: white;
-  width: 100%;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
 }
 .join-content {
   max-width: 930px;
