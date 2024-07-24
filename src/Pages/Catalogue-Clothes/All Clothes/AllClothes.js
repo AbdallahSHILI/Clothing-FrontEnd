@@ -13,7 +13,6 @@ const AllClothes = () => {
   const isAuthenticated = Cookies.get("access-token");
   const [Clothes, setClothes] = useState([]);
   const API = "http://localhost:3001";
-  console.log("000000:", Clothes);
 
   // Fetch data when the component mounts
   useEffect(() => {
@@ -21,14 +20,14 @@ const AllClothes = () => {
       try {
         const response = await Axios.get(`${API}/Clothing/Clothes/`);
         setClothes(response.data.doc);
-        console.log("111111:", Clothes);
+        console.log("Clothes Status :", Clothes);
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
       }
     };
     fetchClothes();
-  }, [isAuthenticated]);
-  console.log("333333:", Clothes);
+  }, []);
+
   const handleHeartClick = async (index, id, currentFavorite) => {
     try {
       // Toggle favorite status
@@ -87,17 +86,19 @@ const AllClothes = () => {
       Cookies.remove("access-token");
 
       // Reset the favorite status of all clothes to false
-      setClothes((prevClothes) =>
-        prevClothes.map((clothes) => ({
+      setClothes((prevClothes) => {
+        const updatedClothes = prevClothes.map((clothes) => ({
           ...clothes,
           Favorite: false,
-        }))
-      );
-      console.log("4444444", Clothes);
-      /* Reload the page to reflect changes in the UI.
-    This reloads the page to reflect the changes immediately
-     in the UI.*/
-      window.location.reload();
+        }));
+
+        // Perform the page reload after the state update is completed
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
+
+        return updatedClothes;
+      });
     };
 
     /* Add the logout event listener when the component mounts
@@ -116,18 +117,20 @@ const AllClothes = () => {
 
   return (
     <>
-      <div className="newClothes_header">
-        <Link to={`/NewClothes`}>
-          <Icon
-            name="add"
-            tooltip="add"
-            theme="light"
-            size="medium"
-            // onClick={() => openModal(clothes)}
-          />
-          <h1>Add New Clothes</h1>
-        </Link>
-      </div>
+      {isAuthenticated && (
+        <div className="newClothes_header">
+          <Link to={`/NewClothes`} style={{ textDecoration: "none" }}>
+            <Icon
+              name="add"
+              tooltip="add"
+              theme="light"
+              size="medium"
+              // onClick={() => openModal(clothes)}
+            />
+            <h1>Add New Clothes</h1>
+          </Link>
+        </div>
+      )}
 
       <div className="models_container">
         {Clothes.map((clothes, index) => {

@@ -3,6 +3,7 @@ import "./Home.css";
 import { Container } from "../../Components/Index";
 import logo1 from "../../Components/Assets/beautiful-girl.png";
 import logo2 from "../../Components/Assets/Vector-shop.svg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -20,7 +21,9 @@ const Home = () => {
         <div className="shop-container">
           <img src={logo2} />
           <div className="shopNow-button">
-            <p>Shop Now</p>
+            <Link to="AllClothes" style={{ textDecoration: "none" }}>
+              <p>Shop Now</p>
+            </Link>
           </div>
         </div>
       </div>
