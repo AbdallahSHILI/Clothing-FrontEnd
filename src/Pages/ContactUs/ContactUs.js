@@ -22,6 +22,26 @@ const ContactUs = () => {
               placeholder="Enter your email here"
             />
           </div>
+          <h1>What is it about ?</h1>
+          <input
+            type="radio"
+            id="Sales_Enquiry"
+            name="Raison"
+            value="Sales_Enquiry"
+          />
+          <label for="html">Sales_Enquiry</label>
+          <br />
+          <input
+            type="radio"
+            id="Customer_Feedback"
+            name="Raison"
+            value="Customer_Feedback"
+          />
+          <label for="html">Customer_Feedback</label>
+          <br />
+          <input type="radio" id="Other" name="Raison" value="Other" />
+          <label for="html">Other</label>
+          <br />
           <button name="submit" type="submit">
             SEND
           </button>
