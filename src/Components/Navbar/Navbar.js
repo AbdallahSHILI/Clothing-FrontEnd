@@ -7,10 +7,13 @@ import Cookies from "js-cookie";
 
 const Navbar = () => {
   const isAuthenticated = Cookies.get("access-token");
+  const role = Cookies.get("role");
 
   const handleLogout = () => {
     // Remove the access token cookie
     Cookies.remove("access-token");
+    // Remove the role
+    Cookies.remove("role");
 
     // Dispatch the "logout" event
     /*creating and sending a custom event named logout. 
