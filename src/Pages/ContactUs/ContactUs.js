@@ -3,6 +3,7 @@ import "./ContactUs.css";
 import facebookLogo from "../../Components/Assets/facebook_logo.svg";
 import instagramLogo from "../../Components/Assets/instagram_logo.svg";
 import twiterLogo from "../../Components/Assets/twiter_logo.svg";
+import GirlContactUs from "../../Components/Assets/contact-us-2-62fa2cc2edbaf-sej-removebg-preview.jpg";
 
 const ContactUs = () => {
   return (
@@ -23,28 +24,37 @@ const ContactUs = () => {
             />
           </div>
           <h1>What is it about ?</h1>
-          <input
-            type="radio"
-            id="Sales_Enquiry"
-            name="Raison"
-            value="Sales_Enquiry"
-          />
-          <label for="html">Sales_Enquiry</label>
+          <div className="radio_inputs">
+            <input
+              type="radio"
+              id="Sales_Enquiry"
+              name="Raison"
+              value="Sales_Enquiry"
+            />
+            <label for="html">Sales_Enquiry</label>
+            <br />
+            <input
+              type="radio"
+              id="Customer_Feedback"
+              name="Raison"
+              value="Customer_Feedback"
+            />
+            <label for="html">Customer_Feedback</label>
+            <br />
+            <input type="radio" id="Other" name="Raison" value="Other" />
+            <label for="html">Other</label>
+          </div>
           <br />
-          <input
-            type="radio"
-            id="Customer_Feedback"
-            name="Raison"
-            value="Customer_Feedback"
-          />
-          <label for="html">Customer_Feedback</label>
-          <br />
-          <input type="radio" id="Other" name="Raison" value="Other" />
-          <label for="html">Other</label>
-          <br />
+          <textarea
+            name="description"
+            placeholder="Enter your message here"
+          ></textarea>
           <button name="submit" type="submit">
             SEND
           </button>
+        </div>
+        <div className="right_ContactUs">
+          <img className="Girl_Logo" src={GirlContactUs} alt="Contact Us" />
         </div>
       </div>
       <div className="footer-container">

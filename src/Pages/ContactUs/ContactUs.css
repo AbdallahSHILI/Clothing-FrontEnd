@@ -4,17 +4,29 @@
 
 .ConatctUs_container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: #fff;
   margin: 25px auto;
   color: black;
   border: 5px dashed rgba(64, 58, 58, 0.5);
-  width: 90%;
-  padding: 20px; /* Add padding for better spacing */
+  width: 75%;
+  padding: 20px;
 }
 
 .left_ContactUs {
   width: 45%;
+}
+
+.right_ContactUs {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Girl_Logo {
+  width: 100%;
+  max-width: 500px;
 }
 
 .Inputs_container {
@@ -24,11 +36,40 @@
   width: 100%; /* Make the container take full width */
 }
 
+.Inputs_container input:focus {
+  outline: none; /* Remove outline on focus */
+  border-bottom: 2px solid #000; /* Change bottom border color on focus */
+}
+
 .Inputs_container input {
   margin: 10px 0; /* Add vertical margin to separate inputs */
   padding: 10px; /* Add padding for better input spacing */
   width: 100%; /* Ensure input takes full width */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  border: none; /* Remove the border */
+  border-bottom: 2px solid #ccc; /* Add a bottom border */
+  background-color: transparent;
+}
+
+.radio_inputs {
+  margin: 10px 0; /* Add margin to separate radio inputs */
+}
+
+textarea[name="description"] {
+  margin: 10px 0; /* Add vertical margin to separate textarea */
+  padding: 10px; /* Add padding for better textarea spacing */
+  width: 100%; /* Ensure textarea takes full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  resize: vertical; /* Allow vertical resizing */
+  min-height: 100px; /* Set a minimum height for the textarea */
+  border: none; /* Remove all borders */
+  border-bottom: 2px solid #ccc; /* Add a bottom border */
+  background-color: transparent; /* Make background transparent */
+}
+
+textarea[name="description"]:focus {
+  outline: none; /* Remove outline on focus */
+  border-bottom: 2px solid #000; /* Change bottom border color on focus */
 }
 
 button[name="submit"] {
