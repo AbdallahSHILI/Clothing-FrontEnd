@@ -21,14 +21,15 @@ const Login = () => {
         Password,
       });
       Cookies.set("access-token", response.data.token);
+      Cookies.set("user-role", response.data.user.Role); // Store the role in cookies
       window.localStorage.setItem("userId", response.data.user._id);
-
       // Hide the message after 3 seconds
       setTimeout(() => {
         setMessage("");
       }, 3000);
       navigate("/");
       window.location.reload();
+      console.log(response.data);
     } catch (error) {
       console.error("Login failed:", error);
       if (

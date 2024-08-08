@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../Assets/Vector.svg";
@@ -6,14 +6,13 @@ import Chariot from "../Assets/chariot.png";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
+  const [role, setRole] = useState(Cookies.get("user-role"));
   const isAuthenticated = Cookies.get("access-token");
-  const role = Cookies.get("role");
 
   const handleLogout = () => {
     // Remove the access token cookie
     Cookies.remove("access-token");
-    // Remove the role
-    Cookies.remove("role");
+    Cookies.remove("user-role");
 
     // Dispatch the "logout" event
     /*creating and sending a custom event named logout. 
@@ -35,14 +34,16 @@ set up to listen for this event can then respond to it.*/
       <div className="navbar-element">
         <div className="navbar-control">
           <Link to="/AllClothes">Catalogue</Link>
-          {isAuthenticated && <Link to="/Fashion">Fashion</Link>}
-          {isAuthenticated && <Link to="/Favorite">Favorite</Link>}
-          <Link to="/ContactUs">Contact us</Link>
-          {isAuthenticated && (
-            <Link to="/AllBuyedClothes">
-              <img src={Chariot} alt="Chariot" />
-            </Link>
+          {isAuthenticated && role === "admin" && (
+            <Link to="/Dashboard">Dashboard</Link>
           )}
+          {isAuthenticated && role !== "admin" && (
+            <Link to="/Fashion">Fashion</Link>
+          )}
+          {isAuthenticated && role !== "admin" && (
+            <Link to="/Favorite">Favorite</Link>
+          )}
+          {role !== "admin" && <Link to="/ContactUs">Contact us</Link>}
         </div>
         <div className="LoginSignup">
           {isAuthenticated ? (
