@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 
 const AllClothes = () => {
   const isAuthenticated = Cookies.get("access-token");
+  const [role, setRole] = useState(Cookies.get("user-role"));
   const [Clothes, setClothes] = useState([]);
   const API = "http://localhost:3001";
 
@@ -28,21 +29,32 @@ const AllClothes = () => {
     fetchClothes();
   }, []);
 
-  const handleHeartClick = async (index, id, currentFavorite) => {
+  const handleHeartClick = async (index, id) => {
     try {
-      // Toggle favorite status
-      const newFavoriteStatus = !currentFavorite;
+      const token = Cookies.get("access-token");
 
-      // Update favorite status in the backend
-      const response = await Axios.patch(`${API}/Clothing/Clothes/${id}`, {
-        Favorite: newFavoriteStatus,
-      });
+      // Make the request to update the favorite status
+      const response = await Axios.patch(
+        `${API}/Clothing/Clothes/${id}`,
+        {}, // No need to send data since the backend handles toggling
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Favorite Status :", response.data);
 
-      // Update favorite status in the frontend
-      // Creating a copy of the array
-      // Create a new version of the state, modify it, and then update the state with this new version.
+      // Update favorite status in the frontend based on the backend response
       const newClothes = [...Clothes];
-      newClothes[index].Favorite = newFavoriteStatus;
+
+      // Assuming response.data.favoriteStatus is true if added to favorites, false if removed
+      if (response.data.favoriteStatus) {
+        newClothes[index].isFavorite = true; // Custom property in frontend only
+      } else {
+        newClothes[index].isFavorite = false;
+      }
+
       setClothes(newClothes);
     } catch (error) {
       console.error("Updating Favorite status Failed", error);
@@ -117,7 +129,7 @@ const AllClothes = () => {
 
   return (
     <>
-      {isAuthenticated && (
+      {isAuthenticated && role === "admin" && (
         <div className="newClothes_header">
           <Link to={`/NewClothes`} style={{ textDecoration: "none" }}>
             <Icon
@@ -135,7 +147,8 @@ const AllClothes = () => {
       <div className="models_container">
         {Clothes.map((clothes, index) => {
           let cardClass = "model_card";
-          if (clothes.Favorite) {
+          if (clothes.isFavorite) {
+            // Check the frontend state property
             cardClass += " clicked";
           }
 
@@ -154,13 +167,11 @@ const AllClothes = () => {
             <div key={clothes._id} className={cardClass}>
               <div className="Header">
                 <h1 className="description">{clothes.Description}</h1>
-                {isAuthenticated && (
+                {isAuthenticated && role === "customer" && (
                   <div className="heart">
                     <Heart
-                      isClick={clothes.Favorite}
-                      onClick={() =>
-                        handleHeartClick(index, clothes._id, clothes.Favorite)
-                      }
+                      isClick={clothes.isFavorite}
+                      onClick={() => handleHeartClick(index, clothes._id)}
                     />
                   </div>
                 )}
@@ -177,15 +188,22 @@ const AllClothes = () => {
               )}
               {isAuthenticated && (
                 <div className="icon_container">
-                  <div className="icon">
-                    <DeleteClothes id={clothes._id} onDelete={handleDelete} />
-                  </div>
-                  <button
-                    onClick={() => handleBuy(index, clothes._id, clothes.Buyed)}
-                    className={buttonClass}
-                  >
-                    {buttonText}
-                  </button>
+                  {role === "admin" && (
+                    <div className="icon">
+                      <DeleteClothes id={clothes._id} onDelete={handleDelete} />
+                    </div>
+                  )}
+                  {role === "customer" && (
+                    <button
+                      onClick={() =>
+                        handleBuy(index, clothes._id, clothes.Buyed)
+                      }
+                      className={buttonClass}
+                    >
+                      {buttonText}
+                    </button>
+                  )}
+
                   <div className="icon">
                     <Link to={`/OneClothes/${clothes._id}`}>
                       <Icon
