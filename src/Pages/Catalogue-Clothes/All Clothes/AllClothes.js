@@ -21,7 +21,6 @@ const AllClothes = () => {
       try {
         const response = await Axios.get(`${API}/Clothing/Clothes/`);
         setClothes(response.data.doc);
-        console.log("Clothes Status :", Clothes);
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
       }
@@ -36,18 +35,16 @@ const AllClothes = () => {
       // Make the request to update the favorite status
       const response = await Axios.patch(
         `${API}/Clothing/Clothes/${id}`,
-        {}, // No need to send data since the backend handles toggling
+        {},
         {
           headers: {
             authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log("Favorite Status :", response.data);
 
       // Update favorite status in the frontend based on the backend response
       const newClothes = [...Clothes];
-
       // Assuming response.data.favoriteStatus is true if added to favorites, false if removed
       if (response.data.favoriteStatus) {
         newClothes[index].isFavorite = true; // Custom property in frontend only
@@ -56,6 +53,7 @@ const AllClothes = () => {
       }
 
       setClothes(newClothes);
+      console.log(Clothes);
     } catch (error) {
       console.error("Updating Favorite status Failed", error);
     }
