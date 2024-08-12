@@ -6,17 +6,25 @@ import "react-crud-icons/dist/css/react-crud-icons.css";
 import Icon from "react-crud-icons";
 import "./Favorite.css";
 import DeleteClothes from "../Catalogue-Clothes/Delete Clothes/DeleteClothes";
+import Cookies from "js-cookie";
 
 export const Favorite = () => {
   const [FavClothes, setFavClothes] = useState([]);
+  const [role, setRole] = useState(Cookies.get("user-role"));
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
   useEffect(() => {
     const fetchFavClothes = async () => {
       try {
+        const token = Cookies.get("access-token");
         const response = await Axios.get(
-          `${API}/Clothing/Clothes/AllFavClothes`
+          `${API}/Clothing/Clothes/AllFavClothes`,
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
         );
         setFavClothes(response.data.clothes);
       } catch (error) {
@@ -27,13 +35,28 @@ export const Favorite = () => {
   }, []);
 
   // Function to handle heart click (un-favorite)
+
   const handleHeartClick = async (id) => {
     try {
-      await Axios.patch(`${API}/Clothing/Clothes/${id}`, { Favorite: false });
-      // Remove the item from the state
-      setFavClothes((prevFavClothes) =>
-        prevFavClothes.filter((clothes) => clothes._id !== id)
+      const token = Cookies.get("access-token");
+
+      // Make the request to update the favorite status
+      const response = await Axios.patch(
+        `${API}/Clothing/Clothes/${id}`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
+
+      // Remove the item from the state if it was unfavorited
+      if (!response.data.favoriteStatus) {
+        setFavClothes((prevClothes) =>
+          prevClothes.filter((clothes) => clothes._id !== id)
+        );
+      }
     } catch (error) {
       console.error("Updating Favorite status Failed", error);
     }
@@ -45,6 +68,7 @@ export const Favorite = () => {
         <div key={favClothes._id} className="model_card clicked">
           <div className="Header">
             <h1 className="description">{favClothes.Description}</h1>
+
             <div className="heart">
               <Heart
                 isClick={true}
@@ -63,14 +87,16 @@ export const Favorite = () => {
             </Link>
           )}
           <div className="icon_container">
-            <div className="icon">
-              <DeleteClothes
-                id={favClothes._id}
-                onDelete={() => {
-                  /* handleDelete should be defined if you want to handle deletes */
-                }}
-              />
-            </div>
+            {role === "admin" && (
+              <div className="icon">
+                <DeleteClothes
+                  id={favClothes._id}
+                  onDelete={() => {
+                    /* handleDelete should be defined if you want to handle deletes */
+                  }}
+                />
+              </div>
+            )}
             <div className="icon">
               <Link to={`/OneClothes/${favClothes._id}`}>
                 <Icon

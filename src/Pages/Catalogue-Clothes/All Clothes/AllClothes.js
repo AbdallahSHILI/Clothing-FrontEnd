@@ -20,7 +20,24 @@ const AllClothes = () => {
     const fetchClothes = async () => {
       try {
         const response = await Axios.get(`${API}/Clothing/Clothes/`);
-        setClothes(response.data.doc);
+        const userId = Cookies.get("user-id");
+
+        /*The isFavorite status is lost when you navigate between pages,
+         and you want to maintain this status.
+         or each clothing item, we are adding a new property called isFavorite 
+         to determine if the current user has favorited that item.
+         { ...clothes }: This is using the spread operator (...), 
+          It takes all the existing properties of the clothes object 
+          and copies them into a new object.
+          isFavorite: clothes.FavoriteUsers.includes(userId):
+This adds a new property isFavorite to the object.
+*/
+        const updatedClothes = response.data.doc.map((clothes) => ({
+          ...clothes,
+          isFavorite: clothes.FavoriteUsers.includes(userId),
+        }));
+
+        setClothes(updatedClothes);
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
       }
@@ -53,7 +70,6 @@ const AllClothes = () => {
       }
 
       setClothes(newClothes);
-      console.log(Clothes);
     } catch (error) {
       console.error("Updating Favorite status Failed", error);
     }
