@@ -11,6 +11,7 @@ import {
   AllClothes,
   OneClothes,
   AllBuyedClothes,
+  Dashboard,
 } from "./Pages/index";
 import { Footer, Navbar } from "./Components/Index";
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/AllClothes" element={<AllClothes />} />
           <Route path="/OneClothes/:id" element={<OneClothes />} />
           <Route path="/AllBuyedClothes" element={<AllBuyedClothes />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
         </Routes>
         <Footer />
       </Router>

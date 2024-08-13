@@ -115,32 +115,24 @@ This adds a new property isFavorite to the object.
       setClothes((prevClothes) => {
         const updatedClothes = prevClothes.map((clothes) => ({
           ...clothes,
-          Favorite: false,
+          isFavorite: false,
         }));
-
-        // Perform the page reload after the state update is completed
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
 
         return updatedClothes;
       });
+
+      // Optionally redirect the user to the login page
+      window.location.href = "/login";
     };
 
-    /* Add the logout event listener when the component mounts
-  This line adds an event listener to the window object. 
-  The handleLogout function will be called whenever the "logout" event 
-  is dispatched.*/
+    // Add the logout event listener when the component mounts
     window.addEventListener("logout", handleLogout);
 
-    /* Cleanup function to remove the event listener when the component unmounts
-  The return function is the cleanup function. It removes the "logout" event listener
-   when the component unmounts to prevent memory leaks.*/
+    // Cleanup function to remove the event listener when the component unmounts
     return () => {
       window.removeEventListener("logout", handleLogout);
     };
-  }, []); // Empty dependency array means this runs once when the component mounts
-
+  }, []);
   return (
     <>
       {isAuthenticated && role === "admin" && (

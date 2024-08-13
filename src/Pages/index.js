@@ -8,3 +8,4 @@ export { default as NewClothes } from "./Catalogue-Clothes/NewClothes/NewClothes
 export { default as AllClothes } from "./Catalogue-Clothes/All Clothes/AllClothes";
 export { default as OneClothes } from "./Catalogue-Clothes/Get One Clothes/OneClothes";
 export { default as AllBuyedClothes } from "./Catalogue-Clothes/AllBuyedClothes/AllBuyedClothes";
+export { default as Dashboard } from "./Dashboard/Dashboard";

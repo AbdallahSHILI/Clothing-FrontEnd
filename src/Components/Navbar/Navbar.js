@@ -33,10 +33,10 @@ set up to listen for this event can then respond to it.*/
       </div>
       <div className="navbar-element">
         <div className="navbar-control">
-          <Link to="/AllClothes">Catalogue</Link>
           {isAuthenticated && role === "admin" && (
             <Link to="/Dashboard">Dashboard</Link>
           )}
+          <Link to="/AllClothes">Catalogue</Link>
           {isAuthenticated && role !== "admin" && (
             <Link to="/Fashion">Fashion</Link>
           )}
