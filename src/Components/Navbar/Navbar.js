@@ -13,6 +13,7 @@ const Navbar = () => {
     // Remove the access token cookie
     Cookies.remove("access-token");
     Cookies.remove("user-role");
+    Cookies.remove("user-id");
 
     // Dispatch the "logout" event
     /*creating and sending a custom event named logout. 
