@@ -19,7 +19,13 @@ const AllClothes = () => {
   useEffect(() => {
     const fetchClothes = async () => {
       try {
-        const response = await Axios.get(`${API}/Clothing/Clothes/`);
+        const token = Cookies.get("access-token");
+        const response = await Axios.get(`${API}/Clothing/Clothes/AllClothes`, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(response);
         const userId = Cookies.get("user-id");
 
         /*The isFavorite status is lost when you navigate between pages,
@@ -32,7 +38,7 @@ const AllClothes = () => {
           isFavorite: clothes.FavoriteUsers.includes(userId):
 This adds a new property isFavorite to the object.
 */
-        const updatedClothes = response.data.doc.map((clothes) => ({
+        const updatedClothes = response.data.clothes.map((clothes) => ({
           ...clothes,
           isFavorite: clothes.FavoriteUsers.includes(userId),
         }));
@@ -50,15 +56,11 @@ This adds a new property isFavorite to the object.
       const token = Cookies.get("access-token");
 
       // Make the request to update the favorite status
-      const response = await Axios.patch(
-        `${API}/Clothing/Clothes/${id}`,
-        {},
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await Axios.patch(`${API}/Clothing/Clothes/${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
 
       // Update favorite status in the frontend based on the backend response
       const newClothes = [...Clothes];
