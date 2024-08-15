@@ -41,15 +41,11 @@ export const Favorite = () => {
       const token = Cookies.get("access-token");
 
       // Make the request to update the favorite status
-      const response = await Axios.patch(
-        `${API}/Clothing/Clothes/${id}`,
-        {},
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await Axios.patch(`${API}/Clothing/Clothes/${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
 
       // Remove the item from the state if it was unfavorited
       if (!response.data.favoriteStatus) {
