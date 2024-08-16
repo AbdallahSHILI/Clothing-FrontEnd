@@ -54,13 +54,18 @@ This adds a new property isFavorite to the object.
   const handleHeartClick = async (index, id) => {
     try {
       const token = Cookies.get("access-token");
+      console.log(token);
 
       // Make the request to update the favorite status
-      const response = await Axios.patch(`${API}/Clothing/Clothes/${id}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await Axios.patch(
+        `${API}/Clothing/Clothes/${id}`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       // Update favorite status in the frontend based on the backend response
       const newClothes = [...Clothes];

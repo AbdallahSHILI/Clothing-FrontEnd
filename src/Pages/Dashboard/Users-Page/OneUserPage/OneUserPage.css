@@ -1,0 +1,62 @@
+/* Container for the User Page */
+.user-page-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title for the Page */
+.user-page-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* User Information Container */
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Each Information Item */
+.user-info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels for User Information */
+.user-info-label {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Values for User Information */
+.user-info-value {
+  color: #777;
+  font-size: 16px;
+}
+
+/* Styling for User Role */
+.user-role {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: white;
+}
+
+.user-role.admin {
+  background-color: red;
+}
+
+.user-role.customer {
+  background-color: green;
+}

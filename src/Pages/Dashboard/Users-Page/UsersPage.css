@@ -16,7 +16,8 @@
   border-radius: 12px; /* Rounded corners */
   font-size: 1em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  margin-bottom: 20px; /* Space from the bottom */
+  width: 13%;
+  margin: 20px auto;
 }
 
 /* Title for the Page */
@@ -52,6 +53,13 @@
   background-color: #f9f9f9;
 }
 
+/* Container for User Details */
+.user-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
 /* User Name Style */
 .user_FirstLastName {
   font-size: 18px;
@@ -65,17 +73,17 @@
   font-size: 14px;
 }
 
-/* Button for Additional Actions */
-.moreInfo_Button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 8px 12px;
+.user_role {
+  padding: 5px 10px;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: white;
+  font-weight: bold;
 }
 
-.user-action-button:hover {
-  background-color: #45a049;
+.user_role.admin {
+  background-color: red;
+}
+
+.user_role.customer {
+  background-color: green;
 }

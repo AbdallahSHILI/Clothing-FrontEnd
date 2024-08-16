@@ -13,6 +13,7 @@ import {
   AllBuyedClothes,
   Dashboard,
   UsersPage,
+  OneUserPage,
 } from "./Pages/index";
 import { Footer, Navbar } from "./Components/Index";
 
@@ -34,6 +35,10 @@ function App() {
           <Route path="/AllBuyedClothes" element={<AllBuyedClothes />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/Dashboard/UsersPage" element={<UsersPage />} />
+          <Route
+            path="/Dashboard/UsersPage/:idUser"
+            element={<OneUserPage />}
+          />
         </Routes>
         <Footer />
       </Router>
