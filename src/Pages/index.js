@@ -10,3 +10,4 @@ export { default as OneClothes } from "./Catalogue-Clothes/Get One Clothes/OneCl
 export { default as AllBuyedClothes } from "./Catalogue-Clothes/AllBuyedClothes/AllBuyedClothes";
 export { default as Dashboard } from "./Dashboard/Main-Dashbord/Dashboard";
 export { default as UsersPage } from "./Dashboard/Users-Page/UsersPage";
+export { default as OneUserPage } from "./Dashboard/Users-Page/OneUserPage/OneUserPage";
