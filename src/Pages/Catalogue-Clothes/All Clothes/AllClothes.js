@@ -25,7 +25,6 @@ const AllClothes = () => {
             authorization: `Bearer ${token}`,
           },
         });
-        console.log(response);
         const userId = Cookies.get("user-id");
 
         /*The isFavorite status is lost when you navigate between pages,
@@ -54,7 +53,6 @@ This adds a new property isFavorite to the object.
   const handleHeartClick = async (index, id) => {
     try {
       const token = Cookies.get("access-token");
-      console.log(token);
 
       // Make the request to update the favorite status
       const response = await Axios.patch(

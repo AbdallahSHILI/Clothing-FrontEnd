@@ -128,3 +128,32 @@
 .checkbox_container .checkbox {
   display: inline;
 }
+
+.form_control_input select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid;
+  background: #fff;
+  border-radius: 5px;
+  outline: none;
+  color: #000;
+  font-size: 1em;
+  transition: 0.5s;
+}
+
+.form_control_input select:focus ~ .label,
+.form_control_input select:valid ~ .label {
+  color: #000;
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.65em;
+  padding: 0 10px;
+  background: #ffef65;
+  border-left: 1px solid #666a86;
+  border-right: 1px solid #666a86;
+  letter-spacing: 0.2em;
+}
+
+.form_control_input select:focus,
+.form_control_input select:valid {
+  border: 1px solid #00dfc4;
+}

@@ -23,14 +23,14 @@ const UsersPage = () => {
             <div className={`user_role ${user.Role.toLowerCase()}`}>
               {user.Role}
             </div>
-            {/* <Link to={`/Dashboard/UsersPage/${user._id}`}> */}
-            <Icon
-              name="arrow-right"
-              tooltip="More Info"
-              theme="light"
-              size="medium"
-            />
-            {/* </Link> */}
+            <Link to={`/Dashboard/UsersPage/${user._id}`}>
+              <Icon
+                name="arrow-right"
+                tooltip="More Info"
+                theme="light"
+                size="medium"
+              />
+            </Link>
           </li>
         ))}
       </ul>
