@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Axios from "axios";
 import "./OneUserPage.css";
+import Cookies from "js-cookie";
 
-const OneUserPage = ({ user }) => {
+const OneUserPage = () => {
+  const { idUser } = useParams();
+  const [user, setUser] = useState(null);
+  const API = "http://localhost:3001";
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = Cookies.get("access-token");
+        const response = await Axios.get(
+          `${API}/Clothing/Users/OneUser/${idUser}`,
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data.user);
+      } catch (error) {
+        console.error("Fetching user Failed", error);
+      }
+    };
+    fetchUser();
+  }, [idUser]);
+
+  if (!user) {
+    return <div className="loading">Loading...</div>;
+  }
+
   return (
     <div className="user-page-container">
       <h1 className="user-page-title">User Details</h1>

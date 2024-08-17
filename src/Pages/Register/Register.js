@@ -9,6 +9,7 @@ const Register = () => {
   const [Email, setEmail] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Password, setPassword] = useState("");
+  const [Gender, setGender] = useState("");
   const [errors, setErrors] = useState({});
   const API = "http://localhost:3001";
 
@@ -26,6 +27,9 @@ const Register = () => {
     }
     if (PhoneNumber.length < 8) {
       errors.PhoneNumber = "PhoneNumber must be at least 8 number long!";
+    }
+    if (!Gender) {
+      errors.Gender = "Please select a gender!";
     }
 
     // Add other validations as needed
@@ -45,6 +49,7 @@ const Register = () => {
         Email,
         PhoneNumber,
         Password,
+        Gender,
       });
       console.log("Registration successful:", response.data);
     } catch (error) {
@@ -66,6 +71,8 @@ const Register = () => {
       setPhoneNumber={setPhoneNumber}
       Password={Password}
       setPassword={setPassword}
+      Gender={Gender}
+      setGender={setGender}
       onSubmit={onSubmit}
       errors={errors}
     />
@@ -81,6 +88,8 @@ const RegisterForm = ({
   setPhoneNumber,
   Password,
   setPassword,
+  Gender,
+  setGender,
   onSubmit,
   errors,
 }) => {
@@ -139,6 +148,21 @@ const RegisterForm = ({
               />
               <span className="label">Password</span>
               {errors.Password && <p className="error">{errors.Password}</p>}
+            </div>
+            <div className="form_control_input">
+              <select
+                name="Gender"
+                id="Gender"
+                required="required"
+                value={Gender}
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option value="" disabled hidden></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <span className="label">Gender</span>
+              {errors.Gender && <p className="error">{errors.Gender}</p>}
             </div>
             {errors.backend && <p className="error">{errors.backend}</p>}
             <button type="submit" className="btn">

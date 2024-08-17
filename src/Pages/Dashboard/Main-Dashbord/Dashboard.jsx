@@ -22,7 +22,6 @@ const Dashboard = () => {
             authorization: `Bearer ${token}`,
           },
         });
-        console.log(response.data);
         setUsers(response.data.users);
         setCountUsers(response.data.result);
       } catch (error) {
@@ -40,7 +39,6 @@ const Dashboard = () => {
             authorization: `Bearer ${token}`,
           },
         });
-        console.log(response.data);
         setClothes(response.data.clothes);
         setCountClothes(response.data.result);
       } catch (error) {
