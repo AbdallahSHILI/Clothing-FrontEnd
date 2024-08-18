@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
-import "./OneUserPage.css";
 import Cookies from "js-cookie";
+import "./OneUserPage.css";
+import ManPic from "../../../../Components/Assets/man.png";
+import WomenPic from "../../../../Components/Assets/woman.png";
 
 const OneUserPage = () => {
   const { idUser } = useParams();
@@ -23,7 +25,7 @@ const OneUserPage = () => {
         );
         setUser(response.data.user);
       } catch (error) {
-        console.error("Fetching user Failed", error);
+        console.error("Fetching user failed", error);
       }
     };
     fetchUser();
@@ -32,26 +34,19 @@ const OneUserPage = () => {
   if (!user) {
     return <div className="loading">Loading...</div>;
   }
+  const userImage = user.Gender === "Male" ? ManPic : WomenPic;
 
   return (
-    <div className="user-page-container">
-      <h1 className="user-page-title">User Details</h1>
-      <div className="user-info">
-        <div className="user-info-item">
-          <span className="user-info-label">Name:</span>
-          <span className="user-info-value">{user.FirstLastName}</span>
+    <div className="user-card">
+      <img src={userImage} alt="User" className="user-avatar" />
+      <h2 className="user-name">{user.FirstLastName}</h2>
+      <p className="user-email">{user.Email}</p>
+      {user.Role !== "admin" && (
+        <div className="user-actions">
+          <button className="btn make-admin">Make Admin</button>
+          <button className="btn delete-user">Delete User</button>
         </div>
-        <div className="user-info-item">
-          <span className="user-info-label">Email:</span>
-          <span className="user-info-value">{user.Email}</span>
-        </div>
-        <div className="user-info-item">
-          <span className="user-info-label">Role:</span>
-          <span className={`user-role ${user.Role.toLowerCase()}`}>
-            {user.Role}
-          </span>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
