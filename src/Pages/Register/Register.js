@@ -40,6 +40,7 @@ const Register = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
     if (!validateForm()) {
       return; // Stop the form submission if validation fails
     }
@@ -150,20 +151,29 @@ const RegisterForm = ({
               {errors.Password && <p className="error">{errors.Password}</p>}
             </div>
             <div className="form_control_input">
-              <select
-                name="Gender"
-                id="Gender"
-                required="required"
-                value={Gender}
-                onChange={(e) => setGender(e.target.value)}
-              >
-                <option value="" disabled hidden></option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              <span className="label">Gender</span>
+              <label>
+                <input
+                  type="radio"
+                  name="Gender"
+                  value="Male"
+                  checked={Gender === "Male"}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+                Male
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="Gender"
+                  value="Female"
+                  checked={Gender === "Female"}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+                Female
+              </label>
               {errors.Gender && <p className="error">{errors.Gender}</p>}
             </div>
+
             {errors.backend && <p className="error">{errors.backend}</p>}
             <button type="submit" className="btn">
               Register
