@@ -38,11 +38,6 @@
   cursor: pointer;
 }
 
-.make-admin {
-  background-color: #4caf50;
-  color: white;
-}
-
 .delete-user {
   background-color: #f44336;
   color: white;

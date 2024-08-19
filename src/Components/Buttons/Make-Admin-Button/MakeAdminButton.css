@@ -1,0 +1,11 @@
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.make-admin {
+  background-color: #4caf50;
+  color: white;
+}

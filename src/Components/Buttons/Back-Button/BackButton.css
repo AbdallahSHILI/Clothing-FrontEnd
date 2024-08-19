@@ -1,0 +1,11 @@
+.back-icon {
+    position: absolute;
+    top: 10px;  /* Positioning from the top */
+    left: 10px; /* Positioning from the left */
+    cursor: pointer; /* Add a pointer cursor on hover */
+  }
+  
+  .back-icon:hover {
+    opacity: 0.8; /* Add a hover effect */
+  }
+  

@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import "./OneUserPage.css";
 import ManPic from "../../../../Components/Assets/man.png";
 import WomenPic from "../../../../Components/Assets/woman.png";
+import { BackButton, MakeAdminButton } from "../../../../Components/Index";
 
 const OneUserPage = () => {
   const { idUser } = useParams();
@@ -37,17 +38,20 @@ const OneUserPage = () => {
   const userImage = user.Gender === "Male" ? ManPic : WomenPic;
 
   return (
-    <div className="user-card">
-      <img src={userImage} alt="User" className="user-avatar" />
-      <h2 className="user-name">{user.FirstLastName}</h2>
-      <p className="user-email">{user.Email}</p>
-      {user.Role !== "admin" && (
-        <div className="user-actions">
-          <button className="btn make-admin">Make Admin</button>
-          <button className="btn delete-user">Delete User</button>
-        </div>
-      )}
-    </div>
+    <>
+      <BackButton />
+      <div className="user-card">
+        <img src={userImage} alt="User" className="user-avatar" />
+        <h2 className="user-name">{user.FirstLastName}</h2>
+        <p className="user-email">{user.Email}</p>
+        {user.Role !== "admin" && (
+          <div className="user-actions">
+            <MakeAdminButton />
+            <button className="btn delete-user">Delete User</button>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
