@@ -36,7 +36,7 @@ const MakeAdminButton = ({ onPromote, onShowConfirm }) => {
   };
 
   return (
-    <button className="btn make-admin" onClick={onShowConfirm}>
+    <button className="btn make-admin" onClick={handleAdminMaker}>
       Make Admin
     </button>
   );
