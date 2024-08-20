@@ -10,6 +10,8 @@ import { BackButton, MakeAdminButton } from "../../../../Components/Index";
 const OneUserPage = () => {
   const { idUser } = useParams();
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isConfirming, setIsConfirming] = useState(false);
   const API = "http://localhost:3001";
 
   useEffect(() => {
@@ -32,9 +34,23 @@ const OneUserPage = () => {
     fetchUser();
   }, [idUser]);
 
+  const handlePromote = () => {
+    setIsAdmin(true); // User is now an admin
+    setIsConfirming(false); // Hide confirm buttons after promotion
+  };
+
+  const handleCancel = () => {
+    setIsConfirming(false); // Hide confirm buttons and show original buttons
+  };
+
+  const showConfirmButtons = () => {
+    setIsConfirming(true); // Show confirm and cancel buttons
+  };
+
   if (!user) {
     return <div className="loading">Loading...</div>;
   }
+
   const userImage = user.Gender === "Male" ? ManPic : WomenPic;
 
   return (
@@ -44,10 +60,27 @@ const OneUserPage = () => {
         <img src={userImage} alt="User" className="user-avatar" />
         <h2 className="user-name">{user.FirstLastName}</h2>
         <p className="user-email">{user.Email}</p>
-        {user.Role !== "admin" && (
+
+        {/* Only show the action buttons if the user is not an admin and we are not in confirmation mode */}
+        {!isAdmin && !isConfirming && user.Role !== "admin" && (
           <div className="user-actions">
-            <MakeAdminButton />
+            <MakeAdminButton
+              onPromote={handlePromote}
+              onShowConfirm={showConfirmButtons}
+            />
             <button className="btn delete-user">Delete User</button>
+          </div>
+        )}
+
+        {/* Show confirm/cancel buttons if in confirmation mode */}
+        {isConfirming && (
+          <div className="confirm-actions">
+            <button className="btn confirm-admin" onClick={handlePromote}>
+              Confirm
+            </button>
+            <button className="btn cancel-admin" onClick={handleCancel}>
+              Cancel
+            </button>
           </div>
         )}
       </div>
