@@ -16,6 +16,7 @@ import {
   OneUserPage,
 } from "./Pages/index";
 import { Footer, Navbar } from "./Components/Index";
+import DeleteUser from "./Components/Buttons/DeleteUser-Button/DeleteUser";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
           <Route
             path="/Dashboard/UsersPage/:idUser"
             element={<OneUserPage />}
+          />
+          <Route
+            path="/Dashboard/UsersPage/DeleteUser/:idUser"
+            element={<DeleteUser />}
           />
         </Routes>
         <Footer />

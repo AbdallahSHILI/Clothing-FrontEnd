@@ -6,6 +6,7 @@ import "./OneUserPage.css";
 import ManPic from "../../../../Components/Assets/man.png";
 import WomenPic from "../../../../Components/Assets/woman.png";
 import { BackButton, MakeAdminButton } from "../../../../Components/Index";
+import DeleteUser from "../../../../Components/Buttons/DeleteUser-Button/DeleteUser";
 
 const OneUserPage = () => {
   const { idUser } = useParams();
@@ -35,8 +36,8 @@ const OneUserPage = () => {
   }, [idUser]);
 
   const handlePromote = () => {
-    setIsAdmin(true); // User is now an admin
-    setIsConfirming(false); // Hide confirm buttons after promotion
+    setIsAdmin(true); //  to track whether the user is an admin or not. When the user is promoted to an admin, isAdmin is set to true.
+    setIsConfirming(true); // Hide confirm buttons after promotion
   };
 
   const handleCancel = () => {
@@ -68,7 +69,7 @@ const OneUserPage = () => {
               onPromote={handlePromote}
               onShowConfirm={showConfirmButtons}
             />
-            <button className="btn delete-user">Delete User</button>
+            <DeleteUser />
           </div>
         )}
 
