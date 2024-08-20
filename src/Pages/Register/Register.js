@@ -55,7 +55,17 @@ const Register = () => {
       console.log("Registration successful:", response.data);
     } catch (error) {
       if (error.response && error.response.data) {
-        setErrors({ backend: error.response.data.message }); // Handle backend validation errors
+        const errorMessage =
+          typeof error.response.data === "string"
+            ? error.response.data
+            : error.response.data.message || "An unknown error occurred";
+
+        // Specifically check if the error is related to email already existing
+        if (errorMessage.includes("Email already exists")) {
+          setErrors({ Email: errorMessage });
+        } else {
+          setErrors({ backend: errorMessage });
+        }
       } else {
         setErrors({ backend: "Registration failed: " + error.message });
       }

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MakeAdminButton.css";
 import Cookies from "js-cookie";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 
-const MakeAdminButton = () => {
+const MakeAdminButton = ({ onPromote, onShowConfirm }) => {
   const { idUser } = useParams();
   const API = "http://localhost:3001";
-  const [isAdmin, setIsAdmin] = useState(false);
 
   const handleAdminMaker = async () => {
     try {
@@ -26,7 +25,7 @@ const MakeAdminButton = () => {
 
       if (response.data.status === "success") {
         alert("User promoted to admin successfully!");
-        setIsAdmin(true); // Update state to hide the button
+        onPromote(); // Trigger promotion success in parent component
       } else {
         alert("Failed to promote user to admin.");
       }
@@ -36,13 +35,8 @@ const MakeAdminButton = () => {
     }
   };
 
-  // Don't render the button if the user has been promoted to admin
-  if (isAdmin) {
-    return null;
-  }
-
   return (
-    <button className="btn make-admin" onClick={handleAdminMaker}>
+    <button className="btn make-admin" onClick={onShowConfirm}>
       Make Admin
     </button>
   );
