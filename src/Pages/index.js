@@ -11,3 +11,4 @@ export { default as AllBuyedClothes } from "./Catalogue-Clothes/AllBuyedClothes/
 export { default as Dashboard } from "./Dashboard/Main-Dashbord/Dashboard";
 export { default as UsersPage } from "./Dashboard/Users-Page/UsersPage";
 export { default as OneUserPage } from "./Dashboard/Users-Page/OneUserPage/OneUserPage";
+export { default as CountContainer } from "./Catalogue-Clothes/CountContainer/CountContainer";

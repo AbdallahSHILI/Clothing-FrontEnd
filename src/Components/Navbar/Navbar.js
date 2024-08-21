@@ -37,9 +37,12 @@ set up to listen for this event can then respond to it.*/
           {isAuthenticated && role === "admin" && (
             <Link to="/Dashboard">Dashboard</Link>
           )}
-          <Link to="/AllClothes">Catalogue</Link>
+
           {isAuthenticated && role !== "admin" && (
             <Link to="/Fashion">Fashion</Link>
+          )}
+          {isAuthenticated && role !== "admin" && (
+            <Link to="/AllClothes">Catalogue</Link>
           )}
           {isAuthenticated && role !== "admin" && (
             <Link to="/Favorite">Favorite</Link>

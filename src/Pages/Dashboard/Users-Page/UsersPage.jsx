@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./UsersPage.css";
 import { useLocation } from "react-router-dom";
 import { BackButton } from "../../../Components/Index";
+import CountContainer from "../../Catalogue-Clothes/CountContainer/CountContainer";
 
 const UsersPage = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const UsersPage = () => {
       <BackButton />
       <div className="users-container">
         <h1>All Users</h1>
-        <div className="badge-container">{countUsers} Users</div>
+        <CountContainer>{countUsers} Users</CountContainer>
         <ul className="users-list">
           {users.map((user) => (
             <li key={user._id} className="user-item">

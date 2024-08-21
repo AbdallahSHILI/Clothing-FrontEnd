@@ -73,8 +73,14 @@ const Dashboard = () => {
           <h4>Clothes</h4>
         </div>
         <div className="footer-card">
-          <h1>More info</h1>
-          <Icon name="list" tooltip="list" theme="light" size="medium" />
+          <Link
+            to={`/AllClothes`}
+            state={{ clothes, countClothes }}
+            className="link-style"
+          >
+            <h1>More info</h1>
+            <Icon name="list" tooltip="list" theme="light" size="medium" />
+          </Link>
         </div>
       </div>
       <div className="dashboard-card sales-card">

@@ -8,11 +8,14 @@ import "react-crud-icons/dist/css/react-crud-icons.css";
 import Icon from "react-crud-icons";
 import DeleteClothes from "../Delete Clothes/DeleteClothes";
 import Cookies from "js-cookie";
+import { BackButton } from "../../../Components/Index";
+import CountContainer from "../CountContainer/CountContainer";
 
 const AllClothes = () => {
   const isAuthenticated = Cookies.get("access-token");
   const [role, setRole] = useState(Cookies.get("user-role"));
   const [Clothes, setClothes] = useState([]);
+  const [countClothes, setCountClothes] = useState([]);
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
@@ -26,6 +29,7 @@ const AllClothes = () => {
           },
         });
         const userId = Cookies.get("user-id");
+        setCountClothes(response.data.result);
 
         /*The isFavorite status is lost when you navigate between pages,
          and you want to maintain this status.
@@ -140,6 +144,8 @@ This adds a new property isFavorite to the object.
   }, []);
   return (
     <>
+      <BackButton />
+      <CountContainer>{countClothes} Clothes</CountContainer>
       {isAuthenticated && role === "admin" && (
         <div className="newClothes_header">
           <Link to={`/NewClothes`} style={{ textDecoration: "none" }}>
