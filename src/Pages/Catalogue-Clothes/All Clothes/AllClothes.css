@@ -16,7 +16,10 @@
 .newClothes_header {
   display: flex;
   align-items: center;
+  justify-content: center; /* Center the icon and text */
   margin: 20px auto;
+  width: 100%; /* Ensure the header takes up the full width */
+  text-align: center; /* Center the text inside the flex container */
 }
 
 .newClothes_header a {

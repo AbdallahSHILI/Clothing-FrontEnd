@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 
-const MakeAdminButton = ({ onPromote, onShowConfirm }) => {
+const MakeAdminButton = () => {
   const { idUser } = useParams();
   const API = "http://localhost:3001";
 
@@ -25,7 +25,6 @@ const MakeAdminButton = ({ onPromote, onShowConfirm }) => {
 
       if (response.data.status === "success") {
         alert("User promoted to admin successfully!");
-        onPromote(); // Trigger promotion success in parent component
       } else {
         alert("Failed to promote user to admin.");
       }
@@ -36,9 +35,11 @@ const MakeAdminButton = ({ onPromote, onShowConfirm }) => {
   };
 
   return (
-    <button className="btn make-admin" onClick={handleAdminMaker}>
-      Make Admin
-    </button>
+    <>
+      <button className="btn make-admin" onClick={handleAdminMaker}>
+        Make Admin
+      </button>
+    </>
   );
 };
 
