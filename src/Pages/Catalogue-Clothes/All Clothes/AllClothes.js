@@ -145,7 +145,9 @@ This adds a new property isFavorite to the object.
   return (
     <>
       <BackButton />
-      <CountContainer>{countClothes} Clothes</CountContainer>
+      {isAuthenticated && role === "admin" && (
+        <CountContainer>{countClothes} Clothes</CountContainer>
+      )}
       {isAuthenticated && role === "admin" && (
         <div className="newClothes_header">
           <Link to={`/NewClothes`} style={{ textDecoration: "none" }}>

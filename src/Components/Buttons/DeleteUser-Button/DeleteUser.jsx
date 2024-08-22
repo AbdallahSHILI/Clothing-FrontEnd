@@ -15,7 +15,6 @@ const DeleteUser = () => {
       // Make the request to promote the user to admin
       const response = await Axios.delete(
         `${API}/Clothing/Users/DeleteUser/${idUser}`,
-        {},
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -23,9 +22,9 @@ const DeleteUser = () => {
         }
       );
 
-      if (response.data.status === "success") {
+      if (response.data.status === "Succes") {
         alert("User deleted successfully!");
-        window.location.href = "/AllUsers";
+        window.location.href = "/Dashboard/UsersPage";
       } else {
         alert("Failed to delete user.");
       }
