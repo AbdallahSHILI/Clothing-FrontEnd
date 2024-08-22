@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
 import "./OneClothes.css";
+import { BackButton } from "../../../Components/Index";
 
 const OneClothes = () => {
   const { id } = useParams();
@@ -25,17 +26,20 @@ const OneClothes = () => {
   }
 
   return (
-    <div className="one-clothes-container">
-      <h2>{clothes.Description}</h2>
-      {clothes.Image && (
-        <img
-          src={`${API}/images/${clothes.Image}`}
-          alt={clothes.Description}
-          className="clothes-image"
-        />
-      )}
-      <p>{new Date(clothes.Date).toLocaleDateString()}</p>
-    </div>
+    <>
+      <BackButton />
+      <div className="one-clothes-container">
+        <h2>{clothes.Description}</h2>
+        {clothes.Image && (
+          <img
+            src={`${API}/images/${clothes.Image}`}
+            alt={clothes.Description}
+            className="clothes-image"
+          />
+        )}
+        <p>{new Date(clothes.Date).toLocaleDateString()}</p>
+      </div>
+    </>
   );
 };
 
