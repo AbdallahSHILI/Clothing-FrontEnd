@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const [users, setUsers] = useState([]);
   const [countUsers, setCountUsers] = useState([]);
   const [clothes, setClothes] = useState([]);
   const [countClothes, setCountClothes] = useState([]);
@@ -22,7 +21,6 @@ const Dashboard = () => {
             authorization: `Bearer ${token}`,
           },
         });
-        setUsers(response.data.users);
         setCountUsers(response.data.result);
       } catch (error) {
         console.error("Fetching Users Failed", error);
@@ -57,11 +55,7 @@ const Dashboard = () => {
         </div>
 
         <div className="footer-card">
-          <Link
-            to={`/Dashboard/UsersPage`}
-            state={{ users, countUsers }}
-            className="link-style"
-          >
+          <Link to={`/Dashboard/UsersPage`} className="link-style">
             <h1>More info</h1>
             <Icon name="list" tooltip="list" theme="light" size="medium" />
           </Link>

@@ -2,13 +2,34 @@ import React from "react";
 import Icon from "react-crud-icons";
 import { Link } from "react-router-dom";
 import "./UsersPage.css";
-import { useLocation } from "react-router-dom";
+import Axios from "axios";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import { BackButton } from "../../../Components/Index";
 import CountContainer from "../../Catalogue-Clothes/CountContainer/CountContainer";
 
 const UsersPage = () => {
-  const location = useLocation();
-  const { users, countUsers } = location.state;
+  const [countUsers, setCountUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+  const API = "http://localhost:3001";
+  const token = Cookies.get("access-token");
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await Axios.get(`${API}/Clothing/Users/AllUsers`, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+        setUsers(response.data.users);
+        setCountUsers(response.data.result);
+      } catch (error) {
+        console.error("Fetching Users Failed", error);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   return (
     <>

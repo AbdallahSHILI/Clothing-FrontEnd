@@ -33,8 +33,6 @@ const OneUserPage = () => {
     fetchUser();
   }, [idUser]);
 
-
-
   if (!user) {
     return <div className="loading">Loading...</div>;
   }
@@ -48,10 +46,10 @@ const OneUserPage = () => {
         <img src={userImage} alt="User" className="user-avatar" />
         <h2 className="user-name">{user.FirstLastName}</h2>
         <p className="user-email">{user.Email}</p>
-          <div className="user-actions">
-            <MakeAdminButton/>
-            <DeleteUser />
-          </div>
+        <div className="user-actions">
+          <MakeAdminButton />
+          <DeleteUser userId={user._id} />
+        </div>
       </div>
     </>
   );
