@@ -15,7 +15,7 @@ import {
   UsersPage,
   OneUserPage,
 } from "./Pages/index";
-import { Footer, Navbar } from "./Components/Index";
+import { ConfirmCancelDelete, Footer, Navbar } from "./Components/Index";
 import DeleteUser from "./Components/Buttons/DeleteUser-Button/DeleteUser";
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
           />
           <Route
             path="/Dashboard/UsersPage/DeleteUser/:idUser"
-            element={<DeleteUser />}
+            element={<ConfirmCancelDelete />}
           />
         </Routes>
         <Footer />
