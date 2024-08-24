@@ -7,6 +7,7 @@ import Icon from "react-crud-icons";
 import "./Favorite.css";
 import DeleteClothes from "../Catalogue-Clothes/Delete Clothes/DeleteClothes";
 import Cookies from "js-cookie";
+import EmptyCartIcon from "../../Components/Assets/empty cart icon.svg";
 
 export const Favorite = () => {
   const [FavClothes, setFavClothes] = useState([]);
@@ -41,11 +42,15 @@ export const Favorite = () => {
       const token = Cookies.get("access-token");
 
       // Make the request to update the favorite status
-      const response = await Axios.patch(`${API}/Clothing/Clothes/${id}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await Axios.patch(
+        `${API}/Clothing/Clothes/${id}`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       // Remove the item from the state if it was unfavorited
       if (!response.data.favoriteStatus) {
@@ -60,52 +65,55 @@ export const Favorite = () => {
 
   return (
     <div className="mainContent">
-      {FavClothes.map((favClothes) => (
-        <div key={favClothes._id} className="model_card clicked">
-          <div className="Header">
-            <h1 className="description">{favClothes.Description}</h1>
+      {FavClothes.length === 0 ? (
+        // Show empty cart icon or message when there are no favorite clothes
+        <div className="empty-message">
+          <img src={EmptyCartIcon} alt="No products available" />
+          <p>No products available yet. Please add new products.</p>
+        </div>
+      ) : (
+        FavClothes.map((favClothes) => (
+          <div key={favClothes._id} className="model_card clicked">
+            <div className="Header">
+              <h1 className="description">{favClothes.Description}</h1>
 
-            <div className="heart">
-              <Heart
-                isClick={true}
-                onClick={() => handleHeartClick(favClothes._id)}
-              />
-            </div>
-          </div>
-          <hr />
-          {favClothes.Image && (
-            <Link to={`/OneClothes/${favClothes._id}`}>
-              <img
-                src={`${API}/images/${favClothes.Image}`}
-                alt={favClothes.Description}
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-            </Link>
-          )}
-          <div className="icon_container">
-            {role === "admin" && (
-              <div className="icon">
-                <DeleteClothes
-                  id={favClothes._id}
-                  onDelete={() => {
-                    /* handleDelete should be defined if you want to handle deletes */
-                  }}
+              <div className="heart">
+                <Heart
+                  isClick={true}
+                  onClick={() => handleHeartClick(favClothes._id)}
                 />
               </div>
-            )}
-            <div className="icon">
+            </div>
+            <hr />
+            {favClothes.Image && (
               <Link to={`/OneClothes/${favClothes._id}`}>
-                <Icon
-                  name="browse"
-                  tooltip="browse"
-                  theme="light"
-                  size="medium"
+                <img
+                  src={`${API}/images/${favClothes.Image}`}
+                  alt={favClothes.Description}
+                  style={{ maxWidth: "100%", height: "auto" }}
                 />
               </Link>
+            )}
+            <div className="icon_container">
+              {role === "admin" && (
+                <div className="icon">
+                  <DeleteClothes id={favClothes._id} />
+                </div>
+              )}
+              <div className="icon">
+                <Link to={`/OneClothes/${favClothes._id}`}>
+                  <Icon
+                    name="browse"
+                    tooltip="browse"
+                    theme="light"
+                    size="medium"
+                  />
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };

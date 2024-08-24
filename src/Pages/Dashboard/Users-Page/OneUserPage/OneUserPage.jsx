@@ -47,7 +47,7 @@ const OneUserPage = () => {
         <h2 className="user-name">{user.FirstLastName}</h2>
         <p className="user-email">{user.Email}</p>
         <div className="user-actions">
-          <MakeAdminButton />
+          <MakeAdminButton userId={user._id} />
           <DeleteUser userId={user._id} />
         </div>
       </div>

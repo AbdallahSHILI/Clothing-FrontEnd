@@ -1,0 +1,37 @@
+.user-actions {
+  display: flex;
+  justify-content: center; /* Centers the buttons horizontally */
+  gap: 20px; /* Adds space between the buttons */
+  margin-top: 20px; /* Adds space above the buttons */
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 120px; /* Ensures buttons have a consistent width */
+}
+
+.promote-user {
+  background-color: #f44336; /* Red color for delete */
+  color: white;
+}
+
+.promote-user:hover {
+  background-color: #e53935; /* Slightly darker red on hover */
+  transform: translateY(-2px); /* Adds a lift effect on hover */
+}
+
+.cancel-delete {
+  background-color: #4caf50; /* Green color for cancel */
+  color: white;
+}
+
+.cancel-delete:hover {
+  background-color: #43a047; /* Slightly darker green on hover */
+  transform: translateY(-2px); /* Adds a lift effect on hover */
+}

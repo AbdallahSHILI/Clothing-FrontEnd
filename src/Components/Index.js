@@ -5,3 +5,4 @@ export { default as BackButton } from "./Buttons/Back-Button/BackButton";
 export { default as MakeAdminButton } from "./Buttons/Make-Admin-Button/MakeAdminButton";
 export { default as DeleteUserButton } from "./Buttons/DeleteUser-Button/DeleteUser";
 export { default as ConfirmCancelDelete } from "./Buttons/DeleteUser-Button/Confirm-Cancel-Delete/ConfirmCancelDelete";
+export { default as ConfirmCancelAdmin } from "./Buttons/Make-Admin-Button/Confirm-Cancel-Admin/ConfirmCancelAdmin";
