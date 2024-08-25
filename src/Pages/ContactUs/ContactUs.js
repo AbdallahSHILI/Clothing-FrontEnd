@@ -6,52 +6,170 @@ import twiterLogo from "../../Components/Assets/twiter_logo.svg";
 import GirlContactUs from "../../Components/Assets/contact-us-2-62fa2cc2edbaf-sej-removebg-preview.jpg";
 
 const ContactUs = () => {
+  const [FirstLastName, setFirstLastName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [WhatIsAbout, setWhatIsAbout] = useState("");
+  const [Message, setMessage] = useState("");
+  const [errors, setErrors] = useState({});
+  const API = "http://localhost:3001";
+
+  const validateForm = () => {
+    const errors = {};
+    const nameParts = FirstLastName.trim().split(" ");
+    if (nameParts.length < 2) {
+      errors.FirstLastName = "Please enter both first and last name!";
+    }
+    if (!validator.isEmail(Email)) {
+      errors.Email = "Please enter a valid email!";
+    }
+    if (!WhatIsAbout) {
+      errors.WhatIsAbout = "Please select an Option!";
+    }
+    if (Message.length < 2) {
+      errors.Message = "Please enter A valid message !";
+    }
+
+    // Add other validations as needed
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0; // Return true if no errors, false otherwise
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!validateForm()) {
+      return; // Stop the form submission if validation fails
+    }
+    try {
+      const response = await Axios.post(`${API}/Clothing/Users/ContactUs`, {
+        FirstLastName,
+        Email,
+        WhatIsAbout,
+        Message,
+      });
+      console.log("Message Sent Succesfuly :", response.data);
+    } catch (error) {
+      if (error.response && error.response.data) {
+        const errorMessage =
+          typeof error.response.data === "string"
+            ? error.response.data
+            : error.response.data.message || "An unknown error occurred";
+      } else {
+        setErrors({ backend: "Sent Message failed: " + error.message });
+      }
+    }
+  };
+
+  return (
+    <ContactUsForm
+      FirstLastName={FirstLastName}
+      setFirstLastName={setFirstLastName}
+      Email={Email}
+      setEmail={setEmail}
+      WhatIsAbout={WhatIsAbout}
+      setWhatIsAbout={setWhatIsAbout}
+      Message={Message}
+      setMessage={setMessage}
+      onSubmit={onSubmit}
+      errors={errors}
+    />
+  );
+};
+
+const ContactUsForm = ({
+  FirstLastName,
+  setFirstLastName,
+  Email,
+  setEmail,
+  WhatIsAbout,
+  setWhatIsAbou,
+  Message,
+  setMessage,
+  onSubmit,
+  errors,
+}) => {
   return (
     <div className="Contact-container">
       <div className="ConatctUs_container">
         <div className="left_ContactUs">
           <h1>Contact us</h1>
-          <div className="Inputs_container">
-            <input
-              name="userName"
-              type="text"
-              placeholder="Enter your name here"
-            />
-            <input
-              name="email"
-              type="text"
-              placeholder="Enter your email here"
-            />
-          </div>
-          <h1>What is it about ?</h1>
-          <div className="radio_inputs">
-            <input
-              type="radio"
-              id="Sales_Enquiry"
-              name="Raison"
-              value="Sales_Enquiry"
-            />
-            <label for="html">Sales_Enquiry</label>
+          <form className="ContactUs_Form" onSubmit={onSubmit}>
+            <div className="Inputs_container">
+              <input
+                type="text"
+                name="FirstLastName"
+                id="FirstLastName"
+                required="required"
+                placeholder="Enter your first and last name here"
+                value={FirstLastName}
+                onChange={(e) => setFirstLastName(e.target.value)}
+              />
+              {errors.FirstLastName && (
+                <p className="error">{errors.FirstLastName}</p>
+              )}
+              <input
+                type="text"
+                name="Email"
+                id="Email"
+                required="required"
+                placeholder="Enter your email here"
+                value={Email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {errors.Email && <p className="error">{errors.Email}</p>}
+            </div>
+            <h1>What is it about ?</h1>
+            <div className="radio_inputs">
+              <input
+                type="radio"
+                id="Sales Enquiry"
+                name="Raison"
+                value="Sales Enquiry"
+                checked={WhatIsAbout === "Sales Enquiry"}
+                onChange={(e) => setWhatIsAbout(e.target.value)}
+              />
+              <label for="html">Sales Enquiry</label>
+              <br />
+              <input
+                type="radio"
+                id="Customer Feedback"
+                name="Raison"
+                Customer
+                Feedback
+                value="Customer Feedback"
+                checked={WhatIsAbout === ""}
+                onChange={(e) => setWhatIsAbout(e.target.value)}
+              />
+              <label for="html">Customer Feedback</label>
+              <br />
+              <input
+                type="radio"
+                id="Other"
+                name="Raison"
+                value="Other"
+                checked={WhatIsAbout === "Other"}
+                onChange={(e) => setWhatIsAbout(e.target.value)}
+              />
+              <label for="html">Other</label>
+              {errors.WhatIsAbout && (
+                <p className="error">{errors.WhatIsAbout}</p>
+              )}
+            </div>
             <br />
-            <input
-              type="radio"
-              id="Customer_Feedback"
-              name="Raison"
-              value="Customer_Feedback"
-            />
-            <label for="html">Customer_Feedback</label>
-            <br />
-            <input type="radio" id="Other" name="Raison" value="Other" />
-            <label for="html">Other</label>
-          </div>
-          <br />
-          <textarea
-            name="description"
-            placeholder="Enter your message here"
-          ></textarea>
-          <button name="submit" type="submit">
-            SEND
-          </button>
+            <textarea
+              name="Message"
+              placeholder="Enter your message here"
+              required="required"
+              value={Message}
+              onChange={(e) => setMessage(e.target.value)}
+            ></textarea>
+            {errors.Message && <p className="error">{errors.Message}</p>}
+            {errors.backend && <p className="error">{errors.backend}</p>}
+            <button name="submit" type="submit">
+              SEND
+            </button>
+          </form>
         </div>
         <div className="right_ContactUs">
           <img className="Girl_Logo" src={GirlContactUs} alt="Contact Us" />
