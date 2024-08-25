@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Register.css";
 import logo1 from "../../Components/Assets/Loogin-girl.svg";
 import Axios from "axios";
-import validator from "validator"; // Add this
+import validator from "validator";
 
 const Register = () => {
   const [FirstLastName, setFirstLastName] = useState("");

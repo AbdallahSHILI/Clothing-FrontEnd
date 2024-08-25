@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ContactUs.css";
+import Axios from "axios";
+import validator from "validator";
 import facebookLogo from "../../Components/Assets/facebook_logo.svg";
 import instagramLogo from "../../Components/Assets/instagram_logo.svg";
 import twiterLogo from "../../Components/Assets/twiter_logo.svg";
@@ -135,10 +137,8 @@ const ContactUsForm = ({
                 type="radio"
                 id="Customer Feedback"
                 name="Raison"
-                Customer
-                Feedback
                 value="Customer Feedback"
-                checked={WhatIsAbout === ""}
+                checked={WhatIsAbout === "Customer Feedback"}
                 onChange={(e) => setWhatIsAbout(e.target.value)}
               />
               <label for="html">Customer Feedback</label>
