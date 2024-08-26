@@ -50,26 +50,46 @@
   border-bottom: 2px solid #ccc; /* Add a bottom border */
   background-color: transparent;
 }
-
 .radio_inputs {
+  display: flex;
+  flex-direction: column; /* Stack radio buttons vertically */
   margin: 10px 0; /* Add margin to separate radio inputs */
 }
 
-textarea[name="description"] {
+.radio_inputs label {
+  margin-bottom: 10px; /* Add space between each radio button */
+  font-family: Arial, sans-serif; /* Font style for labels */
+  font-size: 16px; /* Font size for labels */
+  color: #333; /* Text color for labels */
+}
+
+textarea[name="Message"] {
   margin: 10px 0; /* Add vertical margin to separate textarea */
-  padding: 10px; /* Add padding for better textarea spacing */
+  padding: 15px; /* Increase padding for better text spacing */
   width: 100%; /* Ensure textarea takes full width */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
   resize: vertical; /* Allow vertical resizing */
-  min-height: 100px; /* Set a minimum height for the textarea */
-  border: none; /* Remove all borders */
-  border-bottom: 2px solid #ccc; /* Add a bottom border */
-  background-color: transparent; /* Make background transparent */
+  min-height: 150px; /* Set a minimum height for the textarea */
+  border: 2px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Round the corners */
+  background-color: #f9f9f9; /* Light background color */
+  font-family: Arial, sans-serif; /* Font style for textarea */
+  font-size: 14px; /* Font size for textarea */
 }
 
-textarea[name="description"]:focus {
+/* ContactUs.css */
+.readonly {
+  background-color: #f0f0f0; /* Light gray background to indicate non-editable */
+  border: none; /* Remove border */
+  cursor: not-allowed; /* Change cursor to indicate non-editable */
+  color: #6c757d; /* Dimmed text color */
+  pointer-events: none; /* Disable pointer events to prevent clicking */
+}
+
+textarea[name="Message"]:focus {
   outline: none; /* Remove outline on focus */
-  border-bottom: 2px solid #000; /* Change bottom border color on focus */
+  border-color: #000; /* Change border color on focus */
+  background-color: #fff; /* Change background color on focus */
 }
 
 button[name="submit"] {

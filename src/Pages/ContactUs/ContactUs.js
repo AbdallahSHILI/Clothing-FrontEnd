@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ContactUs.css";
 import Axios from "axios";
+import Cookies from "js-cookie";
 import validator from "validator";
 import facebookLogo from "../../Components/Assets/facebook_logo.svg";
 import instagramLogo from "../../Components/Assets/instagram_logo.svg";
@@ -13,7 +14,33 @@ const ContactUs = () => {
   const [WhatIsAbout, setWhatIsAbout] = useState("");
   const [Message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
+  const [isConnected, setIsConnected] = useState(false);
   const API = "http://localhost:3001";
+
+  useEffect(() => {
+    // Check if the user is connected
+    const token = Cookies.get("access-token");
+    if (token) {
+      setIsConnected(true);
+      // Fetch user details from the backend
+      Axios.get(`${API}/Clothing/Users/Me`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          const user = response.data.user;
+          const firstLastName = user.FirstLastName;
+          const email = user.Email;
+          setFirstLastName(`${firstLastName}`);
+          setEmail(email);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch user details", error);
+          setIsConnected(false); // In case of an error, consider user as not connected
+        });
+    }
+  }, []);
 
   const validateForm = () => {
     const errors = {};
@@ -74,6 +101,8 @@ const ContactUs = () => {
       Message={Message}
       setMessage={setMessage}
       onSubmit={onSubmit}
+      isConnected={isConnected}
+      setIsConnected={setIsConnected}
       errors={errors}
     />
   );
@@ -85,10 +114,12 @@ const ContactUsForm = ({
   Email,
   setEmail,
   WhatIsAbout,
-  setWhatIsAbou,
+  setWhatIsAbout,
   Message,
   setMessage,
   onSubmit,
+  isConnected,
+  setIsConnected,
   errors,
 }) => {
   return (
@@ -105,7 +136,9 @@ const ContactUsForm = ({
                 required="required"
                 placeholder="Enter your first and last name here"
                 value={FirstLastName}
+                className={isConnected ? "readonly" : ""}
                 onChange={(e) => setFirstLastName(e.target.value)}
+                readOnly={isConnected} // Make read-only if user is connected
               />
               {errors.FirstLastName && (
                 <p className="error">{errors.FirstLastName}</p>
@@ -117,41 +150,47 @@ const ContactUsForm = ({
                 required="required"
                 placeholder="Enter your email here"
                 value={Email}
+                className={isConnected ? "readonly" : ""}
                 onChange={(e) => setEmail(e.target.value)}
+                readOnly={isConnected}
               />
               {errors.Email && <p className="error">{errors.Email}</p>}
             </div>
             <h1>What is it about ?</h1>
             <div className="radio_inputs">
-              <input
-                type="radio"
-                id="Sales Enquiry"
-                name="Raison"
-                value="Sales Enquiry"
-                checked={WhatIsAbout === "Sales Enquiry"}
-                onChange={(e) => setWhatIsAbout(e.target.value)}
-              />
-              <label for="html">Sales Enquiry</label>
-              <br />
-              <input
-                type="radio"
-                id="Customer Feedback"
-                name="Raison"
-                value="Customer Feedback"
-                checked={WhatIsAbout === "Customer Feedback"}
-                onChange={(e) => setWhatIsAbout(e.target.value)}
-              />
-              <label for="html">Customer Feedback</label>
-              <br />
-              <input
-                type="radio"
-                id="Other"
-                name="Raison"
-                value="Other"
-                checked={WhatIsAbout === "Other"}
-                onChange={(e) => setWhatIsAbout(e.target.value)}
-              />
-              <label for="html">Other</label>
+              <label>
+                <input
+                  type="radio"
+                  id="Sales Enquiry"
+                  name="Raison"
+                  value="Sales Enquiry"
+                  checked={WhatIsAbout === "Sales Enquiry"}
+                  onChange={(e) => setWhatIsAbout(e.target.value)}
+                />
+                Sales Enquiry
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  id="Customer Feedback"
+                  name="Raison"
+                  value="Customer Feedback"
+                  checked={WhatIsAbout === "Customer Feedback"}
+                  onChange={(e) => setWhatIsAbout(e.target.value)}
+                />
+                Customer Feedback
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  id="Other"
+                  name="Raison"
+                  value="Other"
+                  checked={WhatIsAbout === "Other"}
+                  onChange={(e) => setWhatIsAbout(e.target.value)}
+                />
+                Other
+              </label>
               {errors.WhatIsAbout && (
                 <p className="error">{errors.WhatIsAbout}</p>
               )}
