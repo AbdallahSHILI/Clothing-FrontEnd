@@ -29,6 +29,11 @@
   text-decoration: none;
 }
 
+.message_icon {
+  height: 200px;
+  width: 20px;
+}
+
 .navbar-element {
   display: flex;
   align-items: center;

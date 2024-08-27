@@ -15,6 +15,7 @@ const ContactUs = () => {
   const [Message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [isConnected, setIsConnected] = useState(false);
+  const [contactMessage, setContactMessage] = useState("");
   const API = "http://localhost:3001";
 
   useEffect(() => {
@@ -78,15 +79,30 @@ const ContactUs = () => {
         Message,
       });
       console.log("Message Sent Succesfuly :", response.data);
+      setContactMessage("Message Sent Successfully!");
+      if (!isConnected) {
+        setFirstLastName("");
+        setEmail("");
+      }
+      setWhatIsAbout("");
+      setMessage("");
+      setTimeout(() => {
+        setContactMessage("");
+      }, 3000);
     } catch (error) {
       if (error.response && error.response.data) {
         const errorMessage =
           typeof error.response.data === "string"
             ? error.response.data
             : error.response.data.message || "An unknown error occurred";
+        setContactMessage(`Sending Message Failed: ${errorMessage}`);
       } else {
         setErrors({ backend: "Sent Message failed: " + error.message });
+        setContactMessage("An error occurred while sending the message.");
       }
+      setTimeout(() => {
+        setContactMessage(""); // Clear message after 3 seconds
+      }, 3000);
     }
   };
 
@@ -103,6 +119,8 @@ const ContactUs = () => {
       onSubmit={onSubmit}
       isConnected={isConnected}
       setIsConnected={setIsConnected}
+      contactMessage={contactMessage}
+      setContactMessage={setContactMessage}
       errors={errors}
     />
   );
@@ -120,6 +138,8 @@ const ContactUsForm = ({
   onSubmit,
   isConnected,
   setIsConnected,
+  contactMessage,
+  setContactMessage,
   errors,
 }) => {
   return (
@@ -208,6 +228,11 @@ const ContactUsForm = ({
             <button name="submit" type="submit">
               SEND
             </button>
+            {contactMessage && (
+              <div className={`Contact_Message ${contactMessage && "fadeIn"}`}>
+                {contactMessage}
+              </div>
+            )}
           </form>
         </div>
         <div className="right_ContactUs">
