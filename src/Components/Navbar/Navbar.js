@@ -3,6 +3,7 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../Assets/Vector.svg";
 import Chariot from "../Assets/chariot.png";
+import MessageIcon from "../Assets/message_icon.svg";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
@@ -37,18 +38,18 @@ set up to listen for this event can then respond to it.*/
           {isAuthenticated && role === "admin" && (
             <Link to="/Dashboard">Dashboard</Link>
           )}
-
           {isAuthenticated && role !== "admin" && (
-            <Link to="/Fashion">Fashion</Link>
+            <>
+              <Link to="/Fashion">Fashion</Link>
+              <Link to="/AllClothes">Catalogue</Link>
+              <Link to="/Favorite">Favorite</Link>
+              <Link to="/ContactUs">Contact us</Link>
+            </>
           )}
-          {isAuthenticated && role !== "admin" && (
-            <Link to="/AllClothes">Catalogue</Link>
-          )}
-          {isAuthenticated && role !== "admin" && (
-            <Link to="/Favorite">Favorite</Link>
-          )}
-          {role !== "admin" && <Link to="/ContactUs">Contact us</Link>}
         </div>
+        {isAuthenticated && role == "admin" && (
+          <img src={MessageIcon} alt="Message" className="message_icon" />
+        )}
         <div className="LoginSignup">
           {isAuthenticated ? (
             <button onClick={handleLogout} className="Logout_button">

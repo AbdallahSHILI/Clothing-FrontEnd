@@ -181,3 +181,30 @@ button[name="submit"]:hover {
   display: flex;
   flex-direction: column;
 }
+
+.Contact_Message {
+  color: #ffffff; /* White text color for contrast */
+  background-color: #ff4d4d; /* A nice red background for error messages */
+  padding: 10px 20px; /* Space inside the box */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Center the text */
+  margin-top: 20px; /* Space above the message */
+  font-size: 1rem; /* Size of the text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+  max-width: 80%; /* Limit the width */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
