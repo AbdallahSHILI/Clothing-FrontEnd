@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../Assets/Vector.svg";
 import Chariot from "../Assets/chariot.png";
 import MessageIcon from "../Assets/message_icon.svg";
 import Cookies from "js-cookie";
+import { MessageContext } from "../../useContext/messageContext"; // Import the context
 
 const Navbar = () => {
   const [role, setRole] = useState(Cookies.get("user-role"));
   const isAuthenticated = Cookies.get("access-token");
+  const { messageCount } = useContext(MessageContext); // Destructure messageCount from context
 
   const handleLogout = () => {
     // Remove the access token cookie
@@ -38,17 +40,21 @@ set up to listen for this event can then respond to it.*/
           {isAuthenticated && role === "admin" && (
             <Link to="/Dashboard">Dashboard</Link>
           )}
+          <Link to="/ContactUs">Contact us</Link>
           {isAuthenticated && role !== "admin" && (
             <>
               <Link to="/Fashion">Fashion</Link>
               <Link to="/AllClothes">Catalogue</Link>
               <Link to="/Favorite">Favorite</Link>
-              <Link to="/ContactUs">Contact us</Link>
             </>
           )}
         </div>
         {isAuthenticated && role == "admin" && (
-          <img src={MessageIcon} alt="Message" className="message_icon" />
+          <div className="message-icon-wrapper">
+            <img src={MessageIcon} alt="Message" className="message_icon" />
+            {/* Display message count */}
+            <span className="message-count">{messageCount}</span>
+          </div>
         )}
         <div className="LoginSignup">
           {isAuthenticated ? (

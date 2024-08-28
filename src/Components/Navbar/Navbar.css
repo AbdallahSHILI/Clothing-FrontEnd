@@ -29,9 +29,31 @@
   text-decoration: none;
 }
 
+.message-icon-wrapper {
+  position: relative; /* Positioning relative for placing the count badge */
+  display: flex; /* Flex to align the icon and the count */
+  align-items: center; /* Center the icon and count vertically */
+  gap: 5px; /* Adjust space between the icon and the count */
+}
+
 .message_icon {
-  height: 200px;
-  width: 20px;
+  height: 20px; /* Adjust icon size */
+  width: 20px; /* Adjust icon size */
+}
+
+.message-count {
+  position: absolute; /* Position the badge absolutely relative to the wrapper */
+  top: -5px; /* Positioning the badge */
+  right: -10px; /* Positioning the badge */
+  background-color: red; /* Background color for visibility */
+  color: white; /* Text color for contrast */
+  border-radius: 50%; /* Making the badge circular */
+  padding: 2px 6px; /* Adjust padding for the badge size */
+  font-size: 12px; /* Font size for the badge text */
+  font-weight: bold; /* Bold text for emphasis */
+  display: flex; /* Flex to center align text */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
 }
 
 .navbar-element {

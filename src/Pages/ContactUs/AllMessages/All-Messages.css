@@ -1,5 +1,5 @@
 /* Container for the Users List */
-.users-container {
+.messages-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -9,7 +9,7 @@
 }
 
 /* Title for the Page */
-.users-container h1 {
+.messages-container h1 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
@@ -17,14 +17,14 @@
 }
 
 /* List of Users */
-.users-list {
+.messages-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 /* Individual User Item */
-.user-item {
+.message-item {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -37,41 +37,26 @@
 }
 
 /* User Item Hover Effect */
-.user-item:hover {
+.message-item:hover {
   background-color: #f9f9f9;
 }
 
 /* Container for User Details */
-.user-details {
+.message-details {
   display: flex;
   flex-direction: column;
   min-width: 200px;
 }
 
 /* User Name Style */
-.user_FirstLastName {
+.message_FirstLastName {
   font-size: 18px;
   font-weight: bold;
   color: #555;
 }
 
 /* Additional Info (if needed) */
-.user_info {
+.message_info {
   color: #888;
   font-size: 14px;
-}
-
-.user_role {
-  padding: 5px 10px;
-  border-radius: 4px;
-  color: white;
-  font-weight: bold;
-}
-
-.user_role.admin {
-  background-color: red;
-}
-
-.user_role.customer {
-  background-color: green;
 }
