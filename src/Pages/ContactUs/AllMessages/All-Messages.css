@@ -15,48 +15,39 @@
   margin-bottom: 20px;
   font-size: 24px;
 }
-
-/* List of Users */
-.messages-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Individual User Item */
-.message-item {
+/* Messages Table */
+.messages-table {
+  width: 100%; /* Make table take the full width of the container */
+  border-collapse: separate; /* Separate borders */
+  border-spacing: 0 10px; /* Space between rows */
+  text-align: left;
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 15px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* User Item Hover Effect */
-.message-item:hover {
-  background-color: #f9f9f9;
+.messages-table th,
+.messages-table td {
+  padding: 12px 15px; /* Padding for table cells */
+  border-bottom: 1px solid #ddd; /* Bottom border for rows */
 }
 
-/* Container for User Details */
-.message-details {
-  display: flex;
-  flex-direction: column;
-  min-width: 200px;
+/* Table Headers */
+.messages-table th {
+  background-color: #007bff; /* Header background color */
+  color: #fff; /* Header text color */
+  font-weight: bold; /* Bold header text */
+  text-align: center; /* Center text in headers */
 }
 
-/* User Name Style */
-.message_FirstLastName {
-  font-size: 18px;
-  font-weight: bold;
-  color: #555;
+/* Adding space between columns */
+.messages-table th,
+.messages-table td {
+  text-align: left; /* Align text to the left */
 }
 
-/* Additional Info (if needed) */
-.message_info {
-  color: #888;
-  font-size: 14px;
+/* Highlighting a selected row */
+.highlighted-row {
+  background-color: #f0f8ff; /* Light blue background for highlighted rows */
 }

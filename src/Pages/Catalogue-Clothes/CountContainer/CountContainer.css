@@ -1,11 +1,12 @@
 .count_container {
-  align-self: flex-end; /* Align to the right side */
-  background-color: #007bff; /* Background color */
-  color: white; /* Text color */
+  background-color: #007bff;
+  color: white;
   padding: 10px 20px;
-  border-radius: 12px; /* Rounded corners */
+  border-radius: 12px;
   font-size: 1em;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  width: 14%;
-  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 120px;
+  max-width: 20%;
+  text-align: center;
+  margin: 15px auto;
 }

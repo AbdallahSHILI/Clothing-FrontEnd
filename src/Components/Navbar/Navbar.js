@@ -40,7 +40,6 @@ set up to listen for this event can then respond to it.*/
           {isAuthenticated && role === "admin" && (
             <Link to="/Dashboard">Dashboard</Link>
           )}
-          <Link to="/ContactUs">Contact us</Link>
           {isAuthenticated && role !== "admin" && (
             <>
               <Link to="/Fashion">Fashion</Link>
@@ -48,13 +47,16 @@ set up to listen for this event can then respond to it.*/
               <Link to="/Favorite">Favorite</Link>
             </>
           )}
+          {role !== "admin" && <Link to="/ContactUs">Contact us</Link>}
         </div>
         {isAuthenticated && role == "admin" && (
-          <div className="message-icon-wrapper">
-            <img src={MessageIcon} alt="Message" className="message_icon" />
-            {/* Display message count */}
-            <span className="message-count">{messageCount}</span>
-          </div>
+          <Link to="/AllMessages">
+            <div className="message-icon-wrapper">
+              <img src={MessageIcon} alt="Message" className="message_icon" />
+              {/* Display message count */}
+              <span className="message-count">{messageCount}</span>
+            </div>
+          </Link>
         )}
         <div className="LoginSignup">
           {isAuthenticated ? (
