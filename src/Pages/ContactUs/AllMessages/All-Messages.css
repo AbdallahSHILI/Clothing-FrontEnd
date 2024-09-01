@@ -27,6 +27,16 @@
   overflow: hidden;
 }
 
+.no-user-message {
+  color: #ff4c4c; /* Red color for the no user message */
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 1rem;
+  background-color: #f8d7da; /* Light red background for visibility */
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
 .messages-table th,
 .messages-table td {
   padding: 12px 15px; /* Padding for table cells */

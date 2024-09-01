@@ -1,0 +1,37 @@
+/* SearchBar.css */
+.search-filter-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .search-input {
+    flex-grow: 1;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    font-size: 1rem;
+  }
+  
+  .search-input:focus {
+    border-color: #007bff; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Glow effect on focus */
+  }
+  
+  .icon {
+    cursor: pointer;
+    color: #888;
+    transition: color 0.3s ease; /* Smooth color transition */
+  }
+  
+  .icon:hover {
+    color: #007bff; /* Color change on hover */
+  }
+  

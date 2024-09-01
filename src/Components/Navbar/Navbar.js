@@ -43,11 +43,16 @@ set up to listen for this event can then respond to it.*/
           {isAuthenticated && role !== "admin" && (
             <>
               <Link to="/Fashion">Fashion</Link>
-              <Link to="/AllClothes">Catalogue</Link>
               <Link to="/Favorite">Favorite</Link>
             </>
           )}
-          {role !== "admin" && <Link to="/ContactUs">Contact us</Link>}
+          {role !== "admin" && (
+            <>
+              {" "}
+              <Link to="/ContactUs">Contact us</Link>
+              <Link to="/AllClothes">Catalogue</Link>
+            </>
+          )}
         </div>
         {isAuthenticated && role == "admin" && (
           <Link to="/AllMessages">
@@ -60,12 +65,16 @@ set up to listen for this event can then respond to it.*/
         )}
         <div className="LoginSignup">
           {isAuthenticated ? (
-            <button onClick={handleLogout} className="Logout_button">
-              Logout
+            <button onClick={handleLogout} className="logout-button">
+              <span></span> {/* Placeholder for the icon */}
+              <span>Logout</span>
             </button>
           ) : (
             <Link to="/Login">
-              <button className="Login_button">Login</button>
+              <button className="login-button">
+                <span></span> {/* Placeholder for the icon */}
+                <span>Login</span>
+              </button>
             </Link>
           )}
         </div>
