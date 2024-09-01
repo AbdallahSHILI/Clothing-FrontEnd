@@ -43,8 +43,8 @@
 
 .message-count {
   position: absolute; /* Position the badge absolutely relative to the wrapper */
-  top: -5px; /* Positioning the badge */
-  right: -10px; /* Positioning the badge */
+  top: -17px; /* Positioning the badge */
+  right: -20px; /* Positioning the badge */
   background-color: red; /* Background color for visibility */
   color: white; /* Text color for contrast */
   border-radius: 50%; /* Making the badge circular */
@@ -82,46 +82,69 @@
 .navbar-element .navbar-control img {
   width: 24px;
 }
-
-.Login_button {
-  background-color: #0a66c2;
-  border-radius: 12px;
-  color: #ffffff;
-  box-sizing: border-box;
-  font-size: 24px;
-  overflow: hidden;
-}
-
-.Lougout_button {
-  background-color: #0a66c2;
-  border-radius: 12px;
-  color: #ffffff;
-  box-sizing: border-box;
-  font-size: 24px;
-  overflow: hidden;
-}
-
-.LoginSinup {
-  width: 134px;
-  height: 62px;
-  flex-shrink: 0;
-  border-radius: 7px;
-  background: #000;
-}
-
-.LoginSinup a {
-  width: 90px;
-  height: 32px;
-  flex-shrink: 0;
-  color: #fefefe;
-  font-family: Poppins;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.72px;
-  margin: 11px 0px 0px 39px;
+.login-button,
+.logout-button {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 150px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
+  border-radius: 25px; /* Rounded button corners */
+  background: linear-gradient(
+    to right,
+    #0a66c2,
+    #005999
+  ); /* Gradient background */
+  color: #ffffff;
+  font-family: Poppins, sans-serif;
+  font-size: 18px; /* Adjust font size as needed */
+  font-weight: 600;
   text-decoration: none;
+  border: none;
+  cursor: pointer;
+  position: relative; /* Positioning for the icon */
+  overflow: hidden; /* Ensures no overflow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+  transition: background 0.3s ease; /* Smooth transition */
+}
+
+/* Icon and text separation using flexbox */
+.login-button span,
+.logout-button span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%; /* Adjust width of each part */
+  height: 100%;
+}
+
+/* Left side for the icon */
+.login-button span:first-child,
+.logout-button span:first-child {
+  background-color: rgba(0, 0, 0, 0.2); /* Slightly darker for contrast */
+  width: 50px; /* Adjust width for the icon */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effects for buttons */
+.login-button:hover,
+.logout-button:hover {
+  background: linear-gradient(to right, #005999, #0a66c2);
+}
+
+/* Specific icon for login button */
+.login-button span:first-child::before {
+  content: "\2713"; /* Unicode for checkmark */
+  font-size: 20px;
+  color: #ffffff;
+}
+
+/* Specific icon for logout button */
+.logout-button span:first-child::before {
+  content: "\2717"; /* Unicode for cross */
+  font-size: 20px;
+  color: #ffffff;
 }
