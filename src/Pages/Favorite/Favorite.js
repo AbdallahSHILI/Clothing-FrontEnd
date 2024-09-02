@@ -69,7 +69,7 @@ export const Favorite = () => {
         // Show empty cart icon or message when there are no favorite clothes
         <div className="empty-message">
           <img src={EmptyCartIcon} alt="No products available" />
-          <p>No products available yet. Please add new products.</p>
+          <p>There is no available Clothes yet. Please favorite one of them.</p>
         </div>
       ) : (
         FavClothes.map((favClothes) => (

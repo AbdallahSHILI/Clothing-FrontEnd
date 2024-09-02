@@ -40,18 +40,14 @@ set up to listen for this event can then respond to it.*/
           {isAuthenticated && role === "admin" && (
             <Link to="/Dashboard">Dashboard</Link>
           )}
-          {isAuthenticated && role !== "admin" && (
-            <>
-              <Link to="/Fashion">Fashion</Link>
-              <Link to="/Favorite">Favorite</Link>
-            </>
-          )}
           {role !== "admin" && (
             <>
-              {" "}
-              <Link to="/ContactUs">Contact us</Link>
               <Link to="/AllClothes">Catalogue</Link>
+              <Link to="/ContactUs">Contact Us</Link>
             </>
+          )}
+          {isAuthenticated && role !== "admin" && (
+            <Link to="/Favorite">Favorite</Link>
           )}
         </div>
         {isAuthenticated && role == "admin" && (

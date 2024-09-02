@@ -10,12 +10,16 @@ import DeleteClothes from "../Delete Clothes/DeleteClothes";
 import Cookies from "js-cookie";
 import { BackButton } from "../../../Components/Index";
 import CountContainer from "../CountContainer/CountContainer";
+import BuyPopUp from "../../../Components/PopUp/BuyPopUp/BuyPopUp";
+import Modal from "../../../Components/PopUp/BuyPopUp/BuyPopUp";
 
 const AllClothes = () => {
   const isAuthenticated = Cookies.get("access-token");
   const [role, setRole] = useState(Cookies.get("user-role"));
+  const [showPopUp, setShowPopUp] = useState(false);
   const [Clothes, setClothes] = useState([]);
   const [countClothes, setCountClothes] = useState([]);
+  const [selectedClothes, setSelectedClothes] = useState(null);
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
@@ -91,27 +95,19 @@ This adds a new property isFavorite to the object.
     );
   };
 
-  const handleBuy = async (index, id, currentBuyingStatus) => {
-    try {
-      // Toggle favorite status
-      const newBuyingStatus = !currentBuyingStatus;
+  const handleBuy = (clothes) => {
+    setSelectedClothes(clothes);
+    setShowPopUp(true);
+  };
 
-      const response = await Axios.patch(
-        `${API}/Clothing/Clothes/BuyOneClothes/${id}`,
-        {
-          Buyed: newBuyingStatus,
-        }
-      );
+  const handleModalClose = () => {
+    setShowPopUp(false);
+    setSelectedClothes(null);
+  };
 
-      // Update Buying status in the frontend
-      // Creating a copy of the array
-      // Create a new version of the state, modify it, and then update the state with this new version.
-      const newClothes = [...Clothes];
-      newClothes[index].Buyed = newBuyingStatus;
-      setClothes(newClothes);
-    } catch (error) {
-      console.error("Buying Clothes Failed", error);
-    }
+  const handleFormSubmit = (name, email) => {
+    // Handle form submission logic here
+    console.log(`Buying clothes for ${name}, ${email}`);
   };
 
   useEffect(() => {
@@ -214,9 +210,7 @@ This adds a new property isFavorite to the object.
                   )}
                   {role === "customer" && (
                     <button
-                      onClick={() =>
-                        handleBuy(index, clothes._id, clothes.Buyed)
-                      }
+                      onClick={() => handleBuy(clothes)}
                       className={buttonClass}
                     >
                       {buttonText}
@@ -240,6 +234,11 @@ This adds a new property isFavorite to the object.
           );
         })}
       </div>
+      <Modal
+        isOpen={showPopUp}
+        onClose={handleModalClose}
+        onSubmit={handleFormSubmit}
+      />
     </>
   );
 };

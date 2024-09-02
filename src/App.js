@@ -6,7 +6,6 @@ import {
   Login,
   Register,
   Favorite,
-  Fashion,
   NewClothes,
   AllClothes,
   OneClothes,
@@ -37,7 +36,6 @@ function App() {
             <Route path="/Register" element={<Register />} />
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/Favorite" element={<Favorite />} />
-            <Route path="/Fashion" element={<Fashion />} />
             <Route path="/NewClothes" element={<NewClothes />} />
             <Route path="/AllClothes" element={<AllClothes />} />
             <Route path="/OneClothes/:id" element={<OneClothes />} />
