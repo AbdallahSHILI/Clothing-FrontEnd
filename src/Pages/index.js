@@ -1,5 +1,4 @@
 export { default as Home } from "./Home/Home";
-export { default as Fashion } from "./Fashion/Fashion";
 export { default as ContactUs } from "./ContactUs/ContactUs";
 export { default as Favorite } from "./Favorite/Favorite";
 export { default as Login } from "./Login/Login";
