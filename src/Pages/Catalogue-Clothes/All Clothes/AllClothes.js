@@ -10,7 +10,6 @@ import DeleteClothes from "../Delete Clothes/DeleteClothes";
 import Cookies from "js-cookie";
 import { BackButton } from "../../../Components/Index";
 import CountContainer from "../CountContainer/CountContainer";
-import BuyPopUp from "../../../Components/PopUp/BuyPopUp/BuyPopUp";
 import Modal from "../../../Components/PopUp/BuyPopUp/BuyPopUp";
 
 const AllClothes = () => {
@@ -237,7 +236,7 @@ This adds a new property isFavorite to the object.
       <Modal
         isOpen={showPopUp}
         onClose={handleModalClose}
-        onSubmit={handleFormSubmit}
+        clothesId={selectedClothes ? selectedClothes._id : null}
       />
     </>
   );
