@@ -1,16 +1,47 @@
-// src/components/Modal.js
 import React, { useState } from "react";
-import "./BuyPopUp.css"
+import axios from "axios";
+import "./BuyPopUp.css";
 
-const Modal = ({ isOpen, onClose, onSubmit }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+import Cookies from "js-cookie";
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     onSubmit(name, email);
-//     onClose();
-//   };
+const Modal = ({ isOpen, onClose, clothesId }) => {
+  const [price, setPrice] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const API = "http://localhost:3001";
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = Cookies.get("access-token");
+      console.log("token:", token);
+      console.log("price:", price);
+      console.log("message:", message);
+      // Make an axios POST request to the backend to create the offer
+      const response = await axios.post(
+        `${API}/Clothing/Clothes/BuyOneClothes/${clothesId}`,
+        {
+          Price: price,
+          Message: message,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Offer created:", response.data);
+      // Handle successful response, e.g., show success message, reset form fields
+      setPrice("");
+      setMessage("");
+      onClose(); // Close the modal after successful submission
+    } catch (error) {
+      console.error("Error creating offer:", error);
+      setError("Failed to create the offer. Please try again.");
+      // Handle error, e.g., show error message to the user
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -21,26 +52,25 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
           &times;
         </button>
         <h2>Buy Clothes</h2>
-        {/* <form onSubmit={handleSubmit}> */}
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>
-            Name:
+            Price:
             <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
               required
             />
           </label>
           <label>
-            Email:
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+            Message:
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               required
             />
           </label>
+          {error && <p className="error-message">{error}</p>}
           <button type="submit">Submit</button>
         </form>
       </div>
