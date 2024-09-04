@@ -34,19 +34,11 @@ const AllClothes = () => {
         const userId = Cookies.get("user-id");
         setCountClothes(response.data.result);
 
-        /*The isFavorite status is lost when you navigate between pages,
-         and you want to maintain this status.
-         or each clothing item, we are adding a new property called isFavorite 
-         to determine if the current user has favorited that item.
-         { ...clothes }: This is using the spread operator (...), 
-          It takes all the existing properties of the clothes object 
-          and copies them into a new object.
-          isFavorite: clothes.FavoriteUsers.includes(userId):
-This adds a new property isFavorite to the object.
-*/
+        // Ensure userWhoSentOffer is always an array
         const updatedClothes = response.data.clothes.map((clothes) => ({
           ...clothes,
           isFavorite: clothes.FavoriteUsers.includes(userId),
+          userWhoSentOffer: clothes.userWhoSentOffer || [], // Default to empty array if undefined
         }));
 
         setClothes(updatedClothes);
@@ -104,11 +96,6 @@ This adds a new property isFavorite to the object.
     setSelectedClothes(null);
   };
 
-  const handleFormSubmit = (name, email) => {
-    // Handle form submission logic here
-    console.log(`Buying clothes for ${name}, ${email}`);
-  };
-
   useEffect(() => {
     // Define the logout handler function
     const handleLogout = () => {
@@ -146,13 +133,7 @@ This adds a new property isFavorite to the object.
       {isAuthenticated && role === "admin" && (
         <div className="newClothes_header">
           <Link to={`/NewClothes`} style={{ textDecoration: "none" }}>
-            <Icon
-              name="add"
-              tooltip="add"
-              theme="light"
-              size="medium"
-              // onClick={() => openModal(clothes)}
-            />
+            <Icon name="add" tooltip="add" theme="light" size="medium" />
             <h1>Add New Clothes</h1>
           </Link>
         </div>
@@ -162,73 +143,36 @@ This adds a new property isFavorite to the object.
         {Clothes.map((clothes, index) => {
           let cardClass = "model_card";
           if (clothes.isFavorite) {
-            // Check the frontend state property
             cardClass += " clicked";
           }
 
+          // Default button class and text
           let buttonClass = "Buy_Button";
-          if (clothes.Buyed) {
-            buttonClass += " buyed";
-          }
-          let buttonText = "";
-          if (clothes.Buyed) {
+          let buttonText = "Buy";
+
+          // Check if current user is in the userWhoSentOffer array
+          const userId = Cookies.get("user-id");
+          const hasOffer = clothes.userWhoSentOffer.some(
+            (offer) => offer._id.toString() === userId
+          );
+
+          if (hasOffer) {
+            buttonClass += " Offre";
             buttonText = "Unbuy";
-          } else {
-            buttonText = "Buy";
           }
 
           return (
             <div key={clothes._id} className={cardClass}>
-              <div className="Header">
-                <h1 className="description">{clothes.Description}</h1>
-                {isAuthenticated && role === "customer" && (
-                  <div className="heart">
-                    <Heart
-                      isClick={clothes.isFavorite}
-                      onClick={() => handleHeartClick(index, clothes._id)}
-                    />
-                  </div>
-                )}
-              </div>
-              <hr />
-              {clothes.Image && (
-                <Link to={`/OneClothes/${clothes._id}`}>
-                  <img
-                    src={`${API}/images/${clothes.Image}`}
-                    alt={clothes.Description}
-                    style={{ maxWidth: "100%", height: "auto" }}
-                  />
-                </Link>
+              {/* Other components and elements */}
+              {isAuthenticated && role === "customer" && (
+                <button
+                  onClick={() => handleBuy(clothes)}
+                  className={buttonClass}
+                >
+                  {buttonText}
+                </button>
               )}
-              {isAuthenticated && (
-                <div className="icon_container">
-                  {role === "admin" && (
-                    <div className="icon">
-                      <DeleteClothes id={clothes._id} onDelete={handleDelete} />
-                    </div>
-                  )}
-                  {role === "customer" && (
-                    <button
-                      onClick={() => handleBuy(clothes)}
-                      className={buttonClass}
-                    >
-                      {buttonText}
-                    </button>
-                  )}
-
-                  <div className="icon">
-                    <Link to={`/OneClothes/${clothes._id}`}>
-                      <Icon
-                        name="browse"
-                        tooltip="browse"
-                        theme="light"
-                        size="medium"
-                        // onClick={() => openModal(clothes)}
-                      />
-                    </Link>
-                  </div>
-                </div>
-              )}
+              {/* Other components and elements */}
             </div>
           );
         })}
