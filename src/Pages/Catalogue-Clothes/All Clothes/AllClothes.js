@@ -19,6 +19,7 @@ const AllClothes = () => {
   const [Clothes, setClothes] = useState([]);
   const [countClothes, setCountClothes] = useState([]);
   const [selectedClothes, setSelectedClothes] = useState(null);
+  const [userSendOffre, setUserSendOffre] = useState(null);
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
@@ -31,16 +32,16 @@ const AllClothes = () => {
             authorization: `Bearer ${token}`,
           },
         });
-        const userId = Cookies.get("user-id");
         setCountClothes(response.data.result);
 
-        // Ensure userWhoSentOffer is always an array
+        const userId = Cookies.get("user-id");
+        if (response.data.clothes.userWhiSentOffre?.includes(userId)) {
+          setUserSendOffre(true);
+        }
         const updatedClothes = response.data.clothes.map((clothes) => ({
           ...clothes,
           isFavorite: clothes.FavoriteUsers.includes(userId),
-          userWhoSentOffer: clothes.userWhoSentOffer || [], // Default to empty array if undefined
         }));
-
         setClothes(updatedClothes);
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
@@ -96,6 +97,17 @@ const AllClothes = () => {
     setSelectedClothes(null);
   };
 
+  const handleOfferSent = (clothesId) => {
+    // Update state to reflect that the user has sent an offer for the given clothes
+    setUserSendOffre((prev) => ({
+      ...prev,
+      [clothesId]: true, // Set the userSendOffre to true for this specific clothes
+    }));
+
+    // Optionally close the modal
+    handleModalClose();
+  };
+
   useEffect(() => {
     // Define the logout handler function
     const handleLogout = () => {
@@ -133,7 +145,13 @@ const AllClothes = () => {
       {isAuthenticated && role === "admin" && (
         <div className="newClothes_header">
           <Link to={`/NewClothes`} style={{ textDecoration: "none" }}>
-            <Icon name="add" tooltip="add" theme="light" size="medium" />
+            <Icon
+              name="add"
+              tooltip="add"
+              theme="light"
+              size="medium"
+              // onClick={() => openModal(clothes)}
+            />
             <h1>Add New Clothes</h1>
           </Link>
         </div>
@@ -143,36 +161,65 @@ const AllClothes = () => {
         {Clothes.map((clothes, index) => {
           let cardClass = "model_card";
           if (clothes.isFavorite) {
+            // Check the frontend state property
             cardClass += " clicked";
           }
 
-          // Default button class and text
           let buttonClass = "Buy_Button";
-          let buttonText = "Buy";
-
-          // Check if current user is in the userWhoSentOffer array
-          const userId = Cookies.get("user-id");
-          const hasOffer = clothes.userWhoSentOffer.some(
-            (offer) => offer._id.toString() === userId
-          );
-
-          if (hasOffer) {
-            buttonClass += " Offre";
-            buttonText = "Unbuy";
-          }
+          let buttonText = userSendOffre ? "Unbuy" : "Buy";
 
           return (
             <div key={clothes._id} className={cardClass}>
-              {/* Other components and elements */}
-              {isAuthenticated && role === "customer" && (
-                <button
-                  onClick={() => handleBuy(clothes)}
-                  className={buttonClass}
-                >
-                  {buttonText}
-                </button>
+              <div className="Header">
+                <h1 className="description">{clothes.Description}</h1>
+                {isAuthenticated && role === "customer" && (
+                  <div className="heart">
+                    <Heart
+                      isClick={clothes.isFavorite}
+                      onClick={() => handleHeartClick(index, clothes._id)}
+                    />
+                  </div>
+                )}
+              </div>
+              <hr />
+              {clothes.Image && (
+                <Link to={`/OneClothes/${clothes._id}`}>
+                  <img
+                    src={`${API}/images/${clothes.Image}`}
+                    alt={clothes.Description}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                </Link>
               )}
-              {/* Other components and elements */}
+              {isAuthenticated && (
+                <div className="icon_container">
+                  {role === "admin" && (
+                    <div className="icon">
+                      <DeleteClothes id={clothes._id} onDelete={handleDelete} />
+                    </div>
+                  )}
+                  {role === "customer" && (
+                    <button
+                      onClick={() => handleBuy(clothes)}
+                      className={buttonClass}
+                    >
+                      {buttonText}
+                    </button>
+                  )}
+
+                  <div className="icon">
+                    <Link to={`/OneClothes/${clothes._id}`}>
+                      <Icon
+                        name="browse"
+                        tooltip="browse"
+                        theme="light"
+                        size="medium"
+                        // onClick={() => openModal(clothes)}
+                      />
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}
@@ -181,6 +228,7 @@ const AllClothes = () => {
         isOpen={showPopUp}
         onClose={handleModalClose}
         clothesId={selectedClothes ? selectedClothes._id : null}
+        onOfferSent={handleOfferSent} // Pass callback to Modal
       />
     </>
   );
