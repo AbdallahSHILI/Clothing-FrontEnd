@@ -3,7 +3,7 @@ import axios from "axios";
 import "./BuyPopUp.css";
 import Cookies from "js-cookie";
 
-const Modal = ({ isOpen, onClose, clothesId }) => {
+const Modal = ({ isOpen, onClose, clothesId, onOfferSent }) => {
   const [price, setPrice] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -30,7 +30,9 @@ const Modal = ({ isOpen, onClose, clothesId }) => {
 
       // Display success message
       setSuccess(true);
-      // if (response.data.success) {
+      if (onOfferSent) {
+        onOfferSent(clothesId);
+      }
     } catch (error) {
       console.error("Error creating offer:", error);
       setError("Failed to create the offer. Please try again.");
