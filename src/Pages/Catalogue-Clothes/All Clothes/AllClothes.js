@@ -35,13 +35,27 @@ const AllClothes = () => {
         setCountClothes(response.data.result);
 
         const userId = Cookies.get("user-id");
-        if (response.data.clothes.userWhiSentOffre?.includes(userId)) {
-          setUserSendOffre(true);
-        }
-        const updatedClothes = response.data.clothes.map((clothes) => ({
-          ...clothes,
-          isFavorite: clothes.FavoriteUsers.includes(userId),
-        }));
+
+        // Iterate over the clothes to check if the user has sent an offer for any item
+        const updatedClothes = response.data.clothes.map((clothes) => {
+          console.log(clothes);
+          const isInList = clothes.userWhoSentOffer?.includes(userId);
+          console.log(isInList);
+          return {
+            ...clothes,
+            isFavorite: clothes.FavoriteUsers.includes(userId),
+            userSendOffre: isInList, // Set a flag for the current item
+          };
+        });
+        console.log("updateClothes", updatedClothes);
+
+        /*.some() checks if at least one element in the array satisfies a given condition. 
+        It returns true if any item in the array matches the condition and false otherwise.*/
+        const hasUserSentOffer = updatedClothes.some(
+          (clothes) => clothes.userSendOffre
+        );
+        setUserSendOffre(hasUserSentOffer);
+        console.log("hasUserSentOffer", hasUserSentOffer);
         setClothes(updatedClothes);
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
@@ -98,13 +112,14 @@ const AllClothes = () => {
   };
 
   const handleOfferSent = (clothesId) => {
-    // Update state to reflect that the user has sent an offer for the given clothes
-    setUserSendOffre((prev) => ({
-      ...prev,
-      [clothesId]: true, // Set the userSendOffre to true for this specific clothes
-    }));
+    const updatedClothes = Clothes.map((clothes) => {
+      if (clothes._id === clothesId) {
+        return { ...clothes, userSendOffre: true };
+      }
+      return clothes;
+    });
 
-    // Optionally close the modal
+    setClothes(updatedClothes);
     handleModalClose();
   };
 
@@ -201,9 +216,11 @@ const AllClothes = () => {
                   {role === "customer" && (
                     <button
                       onClick={() => handleBuy(clothes)}
-                      className={buttonClass}
+                      className={
+                        clothes.userSendOffre ? "UnBuy_Button" : "Buy_Button"
+                      }
                     >
-                      {buttonText}
+                      {clothes.userSendOffre ? "Unbuy" : "Buy"}
                     </button>
                   )}
 
@@ -228,7 +245,7 @@ const AllClothes = () => {
         isOpen={showPopUp}
         onClose={handleModalClose}
         clothesId={selectedClothes ? selectedClothes._id : null}
-        onOfferSent={handleOfferSent} // Pass callback to Modal
+        onOfferSent={handleOfferSent}
       />
     </>
   );
