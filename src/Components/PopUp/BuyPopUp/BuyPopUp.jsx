@@ -7,7 +7,7 @@ const Modal = ({ isOpen, onClose, clothesId, onOfferSent }) => {
   const [price, setPrice] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false); // New state for success message
+  const [success, setSuccess] = useState(false);
   const API = "http://localhost:3001";
 
   const handleSubmit = async (e) => {
@@ -28,8 +28,10 @@ const Modal = ({ isOpen, onClose, clothesId, onOfferSent }) => {
       );
       console.log("Offer created:", response.data);
 
-      // Display success message
+      // Set success to true, which will show the success message in the same popup
       setSuccess(true);
+
+      // Notify parent component if needed
       if (onOfferSent) {
         onOfferSent(clothesId);
       }
@@ -39,13 +41,12 @@ const Modal = ({ isOpen, onClose, clothesId, onOfferSent }) => {
     }
   };
 
-  // Close the modal and reset the state
   const handleClose = () => {
     setPrice("");
     setMessage("");
     setError("");
-    setSuccess(false); // Reset success state
-    onClose(); // Close the modal
+    setSuccess(false);
+    onClose();
   };
 
   if (!isOpen) return null;

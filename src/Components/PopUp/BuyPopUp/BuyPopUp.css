@@ -58,3 +58,12 @@ button {
 button[type="submit"] {
   margin-top: 10px;
 }
+
+.success-message {
+  display: block;
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
