@@ -38,16 +38,13 @@ const AllClothes = () => {
 
         // Iterate over the clothes to check if the user has sent an offer for any item
         const updatedClothes = response.data.clothes.map((clothes) => {
-          console.log(clothes);
           const isInList = clothes.userWhoSentOffer?.includes(userId);
-          console.log(isInList);
           return {
             ...clothes,
             isFavorite: clothes.FavoriteUsers.includes(userId),
             userSendOffre: isInList, // Set a flag for the current item
           };
         });
-        console.log("updateClothes", updatedClothes);
 
         /*.some() checks if at least one element in the array satisfies a given condition. 
         It returns true if any item in the array matches the condition and false otherwise.*/
@@ -55,7 +52,6 @@ const AllClothes = () => {
           (clothes) => clothes.userSendOffre
         );
         setUserSendOffre(hasUserSentOffer);
-        console.log("hasUserSentOffer", hasUserSentOffer);
         setClothes(updatedClothes);
       } catch (error) {
         console.error("Fetching Clothes Failed", error);
@@ -120,7 +116,6 @@ const AllClothes = () => {
     });
 
     setClothes(updatedClothes);
-    handleModalClose();
   };
 
   useEffect(() => {
@@ -217,10 +212,13 @@ const AllClothes = () => {
                     <button
                       onClick={() => handleBuy(clothes)}
                       className={
-                        clothes.userSendOffre ? "UnBuy_Button" : "Buy_Button"
+                        clothes.userSendOffre
+                          ? "OffreSent_Button"
+                          : "Buy_Button"
                       }
+                      disabled={clothes.userSendOffre}
                     >
-                      {clothes.userSendOffre ? "Unbuy" : "Buy"}
+                      {clothes.userSendOffre ? "Offre Sent" : "Buy"}
                     </button>
                   )}
 
