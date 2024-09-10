@@ -22,8 +22,8 @@ export const AllBuyedClothes = () => {
             },
           }
         );
-        console.log(response.data.offres);
-        setBuyedClothes(response.data.offres);
+        console.log(response);
+        setOffres(response.data.offres);
       } catch (error) {
         console.error("Fetching offres Failed", error);
       }
