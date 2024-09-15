@@ -6,12 +6,12 @@ import Cookies from "js-cookie";
 import "./AllBuyedClothes.css";
 
 export const AllBuyedClothes = () => {
-  const [offres, setOffres] = useState([]);
+  const [offers, setOffers] = useState([]);
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
   useEffect(() => {
-    const fetchOffres = async () => {
+    const fetchOffers = async () => {
       try {
         const token = Cookies.get("access-token");
         const response = await Axios.get(
@@ -22,13 +22,14 @@ export const AllBuyedClothes = () => {
             },
           }
         );
+        console.log("response");
         console.log(response);
-        setOffres(response.data.offres);
+        setOffers(response.data.offers);
       } catch (error) {
-        console.error("Fetching offres Failed", error);
+        console.error("Fetching offers Failed", error);
       }
     };
-    fetchOffres();
+    fetchOffers();
   }, []);
 
   // const handleBuy = async (index, id, currentBuyingStatus) => {
@@ -62,28 +63,40 @@ export const AllBuyedClothes = () => {
   // };
 
   return (
-    <div className="buy_models_container">
-      {offres.map((offre, index) => (
-        <div key={offre._id} className="buy_model_card">
-          <div className="buy_Header">
-            <h1 className="buy_description">{offre.Description}</h1>
+    <div className="offers_container">
+      {offers.map((offer, index) => (
+        <div key={offer._id} className="offer_card">
+          <div className="offer_header">
+            <p className="offer_date">
+              {new Date(offer.Date).toLocaleDateString()}
+            </p>
+            <p className="offer_price">${offer.Price}</p>
           </div>
-          <hr />
-          {offre.Image && (
-            <Link to={`/OneClothes/${offre._id}`}>
+          <div className="offer_body">
+            <p className="offer_message">{offer.Message}</p>
+
+            <div className="offer_image_container">
               <img
-                src={`${API}/images/${offre.Image}`}
-                alt={offre.Description}
-                style={{ maxWidth: "100%", height: "auto" }}
+                src={`${API}/images/${offer.Image || "default.jpg"}`} // Replace 'default.jpg' if needed
+                alt="Related clothes"
+                className="offer_image"
               />
-            </Link>
-          )}
-          <button
-            onClick={() => handleBuy(index, offre._id, offre.Buyed)}
-            className="buy_Buy_Button"
-          >
-            Unbuy
-          </button>
+            </div>
+          </div>
+          <div className="offer_footer">
+            <button
+              onClick={() => handleChangeOffer(index, offer._id)}
+              className="offer_button change_offer_button"
+            >
+              Change Offer
+            </button>
+            <button
+              onClick={() => handleCancelOffer(index, offer._id)}
+              className="offer_button cancel_offer_button"
+            >
+              Cancel Offer
+            </button>
+          </div>
         </div>
       ))}
     </div>

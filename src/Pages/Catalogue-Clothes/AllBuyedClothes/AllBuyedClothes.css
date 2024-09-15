@@ -1,46 +1,103 @@
-.buy_models_container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.offers_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
   padding: 20px;
 }
 
-.buy_model_card {
-  position: relative; /* add this line to make heart icon in the corner */
-  border: 2px solid #000;
-  background-color: #fff;
+.offer_card {
+  background-color: #f9f9f9;
   border-radius: 10px;
-  padding: 15px;
-  margin: 10px;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
 }
 
-.buy_Header {
+.offer_card:hover {
+  transform: translateY(-5px);
+}
+
+.offer_header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
-.buy_description {
-  font-size: 20px;
+.offer_date {
+  font-size: 0.9rem;
+  color: #777;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+.offer_price {
+  font-size: 1.3rem;
+  color: #000;
   font-weight: bold;
-  color: #333;
-  margin: 20px auto;
-  animation: fadeIn 0.5s ease-in-out;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+  text-align: center;
+  margin: 0px auto;
 }
 
-/* Styles for the Buy button */
-.buy_Buy_Button {
+.offer_body {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.offer_message {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.offer_image_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.clothes_image {
+  border-radius: 50%; /* Circle */
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.offer_footer {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+
+.offer_button {
   padding: 10px 20px;
-  margin: 12px auto;
-  background-color: #ff6f61;
-  color: #fff;
+  background-color: #3498db;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.offer_button:hover {
+  background-color: #2980b9;
+}
+
+.change_offer_button {
+  background-color: #27ae60;
+}
+
+.change_offer_button:hover {
+  background-color: #229954;
+}
+
+.cancel_offer_button {
+  background-color: #e74c3c;
+}
+
+.cancel_offer_button:hover {
+  background-color: #c0392b;
 }
