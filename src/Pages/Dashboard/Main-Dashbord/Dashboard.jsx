@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   const [countUsers, setCountUsers] = useState([]);
   const [clothes, setClothes] = useState([]);
-  const [countClothes, setCountClothes] = useState([]);
+  const [countClothes, setCountClothes] = useState(0);
   const API = "http://localhost:3001";
   const token = Cookies.get("access-token");
 

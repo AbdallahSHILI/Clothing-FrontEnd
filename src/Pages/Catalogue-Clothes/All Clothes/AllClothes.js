@@ -8,6 +8,7 @@ import "react-crud-icons/dist/css/react-crud-icons.css";
 import Icon from "react-crud-icons";
 import DeleteClothes from "../Delete Clothes/DeleteClothes";
 import Cookies from "js-cookie";
+import EmptyCartIcon from "../../../Components/Assets/empty cart icon.svg";
 import { BackButton } from "../../../Components/Index";
 import CountContainer from "../CountContainer/CountContainer";
 import Modal from "../../../Components/PopUp/BuyPopUp/BuyPopUp";
@@ -17,7 +18,7 @@ const AllClothes = () => {
   const [role, setRole] = useState(Cookies.get("user-role"));
   const [showPopUp, setShowPopUp] = useState(false);
   const [Clothes, setClothes] = useState([]);
-  const [countClothes, setCountClothes] = useState([]);
+  const [countClothes, setCountClothes] = useState("0");
   const [selectedClothes, setSelectedClothes] = useState(null);
   const [userSendOffre, setUserSendOffre] = useState(null);
   const API = "http://localhost:3001";
@@ -155,53 +156,56 @@ const AllClothes = () => {
       {isAuthenticated && role === "admin" && (
         <div className="newClothes_header">
           <Link to={`/NewClothes`} style={{ textDecoration: "none" }}>
-            <Icon
-              name="add"
-              tooltip="add"
-              theme="light"
-              size="medium"
-              // onClick={() => openModal(clothes)}
-            />
+            <Icon name="add" tooltip="add" theme="light" size="medium" />
             <h1>Add New Clothes</h1>
           </Link>
         </div>
       )}
 
       <div className="models_container">
-        {Clothes.map((clothes, index) => {
-          let cardClass = "model_card";
-          if (clothes.isFavorite) {
-            // Check the frontend state property
-            cardClass += " clicked";
-          }
+        {Clothes.length === 0 ? (
+          isAuthenticated && role === "admin" ? (
+            <div className="empty_message">
+              <img src={EmptyCartIcon} alt="No products available" />
+              <p>
+                No clothes available yet. Please add some clothes to the
+                collection.
+              </p>
+            </div>
+          ) : (
+            <div className="empty_message">
+              <img src={EmptyCartIcon} alt="No products available" />
+              <p>No clothes available yet.</p>
+            </div>
+          )
+        ) : (
+          Clothes.map((clothes, index) => {
+            let cardClass = "model_card";
+            if (clothes.isFavorite) cardClass += " clicked";
 
-          let buttonClass = "Buy_Button";
-          let buttonText = userSendOffre ? "Unbuy" : "Buy";
-
-          return (
-            <div key={clothes._id} className={cardClass}>
-              <div className="Header">
-                <h1 className="description">{clothes.Description}</h1>
-                {isAuthenticated && role === "customer" && (
-                  <div className="heart">
-                    <Heart
-                      isClick={clothes.isFavorite}
-                      onClick={() => handleHeartClick(index, clothes._id)}
+            return (
+              <div key={clothes._id} className={cardClass}>
+                <div className="Header">
+                  <h1 className="description">{clothes.Description}</h1>
+                  {isAuthenticated && role === "customer" && (
+                    <div className="heart">
+                      <Heart
+                        isClick={clothes.isFavorite}
+                        onClick={() => handleHeartClick(index, clothes._id)}
+                      />
+                    </div>
+                  )}
+                </div>
+                <hr />
+                {clothes.Image && (
+                  <Link to={`/OneClothes/${clothes._id}`}>
+                    <img
+                      src={`${API}/images/${clothes.Image}`}
+                      alt={clothes.Description}
+                      style={{ maxWidth: "100%", height: "auto" }}
                     />
-                  </div>
+                  </Link>
                 )}
-              </div>
-              <hr />
-              {clothes.Image && (
-                <Link to={`/OneClothes/${clothes._id}`}>
-                  <img
-                    src={`${API}/images/${clothes.Image}`}
-                    alt={clothes.Description}
-                    style={{ maxWidth: "100%", height: "auto" }}
-                  />
-                </Link>
-              )}
-              {isAuthenticated && (
                 <div className="icon_container">
                   {role === "admin" && (
                     <div className="icon">
@@ -221,7 +225,6 @@ const AllClothes = () => {
                       {clothes.userSendOffre ? "Offre Sent" : "Buy"}
                     </button>
                   )}
-
                   <div className="icon">
                     <Link to={`/OneClothes/${clothes._id}`}>
                       <Icon
@@ -229,16 +232,16 @@ const AllClothes = () => {
                         tooltip="browse"
                         theme="light"
                         size="medium"
-                        // onClick={() => openModal(clothes)}
                       />
                     </Link>
                   </div>
                 </div>
-              )}
-            </div>
-          );
-        })}
+              </div>
+            );
+          })
+        )}
       </div>
+
       <Modal
         isOpen={showPopUp}
         onClose={handleModalClose}
