@@ -6,20 +6,22 @@ import "./AllClothes.css";
 import Heart from "react-animated-heart";
 import "react-crud-icons/dist/css/react-crud-icons.css";
 import Icon from "react-crud-icons";
-import DeleteClothes from "../Delete Clothes/DeleteClothes";
 import Cookies from "js-cookie";
 import EmptyCartIcon from "../../../Components/Assets/empty cart icon.svg";
+import OfferIcon from "../../../Components/Assets/offer_icon.png";
 import { BackButton } from "../../../Components/Index";
 import CountContainer from "../CountContainer/CountContainer";
-import Modal from "../../../Components/PopUp/BuyPopUp/BuyPopUp";
+import BuyModal from "../../../Components/PopUp/BuyPopUp/BuyPopUp";
+import DeleteClothesModal from "../../../Components/PopUp/DeleteClothesPopUp/DeleteClothes";
 
 const AllClothes = () => {
   const isAuthenticated = Cookies.get("access-token");
   const [role, setRole] = useState(Cookies.get("user-role"));
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const [Clothes, setClothes] = useState([]);
   const [countClothes, setCountClothes] = useState("0");
-  const [selectedClothes, setSelectedClothes] = useState(null);
+  const [selectedClothes, setSelectedClothes] = useState(null); // For both Buy and Delete
   const [userSendOffre, setUserSendOffre] = useState(null);
   const API = "http://localhost:3001";
 
@@ -91,20 +93,37 @@ const AllClothes = () => {
     }
   };
 
-  const handleDelete = (id) => {
-    // Remove the clothing item from the state after it has been deleted
-    setClothes((prevClothes) =>
-      prevClothes.filter((clothes) => clothes._id !== id)
-    );
-  };
+  // const handleDelete = (id) => {
+  //   // Remove the clothing item from the state after it has been deleted
+  //   setClothes((prevClothes) =>
+  //     prevClothes.filter((clothes) => clothes._id !== id)
+  //   );
+  // };
 
   const handleBuy = (clothes) => {
     setSelectedClothes(clothes);
     setShowPopUp(true);
   };
 
+  const handleDelete = (clothes) => {
+    setSelectedClothes(clothes); // Set the selected item to be deleted
+    setShowDeleteModal(true); // Open the delete modal
+  };
+
+  const handleDeleteSuccess = (clothesId) => {
+    // Remove the clothing item from the state after it has been deleted
+    setClothes((prevClothes) => {
+      const updatedClothes = prevClothes.filter(
+        (clothes) => clothes._id !== clothesId
+      );
+      setCountClothes(updatedClothes.length); // Update the count dynamically
+      return updatedClothes;
+    });
+  };
+
   const handleModalClose = () => {
     setShowPopUp(false);
+    setShowDeleteModal(false); // Close the delete modal
     setSelectedClothes(null);
   };
 
@@ -185,6 +204,7 @@ const AllClothes = () => {
 
             return (
               <div key={clothes._id} className={cardClass}>
+                <img src={OfferIcon} alt="Offers" />
                 <div className="Header">
                   <h1 className="description">{clothes.Description}</h1>
                   {isAuthenticated && role === "customer" && (
@@ -209,7 +229,13 @@ const AllClothes = () => {
                 <div className="icon_container">
                   {role === "admin" && (
                     <div className="icon">
-                      <DeleteClothes id={clothes._id} onDelete={handleDelete} />
+                      <Icon
+                        onClick={() => handleDelete(clothes)}
+                        name="delete"
+                        tooltip="delete"
+                        theme="light"
+                        size="medium"
+                      />
                     </div>
                   )}
                   {role === "customer" && (
@@ -242,11 +268,18 @@ const AllClothes = () => {
         )}
       </div>
 
-      <Modal
+      <BuyModal
         isOpen={showPopUp}
         onClose={handleModalClose}
         clothesId={selectedClothes ? selectedClothes._id : null}
         onOfferSent={handleOfferSent}
+      />
+
+      <DeleteClothesModal
+        isOpen={showDeleteModal}
+        onClose={handleModalClose}
+        clothesId={selectedClothes ? selectedClothes._id : null}
+        onDeleteSuccess={handleDeleteSuccess}
       />
     </>
   );
