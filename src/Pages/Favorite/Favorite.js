@@ -5,7 +5,6 @@ import Heart from "react-animated-heart";
 import "react-crud-icons/dist/css/react-crud-icons.css";
 import Icon from "react-crud-icons";
 import "./Favorite.css";
-import DeleteClothes from "../Catalogue-Clothes/Delete Clothes/DeleteClothes";
 import Cookies from "js-cookie";
 import EmptyCartIcon from "../../Components/Assets/empty cart icon.svg";
 
@@ -94,22 +93,15 @@ export const Favorite = () => {
                 />
               </Link>
             )}
-            <div className="icon_container">
-              {role === "admin" && (
-                <div className="icon">
-                  <DeleteClothes id={favClothes._id} />
-                </div>
-              )}
-              <div className="icon">
-                <Link to={`/OneClothes/${favClothes._id}`}>
-                  <Icon
-                    name="browse"
-                    tooltip="browse"
-                    theme="light"
-                    size="medium"
-                  />
-                </Link>
-              </div>
+            <div className="icon">
+              <Link to={`/OneClothes/${favClothes._id}`}>
+                <Icon
+                  name="browse"
+                  tooltip="browse"
+                  theme="light"
+                  size="medium"
+                />
+              </Link>
             </div>
           </div>
         ))
