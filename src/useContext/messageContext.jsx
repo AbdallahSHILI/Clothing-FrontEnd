@@ -8,7 +8,7 @@ export const MessageContext = createContext();
 // Create a provider component
 export const MessageProvider = ({ children }) => {
   const [messageCount, setMessageCount] = useState(0);
-  const API = "http://localhost:3001"; // Your API URL
+  const API = "http://localhost:3001";
 
   // Fetch message count when the provider is mounted
   useEffect(() => {
@@ -24,7 +24,6 @@ export const MessageProvider = ({ children }) => {
               },
             }
           );
-          // Assuming response.data.result contains the count of messages
           setMessageCount(response.data.result);
         }
       } catch (error) {
@@ -33,7 +32,7 @@ export const MessageProvider = ({ children }) => {
     };
 
     fetchMessageCount();
-  }, []); // Empty dependency array to run once on mount
+  }, []);
 
   return (
     <MessageContext.Provider value={{ messageCount, setMessageCount }}>

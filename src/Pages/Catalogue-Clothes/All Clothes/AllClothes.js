@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import "./AllClothes.css";
@@ -13,6 +13,7 @@ import { BackButton } from "../../../Components/Index";
 import CountContainer from "../CountContainer/CountContainer";
 import BuyModal from "../../../Components/PopUp/BuyPopUp/BuyPopUp";
 import DeleteClothesModal from "../../../Components/PopUp/DeleteClothesPopUp/DeleteClothes";
+import { OfferContext } from "../../../useContext/offerContext"; // Import the context
 
 const AllClothes = () => {
   const isAuthenticated = Cookies.get("access-token");
@@ -23,6 +24,7 @@ const AllClothes = () => {
   const [countClothes, setCountClothes] = useState("0");
   const [selectedClothes, setSelectedClothes] = useState(null); // For both Buy and Delete
   const [userSendOffre, setUserSendOffre] = useState(null);
+  const { offerCount } = useContext(OfferContext);
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
@@ -204,7 +206,12 @@ const AllClothes = () => {
 
             return (
               <div key={clothes._id} className={cardClass}>
-                <img src={OfferIcon} alt="Offers" />
+                {isAuthenticated && role === "admin" && (
+                  <div className="offer-icon-wrapper">
+                    <img src={OfferIcon} alt="Offers" className="offer-icon" />
+                    <span className="offer-count">{offerCount}</span>
+                  </div>
+                )}
                 <div className="Header">
                   <h1 className="description">{clothes.Description}</h1>
                   {isAuthenticated && role === "customer" && (
