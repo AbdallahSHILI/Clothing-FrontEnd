@@ -1,0 +1,76 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  .offer-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  
+  .offer-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .offer-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .offer-details {
+    margin: 10px 0;
+  }
+  
+  .user-name,
+  .user-email {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin: 5px 0;
+  }
+  
+  .offer-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .accept-btn,
+  .refuse-btn {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .accept-btn {
+    background-color: #27ae60;
+    color: white;
+  }
+  
+  .refuse-btn {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .accept-btn:hover {
+    background-color: #2ecc71;
+  }
+  
+  .refuse-btn:hover {
+    background-color: #c0392b;
+  }
+  

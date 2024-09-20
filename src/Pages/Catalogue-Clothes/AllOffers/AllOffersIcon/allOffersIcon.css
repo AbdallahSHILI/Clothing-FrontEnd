@@ -1,0 +1,29 @@
+.offer-icon-wrapper {
+  position: absolute;
+  top: 0px; /* Adjust the top positioning as needed */
+  left: 0px; /* Adjust the left positioning as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.offer-count {
+  position: absolute; /* Position the badge absolutely relative to the wrapper */
+  top: 3px;
+  right: -4px;
+  background-color: #0fff50; /* Background color for visibility */
+  color: white; /* Text color for contrast */
+  border-radius: 50%; /* Making the badge circular */
+  padding: 2px 6px; /* Adjust padding for the badge size */
+  font-size: 12px; /* Font size for the badge text */
+  font-weight: bold; /* Bold text for emphasis */
+  display: flex; /* Flex to center align text */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+}
+
+.offer-icon-wrapper .offer-icon {
+  max-width: 50px; /* Set the desired size for the offer icon */
+  max-height: 46px;
+  object-fit: contain;
+}

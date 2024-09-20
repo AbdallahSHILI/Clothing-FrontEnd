@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import "./AllClothes.css";
@@ -8,12 +8,11 @@ import "react-crud-icons/dist/css/react-crud-icons.css";
 import Icon from "react-crud-icons";
 import Cookies from "js-cookie";
 import EmptyCartIcon from "../../../Components/Assets/empty cart icon.svg";
-import OfferIcon from "../../../Components/Assets/offer_icon.png";
 import { BackButton } from "../../../Components/Index";
 import CountContainer from "../CountContainer/CountContainer";
 import BuyModal from "../../../Components/PopUp/BuyPopUp/BuyPopUp";
 import DeleteClothesModal from "../../../Components/PopUp/DeleteClothesPopUp/DeleteClothes";
-import { OfferContext } from "../../../useContext/offerContext"; // Import the context
+import AllOffersIcon from "../AllOffers/AllOffersIcon/allOffersIcon";
 
 const AllClothes = () => {
   const isAuthenticated = Cookies.get("access-token");
@@ -24,7 +23,6 @@ const AllClothes = () => {
   const [countClothes, setCountClothes] = useState("0");
   const [selectedClothes, setSelectedClothes] = useState(null); // For both Buy and Delete
   const [userSendOffre, setUserSendOffre] = useState(null);
-  const { offerCount } = useContext(OfferContext);
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
@@ -94,13 +92,6 @@ const AllClothes = () => {
       console.error("Updating Favorite status Failed", error);
     }
   };
-
-  // const handleDelete = (id) => {
-  //   // Remove the clothing item from the state after it has been deleted
-  //   setClothes((prevClothes) =>
-  //     prevClothes.filter((clothes) => clothes._id !== id)
-  //   );
-  // };
 
   const handleBuy = (clothes) => {
     setSelectedClothes(clothes);
@@ -206,12 +197,7 @@ const AllClothes = () => {
 
             return (
               <div key={clothes._id} className={cardClass}>
-                {isAuthenticated && role === "admin" && (
-                  <div className="offer-icon-wrapper">
-                    <img src={OfferIcon} alt="Offers" className="offer-icon" />
-                    <span className="offer-count">{offerCount}</span>
-                  </div>
-                )}
+                <AllOffersIcon idClothes={clothes._id} />
                 <div className="Header">
                   <h1 className="description">{clothes.Description}</h1>
                   {isAuthenticated && role === "customer" && (
