@@ -14,6 +14,7 @@ import {
   UsersPage,
   OneUserPage,
   MessagesPage,
+  AllOffers,
 } from "./Pages/index";
 import {
   ConfirmCancelAdmin,
@@ -21,9 +22,7 @@ import {
   Footer,
   Navbar,
 } from "./Components/Index";
-import DeleteUser from "./Components/Buttons/DeleteUser-Button/DeleteUser";
 import { MessageProvider } from "./useContext/messageContext";
-import AllOffers from "./Pages/Catalogue-Clothes/AllOffers/AllOffersIcon/allOffersIcon";
 
 function App() {
   return (
@@ -43,6 +42,7 @@ function App() {
             <Route path="/AllBuyedClothes" element={<AllBuyedClothes />} />
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Dashboard/UsersPage" element={<UsersPage />} />
+            <Route path="/AllOffers/:idClothes" element={<AllOffers />} />
             <Route
               path="/Dashboard/UsersPage/:idUser"
               element={<OneUserPage />}
@@ -56,8 +56,6 @@ function App() {
               element={<ConfirmCancelAdmin />}
             />
             <Route path="/AllMessages" element={<MessagesPage />} />
-
-            <Route path="/AllOffers/:idClothes" element={<AllOffers />} />
           </Routes>
           <Footer />
         </Router>

@@ -46,6 +46,7 @@ const AllClothes = () => {
             ...clothes,
             isFavorite: clothes.FavoriteUsers.includes(userId),
             userSendOffre: isInList, // Set a flag for the current item
+            totalOffers: clothes.offers ? clothes.offers.length : 0,
           };
         });
 
@@ -197,7 +198,10 @@ const AllClothes = () => {
 
             return (
               <div key={clothes._id} className={cardClass}>
-                <AllOffersIcon idClothes={clothes._id} />
+                <AllOffersIcon
+                  idClothes={clothes._id}
+                  totalOffers={clothes.totalOffers}
+                />
                 <div className="Header">
                   <h1 className="description">{clothes.Description}</h1>
                   {isAuthenticated && role === "customer" && (
