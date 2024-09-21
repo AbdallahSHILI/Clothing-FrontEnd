@@ -36,17 +36,23 @@ const AllOffers = () => {
   return (
     <>
       <BackButton />
-      <div class="offer-card">
-        <div class="offer-price">$99.99</div>
-        <div class="offer-details">
-          <p class="user-name">userName</p>
-          <p class="user-email">email@example.com</p>
-        </div>
-        <div class="offer-actions">
-          <button class="accept-btn">Accept Offer</button>
-          <button class="refuse-btn">Refuse Offer</button>
-        </div>
-      </div>
+      {offers.length > 0 ? (
+        offers.map((offer, index) => (
+          <div className="offer-card" key={index}>
+            <div className="offer-price">${offer.Price}</div>
+            <div className="offer-details">
+              <p className="user-name">{offer.FirstLastName}</p>
+              <p className="user-email">{offer.Email}</p>
+            </div>
+            <div className="offer-actions">
+              <button className="accept-btn">Accept Offer</button>
+              <button className="refuse-btn">Refuse Offer</button>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No offers available.</p>
+      )}
     </>
   );
 };
