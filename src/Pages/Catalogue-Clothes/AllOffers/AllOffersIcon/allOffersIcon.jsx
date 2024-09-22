@@ -1,4 +1,3 @@
-// AllOffersIcon.jsx
 import React, { useState, useEffect } from "react";
 import OfferIcon from "../../../../Components/Assets/offer_icon.png";
 import Cookies from "js-cookie";
@@ -6,13 +5,12 @@ import Axios from "axios";
 import "./allOffersIcon.css";
 import { Link } from "react-router-dom";
 
-const AllOffersIcon = ({ idClothes, totalOffers }) => {
+const AllOffersIcon = ({ idClothes }) => {
   const isAuthenticated = Cookies.get("access-token");
   const [role, setRole] = useState(Cookies.get("user-role"));
-  const [offerCount, setOfferCount] = useState(totalOffers); // Use totalOffers from props
+  const [offerCount, setOfferCount] = useState(0);
   const API = "http://localhost:3001";
 
-  // Fetch offer count only if totalOffers is not passed as a prop
   useEffect(() => {
     const fetchOfferCount = async () => {
       try {
@@ -33,30 +31,17 @@ const AllOffersIcon = ({ idClothes, totalOffers }) => {
       }
     };
 
-    // Fetch only if totalOffers is not passed
-    if (idClothes && totalOffers === undefined) {
+    if (idClothes) {
       fetchOfferCount();
     }
-  }, [idClothes, totalOffers]);
-
-  // Disable the icon if there are no offers
-  const isDisabled = offerCount === 0;
+  }, [idClothes]);
 
   return (
     <>
       {isAuthenticated && role === "admin" && (
-        <div className={`offer-icon-wrapper ${isDisabled ? "disabled" : ""}`}>
-          <Link
-            to={`/AllOffers/${idClothes}`}
-            onClick={(e) => isDisabled && e.preventDefault()}
-          >
-            <img
-              src={OfferIcon}
-              alt="Offers"
-              className={`offer-icon ${
-                isDisabled ? "offer-icon-disabled" : ""
-              }`}
-            />
+        <div className="offer-icon-wrapper">
+          <Link to={`/AllOffers/${idClothes}`}>
+            <img src={OfferIcon} alt="Offers" className="offer-icon" />
           </Link>
           <span className="offer-count">{offerCount}</span>
         </div>

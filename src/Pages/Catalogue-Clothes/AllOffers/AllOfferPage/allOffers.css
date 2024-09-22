@@ -1,63 +1,87 @@
+/* Container for the cards with a grid layout */
+.offers-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Style for individual offer cards */
 .offer-card {
   background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
-  padding: 20px;
-  margin: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Make the card fill its grid column width */
+  max-width: 280px; /* Restrict the maximum width to keep cards small */
+  padding: 10px;
   text-align: center;
-  transition: transform 0.3s;
+  transition: transform 0.2s, background-color 0.3s;
 }
 
+/* Hover effect to lift the card slightly */
 .offer-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
+/* .icon-container ensures the icon is always visible */
+.icon-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* Style for the price displayed on the card */
 .offer-price {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
-  color: #2c3e50;
-  margin-bottom: 10px;
+  color: #fff;
+  margin-bottom: 8px;
 }
 
+/* Container for the offer details */
 .offer-details {
-  margin: 10px 0;
+  margin: 8px 0;
 }
 
+/* Text styles for user name and email */
 .user-name,
 .user-email {
-  font-size: 16px;
-  color: #7f8c8d;
-  margin: 5px 0;
+  font-size: 14px; /* Reduced font size */
+  color: #fff;
+  margin: 3px 0;
 }
 
+/* Container for action buttons */
 .offer-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 10px; /* Reduced margin */
 }
 
+/* Style for Accept and Refuse buttons */
 .accept-btn,
 .refuse-btn {
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 14px;
+  padding: 6px 10px; /* Reduced padding */
+  border-radius: 4px;
+  font-size: 12px; /* Smaller font size */
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .accept-btn {
-  background-color: #27ae60;
+  background-color: #27ae60; /* Green button */
   color: white;
 }
 
 .refuse-btn {
-  background-color: #e74c3c;
+  background-color: #e74c3c; /* Red button */
   color: white;
 }
 
+/* Hover effects for the buttons */
 .accept-btn:hover {
   background-color: #2ecc71;
 }
