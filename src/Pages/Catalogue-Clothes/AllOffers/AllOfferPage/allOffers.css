@@ -9,6 +9,7 @@
 
 /* Style for individual offer cards */
 .offer-card {
+  position: relative;
   background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -36,7 +37,7 @@
 .offer-price {
   font-size: 18px;
   font-weight: bold;
-  color: #fff;
+  color: white;
   margin-bottom: 8px;
 }
 
@@ -49,7 +50,7 @@
 .user-name,
 .user-email {
   font-size: 14px; /* Reduced font size */
-  color: #fff;
+  color: white;
   margin: 3px 0;
 }
 
@@ -88,4 +89,21 @@
 
 .refuse-btn:hover {
   background-color: #c0392b;
+}
+
+/* Style for the active offer icon */
+.Offer_Icon {
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.Offer_Icon:hover {
+  transform: scale(1.1);
+}
+
+/* Style for the disabled offer icon */
+.Offer_Icon_Disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none; /* Disables click events */
 }

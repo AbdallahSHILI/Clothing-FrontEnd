@@ -40,10 +40,20 @@ const AllOffersIcon = ({ idClothes }) => {
     <>
       {isAuthenticated && role === "admin" && (
         <div className="offer-icon-wrapper">
-          <Link to={`/AllOffers/${idClothes}`}>
-            <img src={OfferIcon} alt="Offers" className="offer-icon" />
-          </Link>
-          <span className="offer-count">{offerCount}</span>
+          {offerCount > 0 ? (
+            <Link to={`/AllOffers/${idClothes}`}>
+              <img src={OfferIcon} alt="Offers" className="offer-icon" />
+            </Link>
+          ) : (
+            <img
+              src={OfferIcon}
+              alt="No Offers"
+              className="offer-icon inactive"
+            />
+          )}
+          <span className="offer-count">
+            {offerCount > 0 ? offerCount : "0"}
+          </span>
         </div>
       )}
     </>

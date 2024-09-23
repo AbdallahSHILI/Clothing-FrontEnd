@@ -6,6 +6,7 @@ import Icon from "react-crud-icons";
 import "./allOffers.css";
 import { BackButton } from "../../../../Components/Index";
 import Tooltip from "./Tooltip/tooltip";
+import OfferIcon from "../../../../Components/Assets/offer_icon.png";
 
 const AllOffers = () => {
   const [offers, setOffers] = useState([]);
@@ -61,6 +62,10 @@ const AllOffers = () => {
 
   // Function to determine the color based on the offer index
   const getColor = (index, total) => {
+    if (total <= 1) {
+      return colors[0]; // Return the first color if there are no or only one offer
+    }
+
     const step = (total - 1) / (colors.length - 1); // Determine step size
     const position = index / step;
     const lowerIndex = Math.floor(position);
@@ -78,32 +83,28 @@ const AllOffers = () => {
     <>
       <BackButton />
       <div className="offers-container">
-        {offers.length > 0 ? (
-          offers.map((offer, index) => (
-            <div
-              className="offer-card"
-              key={index}
-              style={{ backgroundColor: getColor(index, offers.length) }}
-            >
-              <div className="icon-container">
-                <Tooltip message={offer.Message}>
-                  <Icon name="comment" theme="light" size="medium" />
-                </Tooltip>
-              </div>
-              <div className="offer-price">${offer.Price}</div>
-              <div className="offer-details">
-                <p className="user-name">{offer.FirstLastName}</p>
-                <p className="user-email">{offer.Email}</p>
-              </div>
-              <div className="offer-actions">
-                <button className="accept-btn">Accept Offer</button>
-                <button className="refuse-btn">Refuse Offer</button>
-              </div>
+        {offers.map((offer, index) => (
+          <div
+            className="offer-card"
+            key={index}
+            style={{ backgroundColor: getColor(index, offers.length) }}
+          >
+            <div className="icon-container">
+              <Tooltip message={offer.Message}>
+                <Icon name="comment" theme="dark" size="medium" />
+              </Tooltip>
             </div>
-          ))
-        ) : (
-          <p>No offers available.</p>
-        )}
+            <div className="offer-price">${offer.Price}</div>
+            <div className="offer-details">
+              <p className="user-name">{offer.FirstLastName}</p>
+              <p className="user-email">{offer.Email}</p>
+            </div>
+            <div className="offer-actions">
+              <button className="accept-btn">Accept Offer</button>
+              <button className="refuse-btn">Refuse Offer</button>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
