@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import "react-crud-icons/dist/css/react-crud-icons.css";
 import Cookies from "js-cookie";
 import "./AllBuyedClothes.css";
+import ModalOfferChange from "../../../Components/PopUp/ChangeOffer/changeOffer";
 
 export const AllBuyedClothes = () => {
   const [offers, setOffers] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOfferId, setSelectedOfferId] = useState(null);
   const API = "http://localhost:3001";
 
   // Fetch data when the component mounts
@@ -22,8 +25,6 @@ export const AllBuyedClothes = () => {
             },
           }
         );
-        console.log("response");
-        console.log(response);
         setOffers(response.data.offers);
       } catch (error) {
         console.error("Fetching offers Failed", error);
@@ -32,35 +33,27 @@ export const AllBuyedClothes = () => {
     fetchOffers();
   }, []);
 
-  // const handleBuy = async (index, id, currentBuyingStatus) => {
-  //   try {
-  //     // Toggle favorite status
-  //     const newBuyingStatus = !currentBuyingStatus;
+  // Function to open the modal and set the offer ID
+  const handleChangeOffer = (offerId) => {
+    setSelectedOfferId(offerId);
+    setIsModalOpen(true);
+  };
 
-  //     const response = await Axios.patch(
-  //       `${API}/Clothing/Clothes/BuyOneClothes/${id}`,
-  //       {
-  //         Buyed: newBuyingStatus,
-  //       }
-  //     );
+  // Function to close the modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedOfferId(null);
+  };
 
-  //     // Update Buying status in the frontend
-  //     // Creating a copy of the array
-  //     // Create a new version of the state, modify it, and then update the state with this new version.
-  //     const newClothes = [...BuyedClothes];
-  //     newClothes[index].Buyed = newBuyingStatus;
-  //     setBuyedClothes(newClothes);
-
-  //     // Remove the item from the list if it's been unbought
-  //     if (!newBuyingStatus) {
-  //       setBuyedClothes((prevClothes) =>
-  //         prevClothes.filter((_, i) => i !== index)
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.error("Buying Clothes Failed", error);
-  //   }
-  // };
+  // Function to update the offer when it changes
+  const handleOfferChange = (offerId, updatedPrice, updatedMessage) => {
+    const updatedOffers = offers.map((offer) =>
+      offer._id === offerId
+        ? { ...offer, Price: updatedPrice, Message: updatedMessage }
+        : offer
+    );
+    setOffers(updatedOffers);
+  };
 
   return (
     <div className="offers_container">
@@ -85,13 +78,13 @@ export const AllBuyedClothes = () => {
           </div>
           <div className="offer_footer">
             <button
-              onClick={() => handleChangeOffer(index, offer._id)}
+              onClick={() => handleChangeOffer(offer._id)} // Call to open the modal with the correct offer ID
               className="offer_button change_offer_button"
             >
               Change Offer
             </button>
             <button
-              onClick={() => handleCancelOffer(index, offer._id)}
+              onClick={() => handleCancelOffer(offer._id)}
               className="offer_button cancel_offer_button"
             >
               Cancel Offer
@@ -99,6 +92,14 @@ export const AllBuyedClothes = () => {
           </div>
         </div>
       ))}
+
+      {/* Modal component */}
+      <ModalOfferChange
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        offerId={selectedOfferId}
+        onOfferChange={handleOfferChange}
+      />
     </div>
   );
 };
