@@ -53,17 +53,18 @@
 
 .offer_image_container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Horizontally center the image */
+  align-items: center; /* Vertically center the image */
   margin-top: 15px;
 }
 
-.clothes_image {
-  border-radius: 50%; /* Circle */
+.offer_image {
+  border-radius: 50%; /* Make the image circular */
   width: 150px;
   height: 150px;
-  object-fit: cover;
-  border: 2px solid #ddd;
+  object-fit: cover; /* Ensure the image covers the area and maintains aspect ratio */
+  border: 2px solid #ddd; /* Optional: Add a border around the circle */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better aesthetics */
 }
 
 .offer_footer {

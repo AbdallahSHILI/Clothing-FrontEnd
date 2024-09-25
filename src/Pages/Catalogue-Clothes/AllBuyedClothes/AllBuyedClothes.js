@@ -5,10 +5,12 @@ import "react-crud-icons/dist/css/react-crud-icons.css";
 import Cookies from "js-cookie";
 import "./AllBuyedClothes.css";
 import ModalOfferChange from "../../../Components/PopUp/ChangeOffer/changeOffer";
+import DeleteOfferModal from "../../../Components/PopUp/DeleteOffer/deleteOffer";
 
 export const AllBuyedClothes = () => {
   const [offers, setOffers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedOfferId, setSelectedOfferId] = useState(null);
   const API = "http://localhost:3001";
 
@@ -39,9 +41,20 @@ export const AllBuyedClothes = () => {
     setIsModalOpen(true);
   };
 
+    // Function to open the delete modal
+    const handleCancelOffer = (offerId) => {
+      setSelectedOfferId(offerId);
+      setIsDeleteModalOpen(true);
+    };
+
   // Function to close the modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setSelectedOfferId(null);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setIsDeleteModalOpen(false);
     setSelectedOfferId(null);
   };
 
@@ -54,6 +67,14 @@ export const AllBuyedClothes = () => {
     );
     setOffers(updatedOffers);
   };
+
+    // Function to remove offer from the list after successful deletion
+    const handleOfferDeleteSuccess = (deletedOfferId) => {
+      setOffers((prevOffers) =>
+        prevOffers.filter((offer) => offer._id !== deletedOfferId)
+      );
+      setIsDeleteModalOpen(false);
+    };
 
   return (
     <div className="offers_container">
@@ -70,7 +91,7 @@ export const AllBuyedClothes = () => {
 
             <div className="offer_image_container">
               <img
-                src={`${API}/images/${offer.Image || "default.jpg"}`} // Replace 'default.jpg' if needed
+                src={`${API}/images/${offer.relatedClothes.Image}`} // Replace 'default.jpg' if needed
                 alt="Related clothes"
                 className="offer_image"
               />
@@ -99,6 +120,14 @@ export const AllBuyedClothes = () => {
         onClose={handleCloseModal}
         offerId={selectedOfferId}
         onOfferChange={handleOfferChange}
+      />
+
+          {/* Modal for deleting the offer */}
+          <DeleteOfferModal
+        isOpen={isDeleteModalOpen}
+        onClose={handleCloseDeleteModal}
+        offerId={selectedOfferId}
+        onDeleteSuccess={handleOfferDeleteSuccess} // Remove offer from the list on success
       />
     </div>
   );
