@@ -1,7 +1,7 @@
 .offers_container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   padding: 20px;
 }
 
@@ -71,6 +71,7 @@
   display: flex;
   justify-content: space-around;
   padding-top: 20px;
+  gap: 20px;
 }
 
 .offer_button {
@@ -101,4 +102,27 @@
 
 .cancel_offer_button:hover {
   background-color: #c0392b;
+}
+
+.empty-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* Takes up a good portion of the viewport height */
+  text-align: center;
+  color: #555; /* A neutral color for the message */
+  padding: 20px; /* Some padding for breathing space */
+}
+
+.empty-message img {
+  width: 150px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 20px; /* Space between image and text */
+}
+
+.empty-message p {
+  font-size: 1.2rem; /* A bit larger text for emphasis */
+  margin: 0;
+  color: #666; /* A slightly lighter color for the text */
 }
