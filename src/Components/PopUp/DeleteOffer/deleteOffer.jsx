@@ -51,8 +51,8 @@ const DeleteOfferModal = ({ isOpen, onClose, offerId, onDeleteSuccess }) => {
               <button className="btn delete-clothes" onClick={handleDelete}>
                 Delete
               </button>
-              <button className="btn cancel-delete" onClick={handleClose}>
-                Cancel
+              <button className="btn back-delete" onClick={handleClose}>
+                Back
               </button>
             </div>
           </div>

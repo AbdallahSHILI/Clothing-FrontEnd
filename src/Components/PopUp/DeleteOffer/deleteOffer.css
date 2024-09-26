@@ -99,13 +99,13 @@
   color: #000;
 }
 
-.cancel-delete {
+.back-delete {
   background-color: #28a745;
   color: #fff;
   font-weight: bold;
 }
 
-.cancel-delete:hover {
+.back-delete:hover {
   background-color: green;
   color: #000;
 }
