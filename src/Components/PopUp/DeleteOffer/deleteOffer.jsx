@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./deleteOffer.css";
 import Cookies from "js-cookie";
+import Exit from "../../../Components/Assets/x.png";
 
 //onDeleteSuccess to automatically the offer deleted without refreshing the page
 const DeleteOfferModal = ({ isOpen, onClose, offerId, onDeleteSuccess }) => {
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
   const [role, setRole] = useState(Cookies.get("user-role"));
   const API = "http://localhost:3001";
+
+  useEffect(() => {
+    // Reset success and error states whenever the modal opens
+    if (isOpen) {
+      setSuccess(false);
+      setError(null);
+    }
+  }, [isOpen]);
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -52,9 +62,7 @@ const DeleteOfferModal = ({ isOpen, onClose, offerId, onDeleteSuccess }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <button className="close-button" onClick={onClose}>
-          &times;
-        </button>
+        <img src={Exit} alt="exit" onClick={onClose} className="Exit-img" />
         <h2>{modalTitle}</h2>
         {success ? (
           <p>{successMessage}</p>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./changeOffer.css";
 import Cookies from "js-cookie";
+import Exit from "../../../Components/Assets/x.png";
 
 const ModalOfferChange = ({ isOpen, onClose, offerId, onOfferChange }) => {
   const [price, setPrice] = useState("");
@@ -54,9 +55,7 @@ const ModalOfferChange = ({ isOpen, onClose, offerId, onOfferChange }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <button className="close-button" onClick={handleClose}>
-          &times;
-        </button>
+        <img src={Exit} alt="exit" onClick={handleClose} className="Exit-img" />
         <h2>Change Offer</h2>
 
         {success ? (

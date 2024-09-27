@@ -113,7 +113,7 @@ const AllOffers = () => {
           // Show empty cart icon or message when there are no favorite clothes
           <div className="empty-message">
             <img src={EmptyCartIcon} alt="No Offers available" />
-            <p>There is no available Offers yet. Please make one of them.</p>
+            <p>There is no available Offers yet</p>
           </div>
         ) : (
           offers.map((offer, index) => (
