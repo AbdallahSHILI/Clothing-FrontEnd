@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./DeleteClothes.css";
 import Cookies from "js-cookie";
+import Exit from "../../../Components/Assets/x.png";
 
 //onDeleteSuccess to automatically the clothes deleted without refreshing the page
 const Modal = ({ isOpen, onClose, clothesId, onDeleteSuccess }) => {
   const [success, setSuccess] = useState(false);
   const API = "http://localhost:3001";
-  
+
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
@@ -38,21 +39,22 @@ const Modal = ({ isOpen, onClose, clothesId, onDeleteSuccess }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <button className="close-button" onClick={onClose}>
-          &times;
-        </button>
+        <img src={Exit} alt="exit" onClick={onClose} className="Exit-img" />
+
         <h2>Delete Clothes</h2>
         {success ? (
           <p>Clothes deleted successfully!</p>
         ) : (
           <div className="modal-card">
             <p>Are you sure you want to delete this item?</p>
-            <button className="btn delete-clothes" onClick={handleDelete}>
-              Delete
-            </button>
-            <button className="btn cancel-delete" onClick={handleClose}>
-              Cancel
-            </button>
+            <div className="btn-container">
+              <button className="btn delete-clothes" onClick={handleDelete}>
+                Delete
+              </button>
+              <button className="btn cancel-delete" onClick={handleClose}>
+                Cancel
+              </button>
+            </div>
           </div>
         )}
       </div>
