@@ -6,17 +6,24 @@ import Icon from "react-crud-icons";
 import "./allOffers.css";
 import { BackButton } from "../../../../Components/Index";
 import Tooltip from "./Tooltip/tooltip";
-import OfferIcon from "../../../../Components/Assets/offer_icon.png";
+import DeleteOfferModal from "../../../../Components/PopUp/DeleteOffer/deleteOffer";
+import EmptyCartIcon from "../../../../Components/Assets/empty cart icon.svg";
 
 const AllOffers = () => {
   const [offers, setOffers] = useState([]);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedOfferId, setSelectedOfferId] = useState(null);
   const { idClothes } = useParams(); // Extract idClothes from URL
   const API = "http://localhost:3001";
 
   useEffect(() => {
     const fetchOffers = async () => {
+      const token = Cookies.get("access-token");
+      if (!token) {
+        console.error("No token found, user is not authenticated.");
+        return;
+      }
       try {
-        const token = Cookies.get("access-token");
         const response = await Axios.get(
           `${API}/Clothing/Clothes/AllOffers/${idClothes}`,
           {
@@ -79,32 +86,71 @@ const AllOffers = () => {
     }
   };
 
+  // Function to open the delete modal
+  const handleRefuseOffer = (offerId) => {
+    setSelectedOfferId(offerId);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+    setSelectedOfferId(null);
+  };
+
+  // Function to remove offer from the list after successful deletion
+  const handleOfferDeleteSuccess = (deletedOfferId) => {
+    setOffers((prevOffers) =>
+      prevOffers.filter((offer) => offer._id !== deletedOfferId)
+    );
+    setIsDeleteModalOpen(false);
+  };
+
   return (
     <>
       <BackButton />
       <div className="offers-container">
-        {offers.map((offer, index) => (
-          <div
-            className="offer-card"
-            key={index}
-            style={{ backgroundColor: getColor(index, offers.length) }}
-          >
-            <div className="icon-container">
-              <Tooltip message={offer.Message}>
-                <Icon name="comment" theme="dark" size="medium" />
-              </Tooltip>
-            </div>
-            <div className="offer-price">${offer.Price}</div>
-            <div className="offer-details">
-              <p className="user-name">{offer.FirstLastName}</p>
-              <p className="user-email">{offer.Email}</p>
-            </div>
-            <div className="offer-actions">
-              <button className="accept-btn">Accept Offer</button>
-              <button className="refuse-btn">Refuse Offer</button>
-            </div>
+        {offers.length === 0 ? (
+          // Show empty cart icon or message when there are no favorite clothes
+          <div className="empty-message">
+            <img src={EmptyCartIcon} alt="No Offers available" />
+            <p>There is no available Offers yet. Please make one of them.</p>
           </div>
-        ))}
+        ) : (
+          offers.map((offer, index) => (
+            <div
+              className="offer-card"
+              key={index}
+              style={{ backgroundColor: getColor(index, offers.length) }}
+            >
+              <div className="icon-container">
+                <Tooltip message={offer.Message}>
+                  <Icon name="comment" theme="dark" size="medium" />
+                </Tooltip>
+              </div>
+              <div className="offer-price">${offer.Price}</div>
+              <div className="offer-details">
+                <p className="user-name">{offer.FirstLastName}</p>
+                <p className="user-email">{offer.Email}</p>
+              </div>
+              <div className="offer-actions">
+                <button className="accept-btn">Accept Offer</button>
+                <button
+                  onClick={() => handleRefuseOffer(offer._id)}
+                  className="refuse-btn"
+                >
+                  Refuse Offer
+                </button>
+              </div>
+            </div>
+          ))
+        )}
+        {/* Modal for deleting the offer */}
+        <DeleteOfferModal
+          isOpen={isDeleteModalOpen}
+          onClose={handleCloseDeleteModal}
+          offerId={selectedOfferId}
+          onDeleteSuccess={handleOfferDeleteSuccess} // Remove offer from the list on success
+        />
       </div>
     </>
   );
