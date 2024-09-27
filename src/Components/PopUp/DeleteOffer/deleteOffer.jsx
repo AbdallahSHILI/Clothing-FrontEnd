@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 //onDeleteSuccess to automatically the offer deleted without refreshing the page
 const DeleteOfferModal = ({ isOpen, onClose, offerId, onDeleteSuccess }) => {
   const [success, setSuccess] = useState(false);
+  const [role, setRole] = useState(Cookies.get("user-role"));
   const API = "http://localhost:3001";
 
   const handleDelete = async (e) => {
@@ -25,6 +26,7 @@ const DeleteOfferModal = ({ isOpen, onClose, offerId, onDeleteSuccess }) => {
       }, 1500);
     } catch (error) {
       console.error("Deleting Offer Failed", error);
+      setError("Failed to delete the offer, please try again.");
     }
   };
 
@@ -35,21 +37,33 @@ const DeleteOfferModal = ({ isOpen, onClose, offerId, onDeleteSuccess }) => {
 
   if (!isOpen) return null;
 
+  // Conditional text based on role
+  const modalTitle = role === "admin" ? "Refuse Offer" : "Delete Offer";
+  const successMessage =
+    role === "admin"
+      ? "Offer refused successfully!"
+      : "Offer deleted successfully!";
+  const confirmationMessage =
+    role === "admin"
+      ? "Are you sure you want to refuse this item?"
+      : "Are you sure you want to delete this item?";
+  const buttonLabel = role === "admin" ? "Refuse" : "Delete";
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
         <button className="close-button" onClick={onClose}>
           &times;
         </button>
-        <h2>Delete Offer</h2>
+        <h2>{modalTitle}</h2>
         {success ? (
-          <p>Offer deleted successfully!</p>
+          <p>{successMessage}</p>
         ) : (
           <div className="modal-card">
-            <p>Are you sure you want to delete this item?</p>
+            <p>{confirmationMessage}</p>
             <div className="btn-container">
               <button className="btn delete-clothes" onClick={handleDelete}>
-                Delete
+                {buttonLabel}
               </button>
               <button className="btn back-delete" onClick={handleClose}>
                 Back
