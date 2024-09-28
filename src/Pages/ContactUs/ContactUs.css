@@ -31,180 +31,94 @@
 
 .Inputs_container {
   display: flex;
-  flex-direction: column; /* Ensure elements are stacked vertically */
-  align-items: stretch; /* Make inputs stretch to container width */
-  width: 100%; /* Make the container take full width */
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
 }
 
 .Inputs_container input:focus {
-  outline: none; /* Remove outline on focus */
-  border-bottom: 2px solid #000; /* Change bottom border color on focus */
+  outline: none;
+  border-bottom: 2px solid #000;
 }
 
 .Inputs_container input {
-  margin: 10px 0; /* Add vertical margin to separate inputs */
-  padding: 10px; /* Add padding for better input spacing */
-  width: 100%; /* Ensure input takes full width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  border: none; /* Remove the border */
-  border-bottom: 2px solid #ccc; /* Add a bottom border */
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #ccc;
   background-color: transparent;
 }
+
+/* Updated radio inputs styles */
 .radio_inputs {
   display: flex;
-  flex-direction: column; /* Stack radio buttons vertically */
-  margin: 10px 0; /* Add margin to separate radio inputs */
+  flex-direction: column; /* Change to row to align horizontally */
+  justify-content: flex-start; /* Align to the left */
+  margin: 10px 0;
 }
 
 .radio_inputs label {
-  margin-bottom: 10px; /* Add space between each radio button */
-  font-family: Arial, sans-serif; /* Font style for labels */
-  font-size: 16px; /* Font size for labels */
-  color: #333; /* Text color for labels */
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Space between radio buttons */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+.radio_inputs input[type="radio"] {
+  margin-right: 8px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  appearance: none; /* Remove default style */
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+}
+
+.radio_inputs input[type="radio"]:checked {
+  background-color: #333;
+}
+
+.radio_inputs input[type="radio"]::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.radio_inputs input[type="radio"]:checked::before {
+  transform: translate(-50%, -50%) scale(1);
 }
 
 textarea[name="Message"] {
-  margin: 10px 0; /* Add vertical margin to separate textarea */
-  padding: 15px; /* Increase padding for better text spacing */
-  width: 100%; /* Ensure textarea takes full width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  resize: vertical; /* Allow vertical resizing */
-  min-height: 150px; /* Set a minimum height for the textarea */
-  border: 2px solid #ccc; /* Add a border */
-  border-radius: 5px; /* Round the corners */
-  background-color: #f9f9f9; /* Light background color */
-  font-family: Arial, sans-serif; /* Font style for textarea */
-  font-size: 14px; /* Font size for textarea */
-}
-
-/* ContactUs.css */
-.readonly {
-  background-color: #f0f0f0; /* Light gray background to indicate non-editable */
-  border: none; /* Remove border */
-  cursor: not-allowed; /* Change cursor to indicate non-editable */
-  color: #6c757d; /* Dimmed text color */
-  pointer-events: none; /* Disable pointer events to prevent clicking */
-}
-
-textarea[name="Message"]:focus {
-  outline: none; /* Remove outline on focus */
-  border-color: #000; /* Change border color on focus */
-  background-color: #fff; /* Change background color on focus */
-}
-
-button[name="submit"] {
-  margin: 10px 0; /* Add vertical margin to separate button */
-  padding: 10px; /* Add padding for better button spacing */
-  width: 100%; /* Ensure button takes full width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  background-color: black; /* Background color for the button */
-  color: white; /* Text color for the button */
-  border: none; /* Remove default border */
-  cursor: pointer; /* Change cursor on hover */
-}
-
-button[name="submit"]:hover {
-  background-color: #333; /* Darken button on hover */
-}
-
-.footer-container {
-  background-color: #000;
-  color: white;
+  margin: 10px 0;
+  padding: 15px;
   width: 100%;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  padding: 20px 0; /* Add padding for better spacing */
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 150px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
 }
 
-/* Other styles remain the same */
-.footer-element {
-  width: 90%;
-  margin: 0px auto;
-  padding: 100px 0px;
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.leftFooter {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
-}
-
-.leftFooter h1 {
-  color: #fff;
-  font-family: Poppins;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: normal;
-  letter-spacing: 1.2px;
-}
-
-.leftFooter p {
-  color: #8e8e8e;
-  font-family: Roboto;
-  font-size: 21px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 40px;
-  letter-spacing: 0.48px;
-}
-
-.leftFooter .socialMedia-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.rightFooter {
-  width: 50%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.first-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.second-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.third-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.Contact_Message {
-  color: #ffffff; /* White text color for contrast */
-  background-color: #ff4d4d; /* A nice red background for error messages */
-  padding: 10px 20px; /* Space inside the box */
-  border-radius: 5px; /* Rounded corners */
-  text-align: center; /* Center the text */
-  margin-top: 20px; /* Space above the message */
-  font-size: 1rem; /* Size of the text */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
-  max-width: 80%; /* Limit the width */
-  margin-left: auto; /* Center horizontally */
-  margin-right: auto; /* Center horizontally */
-}
-
-.fadeIn {
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.readonly {
+  background-color: #f0f0f0;
+  border: none;
+  cursor: not-allowed;
+  color: #6c757d;
+  pointer-events: none;
 }

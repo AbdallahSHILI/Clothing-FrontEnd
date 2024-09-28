@@ -1,9 +1,22 @@
 .join-container {
   width: 95%;
-  height: 500px;
+  height: auto; /* Use auto to allow dynamic height adjustment */
   border-radius: 59px;
   background: #e7e6e6;
   margin: 31px auto;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap; /* Ensure elements wrap on smaller screens */
+  padding: 20px; /* Add padding for better spacing */
+  box-sizing: border-box; /* Ensure padding doesn’t affect width calculations */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 980px) {
+  .join-container {
+    width: 100%; /* Full width on smaller screens */
+    height: auto; /* Ensure height adapts naturally */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center items on small screens */
+  }
 }

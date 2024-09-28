@@ -1,3 +1,4 @@
+/* General layout */
 .girlLogo {
   width: 50%;
   float: right;
@@ -10,52 +11,64 @@
 
 .LEUC-container {
   width: 90%;
-  height: 90%;
   margin: 35px auto;
   color: #000;
+  text-align: left; /* Align text to the left */
 }
 
+/* LEUC-container paragraph styles */
 .LEUC-container p {
   color: #000;
-  width: 80%;
+  width: 100%;
   font-family: Poppins;
   font-size: 56px;
-  font-style: normal;
   font-weight: 900;
-  line-height: 65px;
-  padding: 30px 0px 0px 35px;
+  line-height: 25px;
+  padding: 30px 0px 0px 0px; /* Adjust padding as needed */
+  margin: 0;
 }
 
+/* Span styles */
+.LEUC-container span {
+  display: block; /* Ensure each word occupies its own line */
+}
+
+/* Style for the first span */
 .first-span {
   background-color: #fff;
-  width: 300px !important;
-  height: 75px !important;
+  padding: 10px;
+  width: fit-content;
+  display: inline-block;
   transform: rotate(-2deg);
 }
 
+/* Style for the second span */
 .second-span {
   background-color: #ebd96b;
-  width: 300px !important;
-  height: 75px !important;
+  padding: 10px;
+  width: fit-content;
+  display: inline-block;
   transform: rotate(-2deg);
 }
 
+/* life-container styles */
 .life-container {
-  width: 606px;
-  height: 45px;
-  margin: -190px 0px 0px 65px;
+  width: 100%; /* Ensure full width */
+  height: auto; /* Set to auto for flexible height */
+  margin: 20px auto 0; /* Add spacing between LEUC and life-container */
+  text-align: center; /* Center the text */
 }
 
+/* life-container paragraph styles */
 .life-container p {
   color: #191818 !important;
   font-family: Poppins;
   font-size: 23px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
   letter-spacing: -1.6px;
 }
 
+/* Shop container styles */
 .shop-container {
   display: inline-flex;
   align-items: center;
@@ -65,7 +78,7 @@
 
 .shop-container img {
   width: 30%;
-  height: 31.955px;
+  height: 32px;
 }
 
 .shopNow-button {
@@ -77,11 +90,53 @@
 
 .shopNow-button p {
   color: #fff;
-  font-family: Poppins;
+  font-family: "Poppins", sans-serif;
   font-size: 30px;
-  font-style: normal;
   font-weight: 500;
   line-height: 75px;
   letter-spacing: -1.5px;
   text-align: center;
+}
+
+/* Media query for screen sizes smaller than 980px */
+@media (max-width: 980px) {
+  .LEUC-container {
+    height: 45%; /* Smaller height for responsive view */
+  }
+
+  .LEUC-container p {
+    font-size: 36px; /* Reduce font size for smaller screens */
+    line-height: 45px;
+  }
+
+  .left-container {
+    width: 100%;
+    float: none;
+  }
+
+  .girlLogo {
+    width: 100%; /* Ensure the image adapts */
+    float: none;
+  }
+
+  .life-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .life-container p {
+    font-size: 20px;
+    line-height: 1.5;
+    word-break: break-word;
+    text-align: center;
+  }
+
+  .shopNow-button {
+    width: 100%; /* Full-width button on small screens */
+  }
+
+  .shopNow-button p {
+    font-size: 24px; /* Adjust font size */
+    line-height: 60px;
+  }
 }
