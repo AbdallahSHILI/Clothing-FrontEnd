@@ -11,15 +11,17 @@ const Home = () => {
       <div className="left-container">
         <div className="LEUC-container">
           <p>
-            <span className="first-span">LET’S</span> EXPLORE{" "}
-            <span className="second-span">UNIQUE</span> CLOTHES.
+            <span className="first-span">LET’S</span> <br />
+            <span>EXPLORE</span> <br />
+            <span className="second-span">UNIQUE</span> <br />
+            CLOTHES.
           </p>
         </div>
         <div className="life-container">
           <p>Live for Influential and Innovative fashion!</p>
         </div>
         <div className="shop-container">
-          <img src={logo2} />
+          <img src={logo2} alt="Shop Icon" />
           <div className="shopNow-button">
             <Link to="AllClothes" style={{ textDecoration: "none" }}>
               <p>Shop Now</p>
@@ -27,26 +29,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <img className="girlLogo" src={logo1} />
-
-      {/* <div className="left-container">
-        <div className="LEUC-container">
-          <p>
-            <span className="first-span">LET’S</span> EXPLORE
-            <span className="second-span">UNIQUE</span> CLOTHES.
-          </p>
-        </div>
-        <div className="life-container">
-          <p>Live for Influential and Innovative fashion!</p>
-        </div>
-        <div className="shop-container">
-          <img src={logo2} />
-          <div className="shopNow-button">
-            <p>Shop Now</p>
-          </div>
-        </div>
-      </div>
-      <img className="girlLogo" src={logo1} /> */}
+      <img className="girlLogo" src={logo1} alt="Girl Logo" />
     </Container>
   );
 };
