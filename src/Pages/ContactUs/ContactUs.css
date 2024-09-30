@@ -17,6 +17,11 @@
   width: 45%;
 }
 
+.title {
+  white-space: nowrap;
+  overflow: hidden; /* Ensures text doesn't overflow */
+}
+
 .right_ContactUs {
   width: 45%;
   display: flex;
@@ -121,4 +126,19 @@ textarea[name="Message"] {
   cursor: not-allowed;
   color: #6c757d;
   pointer-events: none;
+}
+
+/* Hide the girl's picture when the screen width is 675px or less */
+@media (max-width: 675px) {
+  .Girl_Logo {
+    display: none;
+  }
+}
+
+/* Hide the right container */
+@media (max-width: 481px) {
+  .title {
+    white-space: normal; /* Allows wrapping on small screens */
+    word-wrap: break-word; /* Ensures long words break and wrap */
+  }
 }
