@@ -146,7 +146,7 @@ const ContactUsForm = ({
     <div className="Contact-container">
       <div className="ConatctUs_container">
         <div className="left_ContactUs">
-          <h1>Contact us</h1>
+          <h1 className="title">Contact us</h1>
           <form className="ContactUs_Form" onSubmit={onSubmit}>
             <div className="Inputs_container">
               <input
