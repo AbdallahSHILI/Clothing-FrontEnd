@@ -128,6 +128,81 @@ textarea[name="Message"] {
   pointer-events: none;
 }
 
+.footer-container {
+  background-color: #000;
+  color: white;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 20px 0; /* Add padding for better spacing */
+}
+
+/* Other styles remain the same */
+.footer-element {
+  width: 90%;
+  margin: 0px auto;
+  padding: 100px 0px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.leftFooter {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.leftFooter h1 {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 1.2px;
+}
+
+.leftFooter p {
+  color: #8e8e8e;
+  font-family: Roboto;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0.48px;
+}
+
+.leftFooter .socialMedia-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.rightFooter {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.first-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.second-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.third-container {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Hide the girl's picture when the screen width is 675px or less */
 @media (max-width: 675px) {
   .Girl_Logo {
