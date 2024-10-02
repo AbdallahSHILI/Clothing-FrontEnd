@@ -1,5 +1,7 @@
 .Contact-container {
   margin: 50px auto;
+  max-width: 100%; /* Ensure the container doesn't overflow the screen */
+  padding: 20px;
 }
 
 .ConatctUs_container {
@@ -11,6 +13,7 @@
   border: 5px dashed rgba(64, 58, 58, 0.5);
   width: 75%;
   padding: 20px;
+  transition: all 0.3s ease; /* Smooth transition */
 }
 
 .left_ContactUs {
@@ -31,7 +34,8 @@
 
 .Girl_Logo {
   width: 100%;
-  max-width: 500px;
+  max-width: 500px; /* Maximum width for the image */
+  object-fit: cover;
 }
 
 .Inputs_container {
@@ -128,8 +132,92 @@ textarea[name="Message"] {
   pointer-events: none;
 }
 
+.footer-container {
+  background-color: #000;
+  color: white;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 20px 0; /* Add padding for better spacing */
+}
+
+/* Other styles remain the same */
+.footer-element {
+  width: 90%;
+  margin: 0px auto;
+  padding: 100px 0px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.leftFooter {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.leftFooter h1 {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 1.2px;
+}
+
+.leftFooter p {
+  color: #8e8e8e;
+  font-family: Roboto;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0.48px;
+}
+
+.leftFooter .socialMedia-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.rightFooter {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.first-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.second-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.third-container {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Hide the girl's picture when the screen width is 675px or less */
 @media (max-width: 675px) {
+  .ConatctUs_container {
+    flex-direction: column; /* Stack vertically on smaller screens */
+    width: 90%; /* Adjust width to fit screen */
+  }
+
+  .left_ContactUs,
+  .right_ContactUs {
+    width: 100%; /* Take full width for each section */
+  }
   .Girl_Logo {
     display: none;
   }
