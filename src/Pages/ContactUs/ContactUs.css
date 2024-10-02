@@ -1,5 +1,7 @@
 .Contact-container {
   margin: 50px auto;
+  max-width: 100%; /* Ensure the container doesn't overflow the screen */
+  padding: 20px;
 }
 
 .ConatctUs_container {
@@ -11,6 +13,7 @@
   border: 5px dashed rgba(64, 58, 58, 0.5);
   width: 75%;
   padding: 20px;
+  transition: all 0.3s ease; /* Smooth transition */
 }
 
 .left_ContactUs {
@@ -31,7 +34,8 @@
 
 .Girl_Logo {
   width: 100%;
-  max-width: 500px;
+  max-width: 500px; /* Maximum width for the image */
+  object-fit: cover;
 }
 
 .Inputs_container {
@@ -205,6 +209,15 @@ textarea[name="Message"] {
 
 /* Hide the girl's picture when the screen width is 675px or less */
 @media (max-width: 675px) {
+  .ConatctUs_container {
+    flex-direction: column; /* Stack vertically on smaller screens */
+    width: 90%; /* Adjust width to fit screen */
+  }
+
+  .left_ContactUs,
+  .right_ContactUs {
+    width: 100%; /* Take full width for each section */
+  }
   .Girl_Logo {
     display: none;
   }
