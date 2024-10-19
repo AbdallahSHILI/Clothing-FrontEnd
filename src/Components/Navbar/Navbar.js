@@ -2,15 +2,18 @@ import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../Assets/Vector.svg";
+import Menu from "../Assets/Menu.svg";
 import Chariot from "../Assets/chariot.png";
 import MessageIcon from "../Assets/message_icon.svg";
 import Cookies from "js-cookie";
 import { MessageContext } from "../../useContext/messageContext"; // Import the context
+import loginIcon from "../../Components/Assets/login.svg";
 
 const Navbar = () => {
   const [role, setRole] = useState(Cookies.get("user-role"));
   const isAuthenticated = Cookies.get("access-token");
-  const { messageCount } = useContext(MessageContext); // Destructure messageCount from context
+  const { messageCount } = useContext(MessageContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = () => {
     // Remove the access token cookie
@@ -29,13 +32,17 @@ set up to listen for this event can then respond to it.*/
     window.location.href = "/login";
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="header">
       <div className="logo-vector">
         <img src={logo} alt="Logo" />
         <Link to="/">Home</Link>
       </div>
-      <div className="navbar-element">
+      <div className={`navbar-element ${isMenuOpen ? "open" : ""}`}>
         <div className="navbar-control">
           {isAuthenticated && role === "admin" && (
             <Link to="/Dashboard">Dashboard</Link>
@@ -55,11 +62,10 @@ set up to listen for this event can then respond to it.*/
             </>
           )}
         </div>
-        {isAuthenticated && role == "admin" && (
+        {isAuthenticated && role === "admin" && (
           <Link to="/AllMessages">
             <div className="message-icon-wrapper">
               <img src={MessageIcon} alt="Message" className="message_icon" />
-              {/* Display message count */}
               <span className="message-count">{messageCount}</span>
             </div>
           </Link>
@@ -67,19 +73,20 @@ set up to listen for this event can then respond to it.*/
         <div className="LoginSignup">
           {isAuthenticated ? (
             <button onClick={handleLogout} className="logout-button">
-              <span></span> {/* Placeholder for the icon */}
+              <img src={loginIcon} className="login_icon" />
               <span>Logout</span>
             </button>
           ) : (
             <Link to="/Login">
               <button className="login-button">
-                <span></span> {/* Placeholder for the icon */}
+                <img src={loginIcon} className="login_icon" />
                 <span>Login</span>
               </button>
             </Link>
           )}
         </div>
       </div>
+      <img src={Menu} className="menu_icon" onClick={toggleMenu} />
     </nav>
   );
 };
