@@ -18,6 +18,21 @@
   height: 29px;
 }
 
+.menu_icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Hide menu in mobile by default */
+.navbar-element {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-element.open {
+  display: block;
+}
+
 .logo-vector a {
   color: #000;
   font-family: Poppins;
@@ -88,6 +103,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   width: 150px; /* Adjust width as needed */
   height: 50px; /* Adjust height as needed */
   border-radius: 25px; /* Rounded button corners */
@@ -148,4 +164,36 @@
   content: "\2717"; /* Unicode for cross */
   font-size: 20px;
   color: #ffffff;
+}
+
+.login_icon {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 785px) {
+  .navbar-element {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff;
+    width: 100%;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+  }
+
+  .navbar-element.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .logo-vector {
+    flex-grow: 1;
+  }
 }
