@@ -18,11 +18,6 @@
   height: 29px;
 }
 
-.menu_icon {
-  width: 24px;
-  height: 24px;
-}
-
 /* Hide menu in mobile by default */
 .navbar-element {
   display: flex;
@@ -171,9 +166,22 @@
   height: 24px;
 }
 
+/* By default, hide the menu icon */
+.menu_icon {
+  display: none;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+/* Show the menu icon when the screen width is 785px or smaller */
 @media (max-width: 785px) {
+  .menu_icon {
+    display: block; /* Show the hamburger icon */
+  }
+
   .navbar-element {
-    display: none;
+    display: none; /* Hide the navbar elements initially */
     flex-direction: column;
     gap: 20px;
     background-color: #fff;
@@ -186,7 +194,7 @@
   }
 
   .navbar-element.open {
-    display: flex;
+    display: flex; /* Show navbar when the menu is open */
   }
 
   .menu-toggle {
