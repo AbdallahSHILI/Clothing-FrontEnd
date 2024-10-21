@@ -5,6 +5,7 @@
   padding: 20px;
 }
 
+/* Card Styling */
 .offer_card {
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -12,6 +13,8 @@
   padding: 20px;
   position: relative;
   transition: transform 0.3s ease-in-out;
+  width: 30%; /* Default width for larger screens */
+  margin-bottom: 20px; /* Add space between cards */
 }
 
 .offer_card:hover {
@@ -53,18 +56,18 @@
 
 .offer_image_container {
   display: flex;
-  justify-content: center; /* Horizontally center the image */
-  align-items: center; /* Vertically center the image */
+  justify-content: center;
+  align-items: center;
   margin-top: 15px;
 }
 
 .offer_image {
-  border-radius: 50%; /* Make the image circular */
+  border-radius: 50%;
   width: 150px;
   height: 150px;
-  object-fit: cover; /* Ensure the image covers the area and maintains aspect ratio */
-  border: 2px solid #ddd; /* Optional: Add a border around the circle */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better aesthetics */
+  object-fit: cover;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .offer_footer {
@@ -109,20 +112,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh; /* Takes up a good portion of the viewport height */
+  height: 80vh;
   text-align: center;
-  color: #555; /* A neutral color for the message */
-  padding: 20px; /* Some padding for breathing space */
+  color: #555;
+  padding: 20px;
 }
 
 .empty-message img {
-  width: 150px; /* Adjust size as needed */
+  width: 150px;
   height: auto;
-  margin-bottom: 20px; /* Space between image and text */
+  margin-bottom: 20px;
 }
 
 .empty-message p {
-  font-size: 1.2rem; /* A bit larger text for emphasis */
+  font-size: 1.2rem;
   margin: 0;
-  color: #666; /* A slightly lighter color for the text */
+  color: #666;
+}
+
+/* Media Query for 785px and below */
+@media (max-width: 785px) {
+  .offers_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .offer_card {
+    width: 70%; /* Take up most of the screen width */
+    margin-bottom: 20px; /* Add space between stacked cards */
+  }
 }
