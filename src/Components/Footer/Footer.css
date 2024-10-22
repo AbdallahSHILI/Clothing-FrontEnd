@@ -4,6 +4,8 @@
   width: 98%;
   margin: 0px auto;
   height: 85px;
+  position: relative;
+  bottom: 0;
 }
 
 .fashionMark-container {

@@ -1,13 +1,21 @@
-/* * {
+/* Global CSS or the parent component's CSS */
+html,
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  height: 100%; /* Ensures the body takes the full viewport height */
 }
 
-.App {
-  overflow-x: hidden;
-  overflow-y: hidden;
-} */
+#root,
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Makes sure the container takes up the full height */
+}
+
+.content-wrapper {
+  flex: 1; /* Ensures this takes up the remaining space */
+}
 
 :root {
   --color-dark: #000;
