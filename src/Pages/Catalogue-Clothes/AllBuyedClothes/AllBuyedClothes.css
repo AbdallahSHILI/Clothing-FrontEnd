@@ -130,6 +130,12 @@
   color: #666;
 }
 
+@media (max-width: 800px) {
+  .offer_button {
+    padding: 10px 5px;
+  }
+}
+
 /* Media Query for 785px and below */
 @media (max-width: 785px) {
   .offers_container {
@@ -140,5 +146,9 @@
   .offer_card {
     width: 70%; /* Take up most of the screen width */
     margin-bottom: 20px; /* Add space between stacked cards */
+  }
+
+  .offer_button {
+    padding: 10px 5px;
   }
 }
